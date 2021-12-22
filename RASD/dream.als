@@ -15,7 +15,7 @@ sig Float {
 -- Report: production report
 sig Report {
 	-- amount: production amount
-	amout: Float
+	amount: Float
 }
 
 -- ProblemStatus: the status of a problem
@@ -42,7 +42,7 @@ sig Problem {
 	status = Closed <=> feedback > 0
 }
 
--- DialyPlanStatus: the status of a daily plan
+-- DailyPlanStatus: the status of a daily plan
 abstract sig DailyPlanStatus {}
 -- DPOpened: the daily plan is in this status when created or modified
 one sig DPOpened extends DailyPlanStatus {}
@@ -145,7 +145,6 @@ fact areaBelongsToAnAgronomist {
 
 -- Every Daily Plan is associated with one and only one Agronomist
 fact dailyplanBelongsToAnAgronomist {
-	-- no dp: DailyPlan | some ag1, ag2: Agronomist | ag1 != ag2 and dp in ag1.dailyplans and dp in ag2.dailyplans
 	all dp: DailyPlan | one ag: Agronomist | dp in ag.dailyplans
 }
 
@@ -154,11 +153,9 @@ fact dateAssociatedWithADailyplan {
 	all d: Date | one dp: DailyPlan | dp.date = d
 }
 
--- TBD: Every Problem is associated with no more that one Agronomist
-
+-- TBD: When prolem is processing or closed status, it must be asscoiated with one and only one agronmist
 --  Agronomist visits each farmer at least twice a year. 
 
---  Agronomist visits under-performing farmer more often.  
 
 
 /************************  ASSERTIONS:  properties we want to check ************************/
@@ -174,11 +171,11 @@ fact dateAssociatedWithADailyplan {
 pred show() {}
 
 pred simpleCase {
-	#Area=2 and #Agronomist=3
-	#DailyPlan=2
-	#Farmer=4 and #Report=3
+	#Agronomist=2
+	--#DailyPlan=2
+	--#Farmer=4 and #Report=3
 }
 
 /********  COMMANDS:  instruct which assertions to check and how: run predicate, check assertion ********/
-run show for 5
---run simpleCase for 6
+--run show for 5
+run simpleCase for 1
