@@ -6,8 +6,11 @@ sig Area {
 	farms: some Farm
 }
 sig Float {
-	left: one Int
+	left: one Int,
 	right: one Int
+} {
+	left >= 0
+	right >= 0
 }
 -- Report: production report
 sig Report {
@@ -20,7 +23,7 @@ abstract sig ProblemStatus{}
 -- Open: the problem is created by a farmer
 one sig Open extends ProblemStatus {}
 -- Processing: agronomist is processing the problem
-one sig Processing extends ProblemStatus {}
+one sig Processed extends ProblemStatus {}
 -- Solving: farmer is solving the problem
 one sig Solving extends ProblemStatus {}
 -- Close: farmer gives the problem a feedback and close it.
@@ -28,10 +31,17 @@ one sig Close extends ProblemStatus {}
 
 -- Problem
 sig Problem {
+	-- answer
+	answer: lone String,
 	-- feedback: the score is given to the solution for the problem
-	feedback: lone Int
+	feedback: lone Int,
 	-- status: the status of a problem
 	status: one ProblemStatus
+} {
+	feedback >= 0
+	-- TBD: A problem is proccessed if and only if a answer is given
+	-- A Problem is closed if and only if a feedback is given
+	status = Close <=> feedback > 0
 }
 
 -- DialyPlanStatus: the status of a daily plan
@@ -45,21 +55,30 @@ one sig Executed extends DailyPlanStatus {}
 -- Completed: the daily plan is completed
 one sig Completed extends DailyPlanStatus {}
 
+-- Date
+sig Date {
+	year: one Int,
+	month: one Int,
+	day: one Int
+}
 -- Daily Plan
 sig DailyPlan {
+	date: one Date,
 	-- status: the status of a daily plan
-	status: one DialyPlanStatus
+	status: one DailyPlanStatus,
 	farmer: one Farmer
 } 
 
 -- Comment: 
 sig Comment {
-	
+	date: one Date
 }
 sig Post {
+	date: one Date,
 	comments: set Comment
 }
-sig Forum {
+-- Forum: in which Farmer can discuss with each other
+one sig Forum {
 	posts: set Post
 }
 
@@ -68,10 +87,10 @@ abstract sig User{}
 
 -- Farmer: a farmer that uses DREAM
 sig Farmer extends User{
-	performance: Int
+	performance: Int,
 
-	own: one Farm
-	reports: set Report
+	own: one Farm,
+	reports: set Report,
 	problems: set Problem
 } {
 	performance >= 0
@@ -79,10 +98,10 @@ sig Farmer extends User{
 
 -- Agronomist： an agronomist that uses DREAM
 sig Agronomist extends User {
-	-- area: the area an agronomist is responsible of
-	area: one Area
+	-- area: the area an agronomist is responsible of. Agronomist is reponsible for only one area
+	area: one Area,
 
-	dailyplans: set DailyPlan
+	dailyplans: set DailyPlan,
 	problems: set Problem
 }
 
@@ -90,57 +109,69 @@ sig Agronomist extends User {
 /************************ FACT: properties of models, constraints! ************************/
 -- Every Comment is associated with one and only one Post
 fact commentBelongsToAPost {
-	no c: Comment | some p1, p2: Post | p1 != p2 and c in p.comments and c in p.comments
+	all c: Comment | one p: Post | c in p.comments
 }
 
--- Every Post is associated with one and only one Forum
-fact postBelongsToAForum {
-	no p: Post | some f1, f2: Forum | f1 != f2 and p in f1.posts and p in f2.posts
+-- TBD: A Comment cannot be earlier than associated Post
+fact noCommenteEarlierThanPost {
+	all p: Post | all c: Comment | c in p.comments =>  not dateEarlier[c.date, p.date]
 }
-
 -- Every Report is associated with one and only one Farmer
 fact reportBelongsToAFarmer {
-	no r: Report | some f1, f2: Farmer | f1 != f2 and r in f1.reports and r in f2.reports
+	all r: Report | one f: Farmer | r in f.reports
 }
 
 --  Every Farm is associated with one and only one Farmer
 fact farmBelongsToAFarmer {
-	no f: Farm | some f1, f2: Farmer | f1 != f2 and f = f1.own and f = f2.own
+	all fm: Farm | one f: Farmer | f.own = fm
+}
+
+-- Every farm is associated with one and only one Area
+fact farmBelongsToAnArea {
+	all fm: Farm | one a: Area | fm in a.farms
 }
 
 -- Every Problem is associated with one and only one Farmer
 fact problemBelongsToAFarmer {
-	no p: Problem | some f1, f2: Farmer | f1 != f2 and p in f1.problems and p in f2.problems
+	all p: Problem | one f: Farmer | p in f.problems
 }
 
 -- Every Area is associated with one and only one Agronomist
 fact areaBelongsToAnAgronomist {
-	no a: Area | some ag1, ag2: Agronomist | ag1 != ag2 and a = ag1.area and a = ag2.area
+	all a: Area | one ag: Agronomist | ag.area = a
 }
 
 -- Every Daily Plan is associated with one and only one Agronomist
 fact dailyplanBelongsToAnAgronomist {
-	no dp: DailyPlan | some ag1, ag2: Agronomist | ag1 != ag2 and dp in ag1.dailyplans and dp in ag2.dailyplans
+	-- no dp: DailyPlan | some ag1, ag2: Agronomist | ag1 != ag2 and dp in ag1.dailyplans and dp in ag2.dailyplans
+	all dp: DailyPlan | one ag: Agronomist | dp in ag.dailyplans
 }
 
+-- Every Date is associated with one and only one Daily Plan
+fact dateAssociatedWithADailyplan {
+	all d: Date | one dp: DailyPlan | dp.date = d
+}
+
+-- If a Farmer 
 
 -- TBD: Every Problem is associated with no more that one Agronomist
 
---  Agronomist has at least one responsible farm. 
+--  Agronomist visits each farmer at least twice a year. 
 
---  Agronomist visits each farm at least twice a year. 
-
---  Agronomist visits under-performing farm more often.  
+--  Agronomist visits under-performing farmer more often.  
 
 
 /************************  Preidications / functions: resusable expressions ************************/
---
-pred addCommentToPost[p, p': Post, c: Comment]
-{
-	b'.comments = b.comments + c
+-- TODO: check if date d earlier than date d'
+pred dateEarlier [d, d': Date] {
 }
 
-/************************  ASSERTIONS:  properties we want to check ************************/
+pred show() {}
+run show for 5
 
+/************************  ASSERTIONS:  properties we want to check ************************/
+-- TODO: G8 - If Farmer has a problem and the problem has an answer, 
+-- it should be answered by the Agronomist who is responsible for the area 
+-- where the Farmer's farm belongs to.
 
 /********  COMMANDS:  instruct which assertions to check and how: run predicate, check assertion ********/
