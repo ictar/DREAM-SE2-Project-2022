@@ -21,13 +21,11 @@ sig Report {
 -- ProblemStatus: the status of a problem
 abstract sig ProblemStatus{}
 -- Open: the problem is created by a farmer
-one sig Open extends ProblemStatus {}
--- Processing: agronomist is processing the problem
-one sig Processed extends ProblemStatus {}
--- Solving: farmer is solving the problem
-one sig Solving extends ProblemStatus {}
--- Close: farmer gives the problem a feedback and close it.
-one sig Close extends ProblemStatus {}
+one sig Opened extends ProblemStatus {}
+-- Processing: the problem is answered by a agronomist 
+one sig Processing extends ProblemStatus {}
+-- Closed: farmer gives the problem a feedback and close it.
+one sig Closed extends ProblemStatus {}
 
 -- Problem
 sig Problem {
@@ -41,40 +39,40 @@ sig Problem {
 	feedback >= 0
 	-- TBD: A problem is proccessed if and only if a answer is given
 	-- A Problem is closed if and only if a feedback is given
-	status = Close <=> feedback > 0
+	status = Closed <=> feedback > 0
 }
 
 -- DialyPlanStatus: the status of a daily plan
 abstract sig DailyPlanStatus {}
--- DPOpen: the daily plan is created
-one sig DPOpen extends DailyPlanStatus {}
--- Modified: the daily plan is modified
-one sig Modified extends DailyPlanStatus {}
--- Executed: the daily plan is executed
-one sig Executed extends DailyPlanStatus {}
--- Completed: the daily plan is completed
-one sig Completed extends DailyPlanStatus {}
+-- DPOpened: the daily plan is in this status when created or modified
+one sig DPOpened extends DailyPlanStatus {}
+-- DPClosed: the daily plan is completed when Agronomist confirm and speicify the deviation
+one sig DPClosed extends DailyPlanStatus {}
 
 -- Date
-sig Date {
-	year: one Int,
-	month: one Int,
-	day: one Int
-}
+sig Date {}
 -- Daily Plan
 sig DailyPlan {
 	date: one Date,
 	-- status: the status of a daily plan
 	status: one DailyPlanStatus,
-	farmer: one Farmer
+	-- farmer: which farmers included in this daily plan
+	farmer: set Farmer,
+	-- deviation
+	deviation: lone String
 } 
 
+-- Time
+sig Time {
+	-- ts: timestamp
+	ts: Int
+} { ts > 0}
 -- Comment: 
 sig Comment {
-	date: one Date
+	time: one Time
 }
 sig Post {
-	date: one Date,
+	time: one Time,
 	comments: set Comment
 }
 -- Forum: in which Farmer can discuss with each other
@@ -90,10 +88,14 @@ sig Farmer extends User{
 	performance: Int,
 
 	own: one Farm,
+	-- reports: set of production report
 	reports: set Report,
-	problems: set Problem
+	-- requests: Farmer's problem list
+	requests: set Problem
 } {
 	performance >= 0
+	-- performance is positive implies Farmer reports at least one production info
+	performance > 0 => #reports > 0
 }
 
 -- Agronomist： an agronomist that uses DREAM
@@ -102,7 +104,7 @@ sig Agronomist extends User {
 	area: one Area,
 
 	dailyplans: set DailyPlan,
-	problems: set Problem
+	answers: set Problem
 }
 
 
@@ -112,9 +114,9 @@ fact commentBelongsToAPost {
 	all c: Comment | one p: Post | c in p.comments
 }
 
--- TBD: A Comment cannot be earlier than associated Post
+-- A Comment cannot be earlier than associated Post
 fact noCommenteEarlierThanPost {
-	all p: Post | all c: Comment | c in p.comments =>  not dateEarlier[c.date, p.date]
+	all p: Post | all c: p.comments | c.time.ts > p.time.ts
 }
 -- Every Report is associated with one and only one Farmer
 fact reportBelongsToAFarmer {
@@ -133,7 +135,7 @@ fact farmBelongsToAnArea {
 
 -- Every Problem is associated with one and only one Farmer
 fact problemBelongsToAFarmer {
-	all p: Problem | one f: Farmer | p in f.problems
+	all p: Problem | one f: Farmer | p in f.requests
 }
 
 -- Every Area is associated with one and only one Agronomist
@@ -152,8 +154,6 @@ fact dateAssociatedWithADailyplan {
 	all d: Date | one dp: DailyPlan | dp.date = d
 }
 
--- If a Farmer 
-
 -- TBD: Every Problem is associated with no more that one Agronomist
 
 --  Agronomist visits each farmer at least twice a year. 
@@ -161,17 +161,24 @@ fact dateAssociatedWithADailyplan {
 --  Agronomist visits under-performing farmer more often.  
 
 
-/************************  Preidications / functions: resusable expressions ************************/
--- TODO: check if date d earlier than date d'
-pred dateEarlier [d, d': Date] {
-}
-
-pred show() {}
-run show for 5
-
 /************************  ASSERTIONS:  properties we want to check ************************/
 -- TODO: G8 - If Farmer has a problem and the problem has an answer, 
 -- it should be answered by the Agronomist who is responsible for the area 
 -- where the Farmer's farm belongs to.
 
+-- TODO: For each agronomist
+
+
+
+/************************  Preidications / functions: resusable expressions ************************/
+pred show() {}
+
+pred simpleCase {
+	#Area=2 and #Agronomist=3
+	#DailyPlan=2
+	#Farmer=4 and #Report=3
+}
+
 /********  COMMANDS:  instruct which assertions to check and how: run predicate, check assertion ********/
+run show for 5
+--run simpleCase for 6
