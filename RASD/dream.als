@@ -219,19 +219,19 @@ fact DPfarmerInAgronomistResponsibleArea {
 assert uniqueAgronomistEmail {
 	all disj a1, a2: Agronomist | a1.email != a2.email
 }
-check uniqueAgronomistEmail for 10
+check uniqueAgronomistEmail
 
 -- Every email uniquely identifies a registered policymaker
 assert uniquePolicyMakerEmail {
 	all disj pm1, pm2: PolicyMaker | pm1.email != pm2.email
 }
-check uniquePolicyMakerEmail for 10
+check uniquePolicyMakerEmail
 
 -- Every phone number uniquely identifies a registered farmer
 assert uniqueFarmerPhoneNumber {
 	all disj f1, f2: Farmer | f1.phonenumber != f2.phonenumber
 }
-check uniqueFarmerPhoneNumber for 10
+check uniqueFarmerPhoneNumber
 
 -- Agronomist only handles request from farmers in his/her responsible area
 assert agronomistAnswerResponsibleFarmer {
@@ -239,7 +239,7 @@ assert agronomistAnswerResponsibleFarmer {
 		implies
 			f.own in a.area.farms
 }
-check agronomistAnswerResponsibleFarmer for 10
+check agronomistAnswerResponsibleFarmer
 
 
 /************************  Preidications / functions: resusable expressions ************************/
@@ -249,7 +249,5 @@ pred simpleCase {
 	#DailyPlan = 2
 	#Problem > 2
 }
+run simpleCase for 6
 
-/********  COMMANDS:  instruct which assertions to check and how: run predicate, check assertion ********/
---run show for 6
-run simpleCase for 8
