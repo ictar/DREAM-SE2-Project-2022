@@ -1,0 +1,12 @@
+.dream-header {
+    background:#d5e8d4;
+}
+.card-img-top {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+}
+
+.dream-btn {
+    background:#d5e8d4;
+}
