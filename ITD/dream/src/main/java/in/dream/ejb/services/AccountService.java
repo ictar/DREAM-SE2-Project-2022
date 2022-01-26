@@ -7,6 +7,7 @@ import in.dream.ejb.models.Policymaker;
 
 import javax.ejb.CreateException;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
@@ -18,8 +19,13 @@ public class AccountService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
 
+    @Inject
+    private GeospatialDataService geoService;
+
+
+
     // farmer
-    public boolean createFarmerAccount(String username, String pwd, String phonenumer) {
+    public void createFarmerAccount(String username, String pwd, String phonenumer) throws CreateException {
         List<Farmer> fList;
 
         fList = em.createNamedQuery("Farmer.checkDuplicatePhoneNumber", Farmer.class)
@@ -27,7 +33,7 @@ public class AccountService {
                 .getResultList();
 
         if (!fList.isEmpty()) {
-            return false;
+            throw new CreateException("Phone number alreay exists.");
         }
 
         Farmer farmer = new Farmer();
@@ -38,9 +44,8 @@ public class AccountService {
         try {
             em.persist(farmer);
         } catch (Exception e) {
-            return false;
+            throw new CreateException(e.getMessage());
         }
-        return true;
     }
 
     public Farmer authenticateFarmer(String phonenumber, String pwd) throws CredentialException {
@@ -110,7 +115,7 @@ public class AccountService {
     }
 
     // policy maker
-    public boolean createPolicyMakerAccount(String username, String pwd, String email){
+    public void createPolicyMakerAccount(String username, String pwd, String email) throws CreateException{
         List<Policymaker> pmList;
 
         pmList = em.createNamedQuery("Policymaker.checkDuplicateEmail", Policymaker.class)
@@ -118,7 +123,7 @@ public class AccountService {
                 .getResultList();
 
         if (!pmList.isEmpty()) {
-            return false;
+            throw new CreateException("Email already exists");
         }
 
         Policymaker pm = new Policymaker();
@@ -129,9 +134,8 @@ public class AccountService {
         try {
             em.persist(pm);
         } catch (Exception e) {
-            return false;
+            throw new CreateException(e.getMessage());
         }
-        return true;
     }
     public Policymaker authenticatePolicymaker(String email, String pwd) throws CredentialException {
         List <Policymaker> plist;
@@ -155,7 +159,7 @@ public class AccountService {
     }
 
     // agronomist
-    public boolean createAgronomistAccount(String username, String pwd, String email, Area area) throws CreateException {
+    public void createAgronomistAccount(String username, String pwd, String email, Long areaId) throws CreateException {
         List<Agronomist> aList;
 
         aList = em.createNamedQuery("Agronomist.checkDuplicateEmail", Agronomist.class)
@@ -163,7 +167,12 @@ public class AccountService {
                 .getResultList();
 
         if (!aList.isEmpty()) {
-            return false;
+            throw new CreateException("Email already exists");
+        }
+
+        Area area = geoService.getArea(areaId);
+        if(area == null) {
+            throw new CreateException("Area does not exist!");
         }
 
         Agronomist ag = new Agronomist();
@@ -175,10 +184,10 @@ public class AccountService {
         try {
             em.persist(ag);
         } catch (Exception e) {
-            return false;
+            throw new CreateException(e.getMessage());
         }
-        return true;
     }
+
     public Agronomist authenticateAgronomist(String email, String pwd) throws CredentialException {
         List <Agronomist> alist;
 

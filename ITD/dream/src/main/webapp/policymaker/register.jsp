@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,9 +34,9 @@
     </div>
     <div class="col-sm">
       <h2 class="text-center p-5">Policy Maker</h2>
-      <form action="/PolicymakerRegister" method="POST">
+      <form action="${pageContext.request.contextPath}/policymaker/Register" method="POST">
         <div class="input-group">
-          <input type="name" class="form-control mt-2 border-secondary" id="name" placeholder="Name" name="name">
+          <input type="text" class="form-control mt-2 border-secondary" id="name" placeholder="Name" name="name">
         </div>
         <div class="input-group">
           <input type="email" class="form-control mt-2 border-secondary" id="email" placeholder="Email" name="email">
@@ -55,14 +56,14 @@
         <div class="text-center pt-3">
           <button type="submit" class="btn border-0 dream-btn"><strong>Create An Account</strong></button>
         </div>
-        <p th:text="${errorMsgReg}"></p>
+        <div><p>${errorMsgReg}</p></div>
       </form>
     </div>
     <div class="col-sm"></div>
   </div>
 
   <div class="row m-5 p-5">
-    <p class="text-center">Already have an account?  <a href="./login">Sign In</a></p>
+    <p class="text-center">Already have an account?  <a href="./login.jsp">Sign In</a></p>
   </div>
 </div>
 </body>

@@ -2,7 +2,8 @@
 
 create table `area` (
     `areaid` int(11) NOT NULL AUTO_INCREMENT,
-
+    `name` varchar(45) NOT NULL,
+    
     PRIMARY KEY (`areaid`)
 );
 

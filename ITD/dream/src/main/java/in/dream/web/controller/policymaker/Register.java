@@ -9,46 +9,44 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 import org.apache.commons.text.StringEscapeUtils;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.WebContext;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
-@WebServlet(name = "Register", value = "/policymaker/Register")
+@WebServlet(name = "policymakerRegister", value = "/policymaker/Register")
 public class Register extends HttpServlet {
 
-    private TemplateEngine templateEngine;
-    private ServletContext servletContext;
-    private WebContext ctx;
-
-    @EJB(name = "services/AccountService")
+    @EJB(name = "in.dream.ejb.services/AccountService")
     private AccountService accountService;
 
     public void init() {
-        servletContext = getServletContext();
-        ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver(servletContext);
-        templateResolver.setTemplateMode(TemplateMode.HTML);
-        this.templateEngine = new TemplateEngine();
-        this.templateEngine.setTemplateResolver(templateResolver);
-        templateResolver.setSuffix(".html");
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String result;
-        String username = StringEscapeUtils.escapeJava(request.getParameter("name"));
-        String password = StringEscapeUtils.escapeJava(request.getParameter("pwd"));
-        String email = StringEscapeUtils.escapeJava(request.getParameter("email"));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        boolean success = accountService.createPolicyMakerAccount(username, email, password);
+        try {
+            String acc_privacy = StringEscapeUtils.escapeJava(request.getParameter("acc_privacy"));
+            String acc_terms = StringEscapeUtils.escapeJava(request.getParameter("acc_terms"));
+            if (acc_privacy == null || !acc_privacy.equals("on") || acc_terms == null || ! acc_terms.equals("on")) {
+                throw new Exception("Privacy Statement / Terms and Conditions should be checked");
+            }
 
-        if (!success)
-            result = "Error occurred";
-        else
-            result = "Registration was successful";
+            String username = StringEscapeUtils.escapeJava(request.getParameter("name"));
+            String password = StringEscapeUtils.escapeJava(request.getParameter("pwd"));
+            String email = StringEscapeUtils.escapeJava(request.getParameter("email"));
 
-        ctx = new WebContext(request, response, servletContext, request.getLocale());
-        ctx.setVariable("errorMsgReg", result);
-        templateEngine.process("/index.html", ctx, response.getWriter());
+            if(username== null || username.isEmpty()
+                    || password == null || password.isEmpty()
+                    || email == null || email.isEmpty()) {
+                throw new Exception("Required field is missing.");
+            }
+
+            accountService.createPolicyMakerAccount(username, password, email);
+            response.sendRedirect(getServletContext().getContextPath() + "/policymaker/login.jsp");
+
+        } catch (Exception e) {
+            request.setAttribute("errorMsgReg", e.getMessage());
+            request.getRequestDispatcher("/policymaker/register.jsp").forward(request, response);
+
+        }
+
     }
 }

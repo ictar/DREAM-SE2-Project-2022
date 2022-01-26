@@ -47,7 +47,7 @@
             </a>
             <div class="card-body">
                 <h3 class="card-title text-center">Agronomist</h3>
-                <p class="card-text text-center p-4">Don't have an account?  <a href="./agronomist/register.jsp">Sign Up</a></p>
+                <p class="card-text text-center p-4">Don't have an account?  <a href="${pageContext.request.contextPath}/agronomist/Register">Sign Up</a></p>
             </div>
         </div>
     </div>

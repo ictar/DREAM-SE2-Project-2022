@@ -1,11 +1,11 @@
 package in.dream.ejb.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Area.findAll", query="SELECT a from Area a")
+})
 public class Area {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +19,13 @@ public class Area {
     public void setAreaid(Long areaid) {
         this.areaid = areaid;
     }
+
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }
