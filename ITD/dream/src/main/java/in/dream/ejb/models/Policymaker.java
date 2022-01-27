@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name="Policymaker.checkCredentials", query="SELECT p from Policymaker p WHERE p.email=?1 and p.password=?2"),
-        @NamedQuery(name="Policymaker.checkDuplicateEmail", query="SELECT f from Farmer f where f.phonenumber=?1")
+        @NamedQuery(name="Policymaker.checkDuplicateEmail", query="SELECT p from Policymaker p where p.email=?1")
 })
 public class Policymaker {
     @Id

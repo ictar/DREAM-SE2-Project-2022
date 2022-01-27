@@ -59,7 +59,7 @@ public class GeospatialDataService {
 
     public String getSoil(Long areaID) {
         try {
-            HttpGet req = new HttpGet(soilurl+this.getArea(areaID).getName());
+            HttpGet req = new HttpGet(soilurl+"/"+this.getArea(areaID).getName());
             HttpResponse resp = httpCli.execute(req);
             if(resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 return EntityUtils.toString(resp.getEntity(), Charsets.UTF_8);
@@ -73,7 +73,7 @@ public class GeospatialDataService {
 
     public String getWeather(Long areaID) {
         try {
-            HttpGet req = new HttpGet(weatherurl+this.getArea(areaID).getName());
+            HttpGet req = new HttpGet(weatherurl+"/"+this.getArea(areaID).getName());
             HttpResponse resp = httpCli.execute(req);
             if(resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 return EntityUtils.toString(resp.getEntity(), Charsets.UTF_8);
@@ -91,7 +91,7 @@ public class GeospatialDataService {
 
     public String getWaterIrrigation(Long areaID) {
         try {
-            HttpGet req = new HttpGet(irrigationurl+this.getArea(areaID).getName());
+            HttpGet req = new HttpGet(irrigationurl+"/"+this.getArea(areaID).getName());
             HttpResponse resp = httpCli.execute(req);
             if(resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 return EntityUtils.toString(resp.getEntity(), Charsets.UTF_8);

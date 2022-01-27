@@ -49,6 +49,29 @@ def getDistricts(url, saveto):
     with open(saveto, "w") as f:
         f.write(json.dumps(data, indent=4))
 
+def getDistrictImage(url, saveto=None):
+    tree = html.fromstring(get(url))
+
+    print(tree.xpath('//div[@id="dp_content_map1"]/div/table//tr/td[2]/div/select/option/text()'))
+    links = tree.xpath('//div[@id="dp_content_map1"]/div/table//tr/td[2]/div/select/option/@value')[1:]
+
+    data = {}
+    for link in links:
+        if link == "live/ghmc/index.jsp":
+            continue
+
+        print("process ", link)
+        optr = html.fromstring(get(basic+link))
+        area = optr.xpath('//*[@id="dp_content_map1"]/div/table//tr/td[2]/div/span/text()')[0].split("in")[-1].strip().split(" District")[0]
+
+        imagepath = basic + optr.xpath('//*[@id="mapImage"]/@src')[0]
+        name = imagepath.split('/')[-1]
+        print(area, " : ", imagepath, name)
+        #save
+        with open(saveto+name, "wb") as f:
+            f.write(get(imagepath))
+
 
 if __name__ == "__main__":
-    getDistricts(access, "weather.json")
+    #getDistricts(access, "weather.json")
+    getDistrictImage(access, "./image/")

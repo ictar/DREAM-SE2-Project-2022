@@ -7,18 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/basic.css" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
     <title>DREAM</title>
 </head>
 <body>
-<div class="mt-0 p-5 text-black dream-header">
-    <h1>Data-dRiven PrEdictive FArMing</h1>
-    <p class="text-center text-secondary">Telengana</p>
+<div class="row mt-0 p-5 dream-header">
+    <div class="col-sm-8 text-end">
+        <h1>Data-dRiven PrEdictive FArMing</h1>
+        <p class="text-secondary text-right">Telengana</p>
+    </div>
 </div>
 
 <div class="container pt-5">
@@ -47,7 +48,7 @@
             </a>
             <div class="card-body">
                 <h3 class="card-title text-center">Agronomist</h3>
-                <p class="card-text text-center p-4">Don't have an account?  <a href="${pageContext.request.contextPath}/agronomist/Register">Sign Up</a></p>
+                <p class="card-text text-center p-4">Don't have an account?  <a href="${pageContext.request.contextPath}/agronomist/register">Sign Up</a></p>
             </div>
         </div>
     </div>

@@ -3,6 +3,8 @@
 create table `area` (
     `areaid` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(45) NOT NULL,
+    `coords` varchar(1000) NOT NULL,
+    `image` varchar(30),
     
     PRIMARY KEY (`areaid`)
 );

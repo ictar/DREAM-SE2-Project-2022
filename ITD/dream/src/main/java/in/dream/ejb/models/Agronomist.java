@@ -6,7 +6,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name="Agronomist.checkCredentials", query="SELECT a from Agronomist a WHERE a.email=?1 and a.password=?2"),
         @NamedQuery(name="Agronomist.findAll", query="SELECT a from Agronomist a"),
-        @NamedQuery(name="Agronomist.checkDuplicateEmail", query="SELECT f from Farmer f where f.phonenumber=?1")
+        @NamedQuery(name="Agronomist.checkDuplicateEmail", query="SELECT a from Agronomist a where a.email=?1")
 })
 public class Agronomist {
     @Id

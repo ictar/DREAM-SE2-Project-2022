@@ -24,8 +24,6 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email, pwd;
 
-        ServletContext servletContext = getServletContext();
-
         String path;
 
         try {
@@ -44,15 +42,13 @@ public class Login extends HttpServlet {
 
             // everything is ok
             request.getSession().setAttribute("policymaker", pm);
-            path = getServletContext().getContextPath() + "/policymaker/Home";
+            path = getServletContext().getContextPath() + "/policymaker";
             response.sendRedirect(path);
 
         }catch (Exception e) {
             path = "/policymaker/login.jsp";
             request.setAttribute("errorMsgLog", e.getMessage());
             request.getRequestDispatcher(path).forward(request, response);
-
-            return;
         }
     }
 }

@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "agronomistRegister", value = "/agronomist/Register")
+@WebServlet(name = "agronomistRegister", value = "/agronomist/register")
 public class Register extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/AccountService")
     private AccountService accountService;
@@ -50,7 +50,7 @@ public class Register extends HttpServlet {
             }
 
             accountService.createAgronomistAccount(username,password,email, areaId);
-            response.sendRedirect(getServletContext().getContextPath() + "/agronomist/Register");
+            response.sendRedirect(getServletContext().getContextPath() + "/agronomist/login.jsp");
 
         } catch (Exception e) {
             request.setAttribute("errorMsgReg", e.getMessage());

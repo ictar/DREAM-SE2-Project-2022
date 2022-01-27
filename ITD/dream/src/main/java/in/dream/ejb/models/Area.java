@@ -28,4 +28,20 @@ public class Area {
         this.name = name;
     }
 
+    private String coords;
+    public String getCoords() {
+        return coords;
+    }
+    public void setCoords(String coords) {
+        this.coords = coords;
+    }
+
+    private String image;
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 }

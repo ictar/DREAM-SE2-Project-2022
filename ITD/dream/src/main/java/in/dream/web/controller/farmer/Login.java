@@ -49,8 +49,6 @@ public class Login extends HttpServlet {
             path = "/farmer/login.jsp";
             request.setAttribute("errorMsgLog", e.getMessage());
             request.getRequestDispatcher(path).forward(request, response);
-
-            return;
         }
     }
 }

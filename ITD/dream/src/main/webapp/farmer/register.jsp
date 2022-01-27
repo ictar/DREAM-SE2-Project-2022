@@ -13,18 +13,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/basic.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/basic.css" rel="stylesheet">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
 
 <title>Register</title>
 </head>
 <body>
-<div class="mt-0 p-5 text-black dream-header">
-    <h1>Data-dRiven PrEdictive FArMing</h1>
-    <p class="text-center text-secondary">Telengana</p>
+<div class="row mt-0 p-5 dream-header">
+    <div class="col-sm-8 text-end">
+        <h1>Data-dRiven PrEdictive FArMing</h1>
+        <p class="text-secondary text-right">Telengana</p>
+    </div>
 </div>
 
 <div class="container">
@@ -36,27 +38,27 @@
             <h2 class="text-center p-5">Farmer</h2>
             <form action="${pageContext.request.contextPath}/farmer/Register" method="POST">
                 <div class="input-group">
-                    <input type="text" class="form-control mt-2 border-secondary" id="name" placeholder="User Name" name="name">
+                    <input type="text" class="form-control mt-2 border-secondary" id="name" placeholder="User Name" name="name" required>
                 </div>
                 <div class="input-group">
-                    <input type="number" class="form-control mt-2 border-secondary" id="email" placeholder="Phone Number" name="phonenumber">
+                    <input type="tel" class="form-control mt-2 border-secondary" id="phonenumber" placeholder="Phone Number" name="phonenumber" required>
                 </div>
                 <div class="input-group">
-                    <input type="password" class="form-control mt-2 border-secondary" id="pwd" placeholder="Password" name="pwd">
+                    <input type="password" class="form-control mt-2 border-secondary" id="pwd" placeholder="Password" name="pwd" required>
                     <div class="input-group-append">
                         <span class="help-block">At least 8 alphanumeric characters, 2 numeric characters.</span>
                     </div>
                 </div>
                 <div class="checkbox text-secondary">
-                    <label><input type="checkbox" name="acc_privacy"> Accept <a>Privacy Statement</a></label>
+                    <label><input type="checkbox" name="acc_privacy" required> Accept <a href="${pageContext.request.contextPath}/privacystate.html">Privacy Statement</a></label>
                 </div>
                 <div class="checkbox text-secondary">
-                    <label><input type="checkbox" name="acc_terms"> Accept <a>Terms and Conditions</a></label>
+                    <label><input type="checkbox" name="acc_terms" required> Accept <a>Terms and Conditions</a></label>
                 </div>
                 <div class="text-center pt-3">
                     <button type="submit" class="btn border-0 dream-btn"><strong>Create An Account</strong></button>
                 </div>
-                <div><p>${errorMsgReg}</p></div>
+                <div><p class="text-danger">${errorMsgReg}</p></div>
             </form>
         </div>
         <div class="col-sm"></div>

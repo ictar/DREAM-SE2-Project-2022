@@ -22,10 +22,36 @@ public class AccountService {
     @Inject
     private GeospatialDataService geoService;
 
+    private static final int PASSWORD_LENGTH = 8;
+    // check if passsword satisfy
+    // "At least 8 alphanumeric characters, 2 numeric characters."
+    private static boolean isValidPassword(String pwd) {
+        if(pwd.length() < PASSWORD_LENGTH) return false;
 
+        int charCnt = 0;
+        int numCnt = 0;
+
+        for (int i = 0; i < pwd.length(); i++) {
+            char ch = pwd.charAt(i);
+            if(isNumber(ch)) numCnt++;
+            else if(isLetter(ch)) charCnt++;
+            else return false;
+        }
+        return numCnt >= 2;
+    }
+    private static boolean isLetter(char ch) {
+        ch = Character.toUpperCase(ch);
+        return (ch >= 'A' && ch <= 'Z');
+    }
+    private static boolean isNumber(char ch) {
+        return (ch >= '0' && ch <= '9');
+    }
 
     // farmer
     public void createFarmerAccount(String username, String pwd, String phonenumer) throws CreateException {
+        if(!isValidPassword(pwd)) {
+            throw new CreateException("Password should be at least 8 alphanumeric characters, 2 numeric characters.");
+        }
         List<Farmer> fList;
 
         fList = em.createNamedQuery("Farmer.checkDuplicatePhoneNumber", Farmer.class)
@@ -69,7 +95,7 @@ public class AccountService {
         throw new CredentialException("More than one farmer registered with same credentials.");
     }
 
-    public List<Farmer> getFarmerListByArea(int areaID) {
+    public List<Farmer> getFarmerListByArea(Long areaID) {
         List<Farmer> result;
         try {
             result = em.createQuery("select f from Farmer f, Farm fm where fm.phonenumber = fm.farmer and fm.area = ?1",
@@ -110,12 +136,16 @@ public class AccountService {
 
     }*/
 
-    public List<Farmer> getFarmerPerformanceList(int areaID) {
+    public List<Farmer> getFarmerPerformanceList(Long areaID) {
         return getFarmerListByArea(areaID);
     }
 
     // policy maker
     public void createPolicyMakerAccount(String username, String pwd, String email) throws CreateException{
+        if(!isValidPassword(pwd)) {
+            throw new CreateException("Password should be at least 8 alphanumeric characters, 2 numeric characters.");
+        }
+
         List<Policymaker> pmList;
 
         pmList = em.createNamedQuery("Policymaker.checkDuplicateEmail", Policymaker.class)
@@ -160,6 +190,9 @@ public class AccountService {
 
     // agronomist
     public void createAgronomistAccount(String username, String pwd, String email, Long areaId) throws CreateException {
+        if(!isValidPassword(pwd)) {
+            throw new CreateException("Password should be at least 8 alphanumeric characters, 2 numeric characters.");
+        }
         List<Agronomist> aList;
 
         aList = em.createNamedQuery("Agronomist.checkDuplicateEmail", Agronomist.class)

@@ -26,7 +26,7 @@ public class Login extends HttpServlet {
 
         try {
             email = request.getParameter("email");
-            pwd = request.getParameter("password");
+            pwd = request.getParameter("pwd");
 
             if (email == null || pwd == null || email.isEmpty() || pwd.isEmpty()) {
                 throw new Exception("Missing credential value");
@@ -48,7 +48,6 @@ public class Login extends HttpServlet {
             request.setAttribute("errorMsgLog", e.getMessage());
             request.getRequestDispatcher(path).forward(request, response);
 
-            return;
         }
     }
 }
