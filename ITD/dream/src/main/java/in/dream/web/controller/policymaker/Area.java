@@ -27,8 +27,7 @@ public class Area extends HttpServlet {
 
         String path = "/policymaker/area.jsp";
 
-        String[] pathParts = request.getPathInfo().split("/");
-        Long areaId = Long.parseLong(StringEscapeUtils.escapeJava(pathParts[pathParts.length-1]));
+        Long areaId = Long.parseLong(StringEscapeUtils.escapeJava(request.getParameter("id")));
 
         request.setAttribute("area", geoService.getArea(areaId));
         request.setAttribute("weather", geoService.getWeather(areaId));

@@ -1,6 +1,24 @@
 .dream-header {
     background:#d5e8d4;
 }
+
+.dream-nav {
+    background: #E9ECEF;
+}
+.dream-nav > nav > ol > li > a {
+    color: #009900;
+    text-decoration: none;
+}
+
+.dream-tab {
+    background: #F8F9FA;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: black !important;
+    background-color: #D5E8D4 !important;
+}
+
 .card-img-top {
     width: 100%;
     height: 30vh;

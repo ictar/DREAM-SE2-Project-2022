@@ -22,17 +22,20 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<div class="row mt-0 p-5 dream-header">
-    <div class="col-sm-8 text-end">
+<div class="row mt-0 pt-5 dream-header">
+    <div class="col-sm-7 text-end">
         <h1>Data-dRiven PrEdictive FArMing</h1>
         <p class="text-secondary text-right">Telengana</p>
     </div>
+    <div class="col-sm-5 mt-5">
+        <p class="text-end">Hi, ${user}</p>
+    </div>
 </div>
-<div>
+<div class="ps-4 dream-nav">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">${agronomit.getName()}</li>
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/policymaker">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">${agronomist.getName()}</li>
         </ol>
     </nav>
 </div>

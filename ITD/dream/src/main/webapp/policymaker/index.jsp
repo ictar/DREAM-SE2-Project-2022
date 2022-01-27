@@ -22,12 +22,12 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<div class="row mt-0 p-5 dream-header">
-    <div class="col-sm-8 text-end">
+<div class="row mt-0 pt-5 dream-header">
+    <div class="col-sm-7 text-end">
         <h1>Data-dRiven PrEdictive FArMing</h1>
         <p class="text-secondary text-right">Telengana</p>
     </div>
-    <div class="col-sm-4 mt-5">
+    <div class="col-sm-5 mt-5">
         <p class="text-end">Hi, ${user}</p>
     </div>
 </div>
@@ -37,7 +37,7 @@
             <img src="${pageContext.request.contextPath}/images/areas/telegana.jpg" width="718" height="612" usemap="#featuresMap" id="mapImage" alt="click to access area"/>
             <map name="featuresMap">
                 <c:forEach items="${areaList}" var="area">
-                    <area shape="poly" coords="${area.getCoords()}" href="${pageContext.request.contextPath}/policymaker/area/${area.getName()}"/>
+                    <area shape="poly" coords="${area.getCoords()}" href="${pageContext.request.contextPath}/policymaker/area/${area.getName()}?id=${area.getAreaid()}"/>
                 </c:forEach>
             </map>
         </div>

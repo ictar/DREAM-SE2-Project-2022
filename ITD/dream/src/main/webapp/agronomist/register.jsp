@@ -23,8 +23,8 @@
 <title>Register</title>
 </head>
 <body>
-<div class="row mt-0 p-5 dream-header">
-  <div class="col-sm-8 text-end">
+<div class="row mt-0 pt-5 dream-header">
+  <div class="col-sm-7 text-end">
     <h1>Data-dRiven PrEdictive FArMing</h1>
     <p class="text-secondary text-right">Telengana</p>
   </div>
