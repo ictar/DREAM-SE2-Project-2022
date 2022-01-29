@@ -1,342 +1,342 @@
 {
     "Adilabad": {
-        "temperature": 24.94,
-        "moisture": 0.361,
+        "temperature": 28.4,
+        "moisture": 0.497,
         "fertility": {
-            "pH": 7.4,
-            "Electrical Conductivity": 0.2,
-            "Organic Carbon": 0.75,
-            "Nitrogen": 209.0
+            "pH": 6.8,
+            "ElectricalConductivity": 0.5,
+            "OrganicCarbon": 0.69,
+            "Nitrogen": 261.0
         }
     },
     "Bhadradri-Kothagudem": {
-        "temperature": 25.33,
-        "moisture": 0.369,
+        "temperature": 22.31,
+        "moisture": 0.294,
         "fertility": {
-            "pH": 7.2,
-            "Electrical Conductivity": 1.0,
-            "Organic Carbon": 0.56,
-            "Nitrogen": 269.0
+            "pH": 6.9,
+            "ElectricalConductivity": 0.2,
+            "OrganicCarbon": 0.34,
+            "Nitrogen": 214.0
         }
     },
     "GHMC": {
-        "temperature": 27.01,
-        "moisture": 0.42,
+        "temperature": 29.55,
+        "moisture": 0.247,
         "fertility": {
-            "pH": 7.9,
-            "Electrical Conductivity": 0.3,
-            "Organic Carbon": 0.63,
-            "Nitrogen": 237.0
+            "pH": 7.8,
+            "ElectricalConductivity": 0.2,
+            "OrganicCarbon": 0.58,
+            "Nitrogen": 136.0
         }
     },
     "Hyderabad": {
-        "temperature": 23.87,
-        "moisture": 0.231,
+        "temperature": 26.99,
+        "moisture": 0.313,
         "fertility": {
-            "pH": 7.4,
-            "Electrical Conductivity": 0.9,
-            "Organic Carbon": 0.67,
-            "Nitrogen": 248.0
+            "pH": 7.3,
+            "ElectricalConductivity": 0.2,
+            "OrganicCarbon": 0.61,
+            "Nitrogen": 179.0
         }
     },
     "Jagitial": {
-        "temperature": 24.22,
-        "moisture": 0.296,
+        "temperature": 26.6,
+        "moisture": 0.417,
         "fertility": {
             "pH": 6.8,
-            "Electrical Conductivity": 0.4,
-            "Organic Carbon": 0.7,
-            "Nitrogen": 173.0
+            "ElectricalConductivity": 0.1,
+            "OrganicCarbon": 0.73,
+            "Nitrogen": 227.0
         }
     },
     "Jangaon": {
-        "temperature": 22.28,
-        "moisture": 0.127,
+        "temperature": 26.39,
+        "moisture": 0.405,
         "fertility": {
-            "pH": 7.6,
-            "Electrical Conductivity": 0.1,
-            "Organic Carbon": 0.25,
-            "Nitrogen": 105.0
+            "pH": 6.6,
+            "ElectricalConductivity": 0.3,
+            "OrganicCarbon": 0.22,
+            "Nitrogen": 258.0
         }
     },
     "Jayashankar": {
-        "temperature": 27.07,
-        "moisture": 0.481,
+        "temperature": 22.75,
+        "moisture": 0.192,
         "fertility": {
-            "pH": 7.7,
-            "Electrical Conductivity": 0.8,
-            "Organic Carbon": 0.58,
-            "Nitrogen": 206.0
+            "pH": 6.6,
+            "ElectricalConductivity": 1.0,
+            "OrganicCarbon": 0.37,
+            "Nitrogen": 157.0
         }
     },
     "Jogulamba-Gadwal": {
-        "temperature": 23.18,
-        "moisture": 0.446,
+        "temperature": 23.92,
+        "moisture": 0.307,
         "fertility": {
-            "pH": 7.5,
-            "Electrical Conductivity": 0.8,
-            "Organic Carbon": 0.61,
-            "Nitrogen": 202.0
+            "pH": 7.4,
+            "ElectricalConductivity": 0.9,
+            "OrganicCarbon": 0.27,
+            "Nitrogen": 251.0
         }
     },
     "Kamareddy": {
-        "temperature": 21.78,
-        "moisture": 0.323,
-        "fertility": {
-            "pH": 6.9,
-            "Electrical Conductivity": 0.1,
-            "Organic Carbon": 0.63,
-            "Nitrogen": 105.0
-        }
-    },
-    "Karimnagar": {
-        "temperature": 24.14,
-        "moisture": 0.342,
-        "fertility": {
-            "pH": 7.4,
-            "Electrical Conductivity": 0.6,
-            "Organic Carbon": 0.71,
-            "Nitrogen": 146.0
-        }
-    },
-    "Khammam": {
-        "temperature": 28.58,
-        "moisture": 0.281,
-        "fertility": {
-            "pH": 7.8,
-            "Electrical Conductivity": 0.1,
-            "Organic Carbon": 0.43,
-            "Nitrogen": 154.0
-        }
-    },
-    "Kumaram Bheem-Asifabad": {
-        "temperature": 28.68,
-        "moisture": 0.148,
-        "fertility": {
-            "pH": 7.3,
-            "Electrical Conductivity": 0.7,
-            "Organic Carbon": 0.22,
-            "Nitrogen": 121.0
-        }
-    },
-    "Mahabubabad": {
-        "temperature": 25.14,
-        "moisture": 0.187,
-        "fertility": {
-            "pH": 7.9,
-            "Electrical Conductivity": 0.0,
-            "Organic Carbon": 0.69,
-            "Nitrogen": 219.0
-        }
-    },
-    "Mahabubnagar": {
-        "temperature": 29.07,
-        "moisture": 0.5,
-        "fertility": {
-            "pH": 8.1,
-            "Electrical Conductivity": 0.4,
-            "Organic Carbon": 0.66,
-            "Nitrogen": 112.0
-        }
-    },
-    "Mancherial": {
-        "temperature": 21.87,
-        "moisture": 0.355,
-        "fertility": {
-            "pH": 7.9,
-            "Electrical Conductivity": 0.1,
-            "Organic Carbon": 0.53,
-            "Nitrogen": 192.0
-        }
-    },
-    "Medak": {
-        "temperature": 24.92,
-        "moisture": 0.27,
-        "fertility": {
-            "pH": 7.2,
-            "Electrical Conductivity": 0.5,
-            "Organic Carbon": 0.59,
-            "Nitrogen": 212.0
-        }
-    },
-    "Medchal-Malkajgiri": {
-        "temperature": 24.6,
+        "temperature": 23.58,
         "moisture": 0.495,
         "fertility": {
-            "pH": 7.0,
-            "Electrical Conductivity": 0.7,
-            "Organic Carbon": 0.5,
-            "Nitrogen": 116.0
-        }
-    },
-    "Mulugu": {
-        "temperature": 28.76,
-        "moisture": 0.496,
-        "fertility": {
-            "pH": 6.6,
-            "Electrical Conductivity": 0.9,
-            "Organic Carbon": 0.69,
-            "Nitrogen": 178.0
-        }
-    },
-    "Nagarkurnool": {
-        "temperature": 26.02,
-        "moisture": 0.316,
-        "fertility": {
-            "pH": 7.8,
-            "Electrical Conductivity": 0.3,
-            "Organic Carbon": 0.68,
-            "Nitrogen": 275.0
-        }
-    },
-    "Nalgonda": {
-        "temperature": 23.82,
-        "moisture": 0.495,
-        "fertility": {
-            "pH": 6.8,
-            "Electrical Conductivity": 0.5,
-            "Organic Carbon": 0.39,
-            "Nitrogen": 215.0
-        }
-    },
-    "Narayanapet": {
-        "temperature": 21.19,
-        "moisture": 0.132,
-        "fertility": {
-            "pH": 7.1,
-            "Electrical Conductivity": 0.5,
-            "Organic Carbon": 0.23,
-            "Nitrogen": 110.0
-        }
-    },
-    "Nirmal": {
-        "temperature": 24.25,
-        "moisture": 0.129,
-        "fertility": {
-            "pH": 7.7,
-            "Electrical Conductivity": 0.8,
-            "Organic Carbon": 0.72,
-            "Nitrogen": 113.0
-        }
-    },
-    "Nizamabad": {
-        "temperature": 23.36,
-        "moisture": 0.107,
-        "fertility": {
-            "pH": 8.5,
-            "Electrical Conductivity": 0.5,
-            "Organic Carbon": 0.23,
-            "Nitrogen": 239.0
-        }
-    },
-    "Peddapalli": {
-        "temperature": 21.21,
-        "moisture": 0.182,
-        "fertility": {
-            "pH": 6.8,
-            "Electrical Conductivity": 0.8,
-            "Organic Carbon": 0.3,
-            "Nitrogen": 219.0
-        }
-    },
-    "Rajanna-Siricilla": {
-        "temperature": 21.33,
-        "moisture": 0.449,
-        "fertility": {
-            "pH": 7.8,
-            "Electrical Conductivity": 0.4,
-            "Organic Carbon": 0.66,
-            "Nitrogen": 212.0
-        }
-    },
-    "Rangareddy": {
-        "temperature": 26.78,
-        "moisture": 0.432,
-        "fertility": {
-            "pH": 7.8,
-            "Electrical Conductivity": 0.6,
-            "Organic Carbon": 0.6,
+            "pH": 8.4,
+            "ElectricalConductivity": 0.8,
+            "OrganicCarbon": 0.28,
             "Nitrogen": 120.0
         }
     },
-    "Sangareddy": {
-        "temperature": 28.93,
-        "moisture": 0.452,
+    "Karimnagar": {
+        "temperature": 25.12,
+        "moisture": 0.234,
         "fertility": {
-            "pH": 6.9,
-            "Electrical Conductivity": 0.3,
-            "Organic Carbon": 0.48,
-            "Nitrogen": 232.0
+            "pH": 7.1,
+            "ElectricalConductivity": 0.0,
+            "OrganicCarbon": 0.5,
+            "Nitrogen": 105.0
         }
     },
-    "Siddipet": {
-        "temperature": 26.55,
-        "moisture": 0.224,
+    "Khammam": {
+        "temperature": 22.47,
+        "moisture": 0.134,
         "fertility": {
-            "pH": 6.5,
-            "Electrical Conductivity": 0.8,
-            "Organic Carbon": 0.28,
-            "Nitrogen": 199.0
+            "pH": 8.2,
+            "ElectricalConductivity": 0.9,
+            "OrganicCarbon": 0.66,
+            "Nitrogen": 107.0
         }
     },
-    "Suryapet": {
-        "temperature": 28.44,
-        "moisture": 0.244,
+    "Kumaram Bheem-Asifabad": {
+        "temperature": 21.43,
+        "moisture": 0.23,
         "fertility": {
-            "pH": 6.9,
-            "Electrical Conductivity": 0.6,
-            "Organic Carbon": 0.32,
-            "Nitrogen": 202.0
+            "pH": 7.5,
+            "ElectricalConductivity": 0.5,
+            "OrganicCarbon": 0.57,
+            "Nitrogen": 173.0
         }
     },
-    "Vikarabad": {
-        "temperature": 27.64,
-        "moisture": 0.447,
+    "Mahabubabad": {
+        "temperature": 20.88,
+        "moisture": 0.203,
         "fertility": {
-            "pH": 6.6,
-            "Electrical Conductivity": 0.7,
-            "Organic Carbon": 0.57,
-            "Nitrogen": 175.0
+            "pH": 7.1,
+            "ElectricalConductivity": 0.4,
+            "OrganicCarbon": 0.38,
+            "Nitrogen": 178.0
         }
     },
-    "Wanaparthy": {
-        "temperature": 23.56,
-        "moisture": 0.475,
+    "Mahabubnagar": {
+        "temperature": 28.92,
+        "moisture": 0.348,
+        "fertility": {
+            "pH": 8.4,
+            "ElectricalConductivity": 0.5,
+            "OrganicCarbon": 0.72,
+            "Nitrogen": 224.0
+        }
+    },
+    "Mancherial": {
+        "temperature": 20.75,
+        "moisture": 0.455,
+        "fertility": {
+            "pH": 7.0,
+            "ElectricalConductivity": 0.2,
+            "OrganicCarbon": 0.22,
+            "Nitrogen": 143.0
+        }
+    },
+    "Medak": {
+        "temperature": 25.4,
+        "moisture": 0.304,
         "fertility": {
             "pH": 8.0,
-            "Electrical Conductivity": 0.7,
-            "Organic Carbon": 0.27,
+            "ElectricalConductivity": 0.9,
+            "OrganicCarbon": 0.44,
             "Nitrogen": 248.0
         }
     },
+    "Medchal-Malkajgiri": {
+        "temperature": 23.91,
+        "moisture": 0.175,
+        "fertility": {
+            "pH": 7.3,
+            "ElectricalConductivity": 0.3,
+            "OrganicCarbon": 0.6,
+            "Nitrogen": 202.0
+        }
+    },
+    "Mulugu": {
+        "temperature": 22.45,
+        "moisture": 0.141,
+        "fertility": {
+            "pH": 8.0,
+            "ElectricalConductivity": 0.5,
+            "OrganicCarbon": 0.37,
+            "Nitrogen": 265.0
+        }
+    },
+    "Nagarkurnool": {
+        "temperature": 28.68,
+        "moisture": 0.403,
+        "fertility": {
+            "pH": 7.6,
+            "ElectricalConductivity": 0.9,
+            "OrganicCarbon": 0.72,
+            "Nitrogen": 123.0
+        }
+    },
+    "Nalgonda": {
+        "temperature": 20.2,
+        "moisture": 0.304,
+        "fertility": {
+            "pH": 7.8,
+            "ElectricalConductivity": 0.7,
+            "OrganicCarbon": 0.55,
+            "Nitrogen": 252.0
+        }
+    },
+    "Narayanapet": {
+        "temperature": 20.11,
+        "moisture": 0.456,
+        "fertility": {
+            "pH": 7.7,
+            "ElectricalConductivity": 0.3,
+            "OrganicCarbon": 0.57,
+            "Nitrogen": 145.0
+        }
+    },
+    "Nirmal": {
+        "temperature": 22.35,
+        "moisture": 0.206,
+        "fertility": {
+            "pH": 7.1,
+            "ElectricalConductivity": 0.8,
+            "OrganicCarbon": 0.67,
+            "Nitrogen": 259.0
+        }
+    },
+    "Nizamabad": {
+        "temperature": 20.65,
+        "moisture": 0.186,
+        "fertility": {
+            "pH": 6.7,
+            "ElectricalConductivity": 0.2,
+            "OrganicCarbon": 0.36,
+            "Nitrogen": 243.0
+        }
+    },
+    "Peddapalli": {
+        "temperature": 27.24,
+        "moisture": 0.486,
+        "fertility": {
+            "pH": 7.1,
+            "ElectricalConductivity": 0.4,
+            "OrganicCarbon": 0.37,
+            "Nitrogen": 101.0
+        }
+    },
+    "Rajanna-Siricilla": {
+        "temperature": 29.94,
+        "moisture": 0.453,
+        "fertility": {
+            "pH": 6.7,
+            "ElectricalConductivity": 0.7,
+            "OrganicCarbon": 0.32,
+            "Nitrogen": 235.0
+        }
+    },
+    "Rangareddy": {
+        "temperature": 26.72,
+        "moisture": 0.191,
+        "fertility": {
+            "pH": 7.7,
+            "ElectricalConductivity": 0.3,
+            "OrganicCarbon": 0.67,
+            "Nitrogen": 279.0
+        }
+    },
+    "Sangareddy": {
+        "temperature": 26.75,
+        "moisture": 0.298,
+        "fertility": {
+            "pH": 6.6,
+            "ElectricalConductivity": 0.5,
+            "OrganicCarbon": 0.66,
+            "Nitrogen": 184.0
+        }
+    },
+    "Siddipet": {
+        "temperature": 22.48,
+        "moisture": 0.318,
+        "fertility": {
+            "pH": 8.0,
+            "ElectricalConductivity": 0.1,
+            "OrganicCarbon": 0.61,
+            "Nitrogen": 187.0
+        }
+    },
+    "Suryapet": {
+        "temperature": 25.9,
+        "moisture": 0.131,
+        "fertility": {
+            "pH": 7.7,
+            "ElectricalConductivity": 0.8,
+            "OrganicCarbon": 0.2,
+            "Nitrogen": 138.0
+        }
+    },
+    "Vikarabad": {
+        "temperature": 24.66,
+        "moisture": 0.114,
+        "fertility": {
+            "pH": 8.4,
+            "ElectricalConductivity": 0.9,
+            "OrganicCarbon": 0.71,
+            "Nitrogen": 167.0
+        }
+    },
+    "Wanaparthy": {
+        "temperature": 21.41,
+        "moisture": 0.493,
+        "fertility": {
+            "pH": 8.4,
+            "ElectricalConductivity": 0.5,
+            "OrganicCarbon": 0.35,
+            "Nitrogen": 218.0
+        }
+    },
     "Warangal": {
-        "temperature": 21.29,
-        "moisture": 0.103,
+        "temperature": 26.99,
+        "moisture": 0.251,
         "fertility": {
             "pH": 8.3,
-            "Electrical Conductivity": 0.9,
-            "Organic Carbon": 0.37,
-            "Nitrogen": 165.0
+            "ElectricalConductivity": 0.9,
+            "OrganicCarbon": 0.42,
+            "Nitrogen": 167.0
         }
     },
     "Hanumakonda": {
-        "temperature": 21.45,
-        "moisture": 0.361,
+        "temperature": 21.97,
+        "moisture": 0.248,
         "fertility": {
-            "pH": 7.4,
-            "Electrical Conductivity": 0.9,
-            "Organic Carbon": 0.46,
-            "Nitrogen": 212.0
+            "pH": 7.2,
+            "ElectricalConductivity": 0.9,
+            "OrganicCarbon": 0.26,
+            "Nitrogen": 144.0
         }
     },
     "Yadadri-Bhongir": {
-        "temperature": 22.92,
-        "moisture": 0.312,
+        "temperature": 20.14,
+        "moisture": 0.434,
         "fertility": {
-            "pH": 7.0,
-            "Electrical Conductivity": 0.3,
-            "Organic Carbon": 0.27,
-            "Nitrogen": 118.0
+            "pH": 7.7,
+            "ElectricalConductivity": 0.1,
+            "OrganicCarbon": 0.54,
+            "Nitrogen": 260.0
         }
     }
 }

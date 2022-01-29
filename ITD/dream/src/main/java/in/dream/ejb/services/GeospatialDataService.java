@@ -1,5 +1,9 @@
 package in.dream.ejb.services;
 
+import com.google.gson.Gson;
+import in.dream.ejb.external.Irrigation;
+import in.dream.ejb.external.Soil;
+import in.dream.ejb.external.Weather;
 import in.dream.ejb.models.Area;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.HttpResponse;
@@ -11,6 +15,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Lock;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
@@ -19,8 +24,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
+import static javax.ejb.LockType.READ;
+
 @Startup
 @Singleton
+@Lock(READ)
 public class GeospatialDataService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
@@ -57,50 +65,67 @@ public class GeospatialDataService {
         }
     }
 
-    public String getSoil(Long areaID) {
+    public Soil getSoil(Long areaID) {
         try {
             HttpGet req = new HttpGet(soilurl+"/"+this.getArea(areaID).getName());
             HttpResponse resp = httpCli.execute(req);
-            if(resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return EntityUtils.toString(resp.getEntity(), Charsets.UTF_8);
+            if(resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+                return null;
             }
+            Gson gson = new Gson();
+
+            return gson.fromJson(
+                    EntityUtils.toString(resp.getEntity(), Charsets.UTF_8),
+                    Soil.class
+                    );
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 
-    public String getWeather(Long areaID) {
+    public Weather getWeather(Long areaID) {
         try {
             HttpGet req = new HttpGet(weatherurl+"/"+this.getArea(areaID).getName());
             HttpResponse resp = httpCli.execute(req);
-            if(resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return EntityUtils.toString(resp.getEntity(), Charsets.UTF_8);
+            if(resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+                return null;
             }
+            Gson gson = new Gson();
+            return gson.fromJson(
+                    EntityUtils.toString(resp.getEntity(), Charsets.UTF_8),
+                    Weather.class
+            );
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
+
     // TODO
     public String getWeatherByLocation(String location) {
         return "TODO";
     }
 
-    public String getWaterIrrigation(Long areaID) {
+    public Irrigation getWaterIrrigation(Long areaID) {
         try {
             HttpGet req = new HttpGet(irrigationurl+"/"+this.getArea(areaID).getName());
             HttpResponse resp = httpCli.execute(req);
-            if(resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return EntityUtils.toString(resp.getEntity(), Charsets.UTF_8);
+            if(resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+                return null;
             }
+            Gson gson = new Gson();
+            return gson.fromJson(
+                    EntityUtils.toString(resp.getEntity(), Charsets.UTF_8),
+                    Irrigation.class
+            );
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 
     public String getTypeInfo(String productType){

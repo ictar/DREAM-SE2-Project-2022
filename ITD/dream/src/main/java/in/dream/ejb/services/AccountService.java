@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.security.auth.login.CredentialException;
 import java.util.List;
+import java.util.Map;
 
 @Stateless
 public class AccountService {
@@ -131,10 +132,13 @@ public class AccountService {
         return ag;
     }
 
-    // TODO
-    /*public void updatePerformance(Map<int, int> performanceData) {
-
-    }*/
+    public void updatePerformance(Map<Long, Integer> performanceData) {
+        for(Long fid: performanceData.keySet()) {
+            Farmer f = em.createNamedQuery("Farmer.findOne", Farmer.class)
+                    .setParameter(1, fid).getSingleResult();
+            f.setPerformance(performanceData.get(fid));
+        }
+    }
 
     public List<Farmer> getFarmerPerformanceList(Long areaID) {
         return getFarmerListByArea(areaID);

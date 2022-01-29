@@ -26,19 +26,19 @@ def get_product_types():
 
 @api.route('/product/info/<ptype>', methods=['GET'])
 def get_product_info(ptype):
-    return json.dumps(product_data.get(ptype, ""))
+    return json.dumps(product_data.get(ptype, ""), indent=4)
 
 @api.route('/soil/<area>', methods=['GET'])
 def get_area_soil(area):
-    return json.dumps(soil_data.get(area, ""))
+    return json.dumps(soil_data.get(area, ""), indent=4)
 
 @api.route('/weather/<area>', methods=['GET'])
 def get_area_weather(area):
-    return json.dumps(weather_data.get(area, ""))
+    return json.dumps(weather_data.get(area, ""), indent=4)
 
 @api.route('/waterirrigation/<area>', methods=['GET'])
 def get_area_irrigation(area):
-    return json.dumps(irrigation_data.get(area, ""))
+    return json.dumps(irrigation_data.get(area, ""), indent=4)
 
 
 if __name__ == '__main__':

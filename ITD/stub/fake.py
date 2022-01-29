@@ -15,8 +15,8 @@ def fake_soil(saveto):
             "moisture": round(random.uniform(0.1, 0.5), 3),
             "fertility": {
                 "pH": round(random.uniform(6.5, 8.5), 1),
-                "Electrical Conductivity": round(random.uniform(0, 1), 1),
-                "Organic Carbon": round(random.uniform(0.2, 0.75), 2),
+                "ElectricalConductivity": round(random.uniform(0, 1), 1),
+                "OrganicCarbon": round(random.uniform(0.2, 0.75), 2),
                 "Nitrogen": round(random.uniform(100, 280), 0),
             }
         }
@@ -39,4 +39,4 @@ def fake_irrigation(saveto):
 
 if __name__ == '__main__':
     fake_soil("soil.json")
-    fake_irrigation("irrigation.json")
+    #fake_irrigation("irrigation.json")

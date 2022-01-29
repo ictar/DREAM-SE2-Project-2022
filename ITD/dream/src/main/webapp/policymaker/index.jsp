@@ -28,7 +28,7 @@
         <p class="text-secondary text-right">Telengana</p>
     </div>
     <div class="col-sm-5 mt-5">
-        <p class="text-end">Hi, ${user}</p>
+        <p class="text-center">Hi, ${user}</p>
     </div>
 </div>
 <div class="container">

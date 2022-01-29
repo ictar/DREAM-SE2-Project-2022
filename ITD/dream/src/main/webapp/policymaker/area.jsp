@@ -28,7 +28,7 @@
         <p class="text-secondary text-right">Telengana</p>
     </div>
     <div class="col-sm-5 mt-5">
-        <p class="text-end">Hi, ${user}</p>
+        <p class="text-center">Hi, ${user}</p>
     </div>
 </div>
 <div class="ps-4 dream-nav">
@@ -39,29 +39,82 @@
         </ol>
     </nav>
 </div>
+<div class="text-end pe-5">
+    <a class="btn btn-success" role="button" href="#">
+        <strong>Update Performance</strong>
+    </a>
+</div>
 <div class="container">
     <div class="d-flex align-items-start">
-        <div class="nav dream-tab flex-column nav-pills p-3 mt-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="nav dream-tab flex-column nav-pills p-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <button class="nav-link text-black active" id="v-pills-weather-tab" data-bs-toggle="pill" data-bs-target="#v-pills-weather" type="button" role="tab" aria-controls="v-pills-weather" aria-selected="true">Weather</button>
             <button class="nav-link text-black" id="v-pills-water-tab" data-bs-toggle="pill" data-bs-target="#v-pills-water" type="button" role="tab" aria-controls="v-pills-water" aria-selected="false">Water Irrigation</button>
             <button class="nav-link text-black" id="v-pills-soil-tab" data-bs-toggle="pill" data-bs-target="#v-pills-soil" type="button" role="tab" aria-controls="v-pills-soil" aria-selected="false">Soil Humidity</button>
             <button class="nav-link text-black" id="v-pills-production-tab" data-bs-toggle="pill" data-bs-target="#v-pills-production" type="button" role="tab" aria-controls="v-pills-production" aria-selected="false">Farmer Production</button>
         </div>
-        <div class="tab-content p-3 mt-5" id="v-pills-tabContent">
+        <div class="tab-content p-3 mt-3" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-weather" role="tabpanel" aria-labelledby="v-pills-weather-tab">
                 <img src="${pageContext.request.contextPath}/images/${area.getImage()}">
                 <div>
-                    ${weather}
+                    <h4>Rainfall</h4>
+                    <table class="table">
+                        <thead style="position:sticky; top: 0">
+                        <tr>
+                            <th class="header" scope="col">Classification</th>
+                            <th class="header" scope="col">Rainfall Range (mm)</th>
+                            <th class="header" scope="col">No. of AWS Stations</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    <c:forEach items="${weather.getRainfall()}" var="rf">
+                        <tr>
+                            <td>${rf.key}</td>
+                            <td>${rf.value.getRange()}</td>
+                            <td>${rf.value.getAws_station_count()}</td>
+                        </tr>
+                    </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="tab-pane fade" id="v-pills-water" role="tabpanel" aria-labelledby="v-pills-water-tab">
+                <li>Consumption: ${water.getConsumption()}</li>
+                <li>Date: ${water.getDate()}</li>
                 ${waterList}
             </div>
             <div class="tab-pane fade" id="v-pills-soil" role="tabpanel" aria-labelledby="v-pills-soil-tab">
-                ${soilList}
+                <ul>Temperature: ${soil.getTemperature()}</ul>
+                <ul>Moisure: ${soil.getMoisture()}</ul>
+                <ul>Fertility
+                    <li>pH: ${soil.getFertility().getPh()}</li>
+                    <li>Electrical Conductivity: ${soil.getFertility().getElectricalConductivity()}</li>
+                    <li>Organic Carbon: ${soil.getFertility().getOrganicCarbon()}</li>
+                    <li>Nitrogen: ${soil.getFertility().getNitrogen()}</li>
+                </ul>
             </div>
             <div class="tab-pane fade" id="v-pills-production" role="tabpanel" aria-labelledby="v-pills-production-tab">
-
+                <table class="table">
+                    <thead style="position:sticky; top: 0">
+                    <tr>
+                        <th class="header" scope="col">Farmer</th>
+                        <th class="header" scope="col">Production Type</th>
+                        <th class="header" scope="col">Production Amount</th>
+                        <th class="header" scope="col">Production Area</th>
+                        <th class="header" scope="col">Period</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${productionList}" var="prod">
+                        <tr>
+                            <td>${prod.getFarmer().getName()}</td>
+                            <td>${prod.getType()}</td>
+                            <td>${prod.getAmount()}</td>
+                            <td>${prod.getAcreage()}</td>
+                            <td>${prod.getStarttime()} - ${prod.getEndtime()}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

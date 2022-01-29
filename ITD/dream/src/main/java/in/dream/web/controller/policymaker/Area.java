@@ -1,5 +1,6 @@
 package in.dream.web.controller.policymaker;
 
+import in.dream.ejb.external.Weather;
 import in.dream.ejb.models.Policymaker;
 import in.dream.ejb.services.GeospatialDataService;
 import org.apache.commons.text.StringEscapeUtils;
@@ -30,9 +31,10 @@ public class Area extends HttpServlet {
         Long areaId = Long.parseLong(StringEscapeUtils.escapeJava(request.getParameter("id")));
 
         request.setAttribute("area", geoService.getArea(areaId));
-        request.setAttribute("weather", geoService.getWeather(areaId));
-        request.setAttribute("waterList", geoService.getWaterIrrigation(areaId));
-        request.setAttribute("soilList", geoService.getSoil(areaId));
+        Weather weather = geoService.getWeather(areaId);
+        request.setAttribute("weather", weather);
+        request.setAttribute("water", geoService.getWaterIrrigation(areaId));
+        request.setAttribute("soil", geoService.getSoil(areaId));
         // TODO
         // request.setAttribute("productionList", productionService.getFarmerProductionList(areaId);
 
