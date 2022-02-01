@@ -14,7 +14,31 @@
 
   <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .button {
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
 
+    .button1 {
+      background-color: white;
+      color: black;
+      border: 2px solid #4CAF50;
+    }
+
+    .button1:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
@@ -29,12 +53,12 @@
 </div>
 
 <div class="text-center pt-3">
-  <button  class="button"><strong>Search</strong></button>
-  <button  class="button"><strong>Report</strong></button>
+  <a href="./reaserch.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Report</strong></button></a>
+  <a href="./report.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Report</strong></button></a>
 </div>
 <div class="text-center pt-3">
-  <button  class="button"><strong>Request</strong></button>
-  <button  class="button"><strong>Forum</strong></button>
+  <a href="./request.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Request</strong></button></a>
+  <a href="./forum.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Forum</strong></button></a>
 </div>
 
 
