@@ -44,14 +44,20 @@ create table `agronomist` (
 
 create table `farm` (
     `farmid` int(11) NOT NULL AUTO_INCREMENT,
-    `location` varchar(45) NOT NULL,
     `acreage` DECIMAL(9 , 2 ) NOT NULL,
-    `farmer` varchar(45),
+    `farmer` varchar(45), -- phone number of farmer
     `area` int(11),
 
     PRIMARY KEY (`farmid`),
-    CONSTRAINT `fk_farm_farmer` FOREIGN KEY (`farmer`) REFERENCES `farmer`(`phonenumber`),
     CONSTRAINT `fk_farm_area` FOREIGN KEY (`area`) REFERENCES `area`(`areaid`)
+);
+
+create table `farmer_farm` (
+    `farm` int(11) NOT NULL,
+    `farmer` int(11) NOT NULL,
+
+    CONSTRAINT `fk_ff_farm` FOREIGN KEY (`farm`) REFERENCES `farm`(`farmid`),
+    CONSTRAINT `fk_ff_farmer` FOREIGN KEY (`farmer`) REFERENCES `farmer`(`farmerid`)
 );
 
 create table `problem` (
