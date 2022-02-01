@@ -37,7 +37,7 @@
             <img src="${pageContext.request.contextPath}/images/areas/telegana.jpg" width="718" height="612" usemap="#featuresMap" id="mapImage" alt="click to access area"/>
             <map name="featuresMap">
                 <c:forEach items="${areaList}" var="area">
-                    <area shape="poly" coords="${area.getCoords()}" href="${pageContext.request.contextPath}/policymaker/area/${area.getName()}?id=${area.getAreaid()}"/>
+                    <area shape="poly" coords="${area.getCoords()}" href="${pageContext.request.contextPath}/policymaker/area/${area.getAreaid()}"/>
                 </c:forEach>
             </map>
         </div>
@@ -45,7 +45,7 @@
             <h4 class="text-secondary">Agronomist</h4>
             <div class="list-group list-group-flush">
                 <c:forEach items="${agList}" var="agronomist">
-                    <a class="list-group-item list-group-item-light list-group-item-action" href="${pageContext.request.contextPath}/agronomist/${agronomist.getName()}?id=${agronomist.getAgronomistid()}">${agronomist.getName()}</a>
+                    <a class="list-group-item list-group-item-light list-group-item-action" href="${pageContext.request.contextPath}/policymaker/agronomist/${agronomist.getAgronomistid()}">${agronomist.getName()}</a>
                 </c:forEach>
             </div>
         </div>

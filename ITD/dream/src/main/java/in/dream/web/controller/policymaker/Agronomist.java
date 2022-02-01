@@ -1,9 +1,7 @@
 package in.dream.web.controller.policymaker;
 
-import in.dream.ejb.external.Weather;
 import in.dream.ejb.models.Policymaker;
-import in.dream.ejb.services.GeospatialDataService;
-import in.dream.ejb.services.ProductionReportService;
+import in.dream.ejb.services.DailyPlanService;
 import org.apache.commons.text.StringEscapeUtils;
 
 import javax.ejb.EJB;
@@ -11,13 +9,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "policymakerArea", urlPatterns = {"/policymaker/area/*"})
-public class Area extends HttpServlet {
-    @EJB(name = "in.dream.ejb.services/GeospatialDataService")
-    private GeospatialDataService geoService;
-    @EJB(name = "in.dream.ejb.services/ProductionReportService")
-    private ProductionReportService productionReportService;
+@WebServlet(name = "policymakerAgronomist", value = "/policymaker/agronomist/*")
+public class Agronomist extends HttpServlet {
+
+    @EJB(name="in.dream.ejb.services/DailyPlanService")
+    private DailyPlanService dailyPlanService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,22 +27,27 @@ public class Area extends HttpServlet {
             return;
         }
 
-        String path = "/policymaker/area.jsp";
-
+        String path = "/policymaker/agronomist.jsp";
 
         String[] urlparas = request.getRequestURI().split("/");
-        Long areaId = Long.parseLong(urlparas[urlparas.length-1]);
+        Long agid = Long.parseLong(urlparas[urlparas.length-1]);
+        int page = -1;
+        String tmp = StringEscapeUtils.escapeJava(request.getParameter("page"));
+        if(tmp != null && !tmp.isEmpty()) {
+            page = Integer.parseInt(tmp);
+        }
 
-        request.setAttribute("area", geoService.getArea(areaId));
-        Weather weather = geoService.getWeather(areaId);
-        request.setAttribute("weather", weather);
-        request.setAttribute("water", geoService.getWaterIrrigation(areaId));
-        request.setAttribute("soil", geoService.getSoil(areaId));
-        request.setAttribute("productionList", productionReportService.getFarmerProductionList(areaId));
+        int count = -1;
+        tmp = StringEscapeUtils.escapeJava(request.getParameter("count"));
+        if(tmp != null && !tmp.isEmpty()) {
+            count = Integer.parseInt(tmp);
+        }
 
+        request.setAttribute("dpList", dailyPlanService.getDailyPlanList(agid, page, count));
         Policymaker pm = (Policymaker)session.getAttribute("policymaker");
         request.setAttribute("user", pm.getName());
 
         request.getRequestDispatcher(path).forward(request, response);
     }
+
 }

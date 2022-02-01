@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "policymakerFarmerPerformance", value = "/policymaker/area/*/performance")
+@WebServlet(name = "policymakerFarmerPerformance", value = "/policymaker/area/performance/*")
 public class FarmerPerformance extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/AccountService")
     private AccountService accountService;
@@ -33,7 +33,9 @@ public class FarmerPerformance extends HttpServlet {
 
         String path = "/policymaker/performance.jsp";
 
-        Long areaId = Long.parseLong(StringEscapeUtils.escapeJava(request.getParameter("id")));
+        String[] urlparas = request.getRequestURI().split("/");
+        Long areaId = Long.parseLong(urlparas[urlparas.length-1]);
+
         request.setAttribute("area", geoService.getArea(areaId));
         request.setAttribute("farmerList", accountService.getFarmerPerformanceList(areaId));
 
@@ -46,7 +48,7 @@ public class FarmerPerformance extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // if the policy maker is not logged in, redirect to the login
         String pathCtx = getServletContext().getContextPath();
         if(!isLogin(request)) {

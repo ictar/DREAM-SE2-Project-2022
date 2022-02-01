@@ -44,14 +44,20 @@ create table `agronomist` (
 
 create table `farm` (
     `farmid` int(11) NOT NULL AUTO_INCREMENT,
-    `location` varchar(45) NOT NULL,
     `acreage` DECIMAL(9 , 2 ) NOT NULL,
-    `farmer` int(11),
+    `farmer` varchar(45), -- phone number of farmer
     `area` int(11),
 
     PRIMARY KEY (`farmid`),
-    CONSTRAINT `fk_farm_farmer` FOREIGN KEY (`farmer`) REFERENCES `farmer`(`farmerid`),
     CONSTRAINT `fk_farm_area` FOREIGN KEY (`area`) REFERENCES `area`(`areaid`)
+);
+
+create table `farmer_farm` (
+    `farm` int(11) NOT NULL,
+    `farmer` int(11) NOT NULL,
+
+    CONSTRAINT `fk_ff_farm` FOREIGN KEY (`farm`) REFERENCES `farm`(`farmid`),
+    CONSTRAINT `fk_ff_farmer` FOREIGN KEY (`farmer`) REFERENCES `farmer`(`farmerid`)
 );
 
 create table `problem` (
@@ -93,7 +99,9 @@ create table `dailyplan` (
     `agronomist` int(11) NOT NULL,
 
     PRIMARY KEY (`dailyplanid`),
-
+	UNIQUE KEY `dailyplantitle_UNIQUE` (`title`),
+    UNIQUE KEY `dailyplandate_UNIQUE` (`date`),
+    
     CONSTRAINT `fk_dailyplan_agronomist` FOREIGN KEY (`agronomist`) REFERENCES `agronomist`(`agronomistid`)
 );
 
