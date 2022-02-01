@@ -106,6 +106,8 @@ public class GeospatialDataService {
 
     // TODO
     public String getWeatherByLocation(String location) {
+        // location -> area
+        // return getWeather(area)
         return "TODO";
     }
 

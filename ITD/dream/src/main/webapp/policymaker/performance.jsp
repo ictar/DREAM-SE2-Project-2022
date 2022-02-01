@@ -41,7 +41,7 @@
     </nav>
 </div>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/policymaker/area/${area.getName()/performance}" method="POST">
+    <form action="${pageContext.request.contextPath}/policymaker/area/performance/${area.getName()}" method="POST">
         <table class="table">
             <thead style="position:sticky; top: 0">
             <tr>
@@ -54,12 +54,16 @@
                 <tr>
                     <td><input type="hidden" value="${farmer.getFarmerid()}">${farmer.getName()}</td>
                     <td>
-                        <input type="number" class="mt-2 border-secondary" placeholder="${farmer.getPerformance()}" name="performance" required>
+                            ${farmer.getPerformance()}
+                        <input type="number" class="mt-2 border-secondary" placeholder="-1" name="performance" required>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+        <div class="text-center pt-3">
+            <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
+        </div>
     </form>
 </div>
 </body>

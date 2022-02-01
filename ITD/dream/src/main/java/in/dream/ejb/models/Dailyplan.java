@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Dailyplan.findOne", query="SELECT dp from Dailyplan dp where dp.dailyplanid=?1"),
+        @NamedQuery(name="Dailyplan.findByAgronomist", query="SELECT dp from Dailyplan dp where dp.agronomist.agronomistid=?1 order by dp.date desc")
+})
 public class Dailyplan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,6 +64,8 @@ public class Dailyplan {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public void setCompleted() {this.status = 1;}
 
     private String deviation;
 

@@ -40,7 +40,7 @@
     </nav>
 </div>
 <div class="text-end pe-5">
-    <a class="btn btn-success" role="button" href="#">
+    <a class="btn btn-success" role="button" href="${pageContext.request.contextPath}/policymaker/area/performance/${area.getAreaid()}">
         <strong>Update Performance</strong>
     </a>
 </div>
@@ -56,7 +56,7 @@
             <div class="tab-pane fade show active" id="v-pills-weather" role="tabpanel" aria-labelledby="v-pills-weather-tab">
                 <img src="${pageContext.request.contextPath}/images/${area.getImage()}">
                 <div>
-                    <h4>Rainfall</h4>
+                    <h4 class="text-center">Rainfall</h4>
                     <table class="table">
                         <thead style="position:sticky; top: 0">
                         <tr>
