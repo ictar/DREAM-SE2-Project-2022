@@ -1,8 +1,7 @@
 package in.dream.web.controller.farmer;
 
-import in.dream.ejb.models.Policymaker;
+import in.dream.ejb.models.Farmer;
 import in.dream.ejb.services.AccountService;
-import in.dream.ejb.services.GeospatialDataService;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -13,29 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "policymakerHome", value = "/policymaker")
+@WebServlet(name = "farmerHome", value = "/farmer")
 public class Home extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/AccountService")
     private AccountService accountService;
-    @EJB(name = "in.dream.ejb.services/GeospatialDataService")
-    private GeospatialDataService geoService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // if the policy maker is not logged in, redirect to the login
+        // if the farmer is not logged in, redirect to the login
         String pathCtx = getServletContext().getContextPath();
         HttpSession session = request.getSession();
-        if(session.isNew() || session.getAttribute("policymaker") == null) {
+        if(session.isNew() || session.getAttribute("farmer") == null) {
             response.sendRedirect(pathCtx+"/farmer/login.jsp");
             return;
         }
 
-        Policymaker pm = (Policymaker)session.getAttribute("policymaker");
-        String path = "/policymaker/index.jsp";
+        Farmer farmer = (Farmer)session.getAttribute("farmer");
+        String path = "/farmer/index.jsp";
 
-        request.setAttribute("user", pm.getName());
-        request.setAttribute("areaList", geoService.getAreaList());
-        request.setAttribute("agList", accountService.getAgronomistList());
+        request.setAttribute("user", farmer.getName());
         request.getRequestDispatcher(path).forward(request, response);
     }
 }
