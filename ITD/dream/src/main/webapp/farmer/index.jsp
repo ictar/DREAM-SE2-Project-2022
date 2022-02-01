@@ -53,7 +53,7 @@
 </div>
 
 <div class="text-center pt-3">
-  <a href="./reaserch.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Report</strong></button></a>
+  <a href="./search.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Search</strong></button></a>
   <a href="./report.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Report</strong></button></a>
 </div>
 <div class="text-center pt-3">
