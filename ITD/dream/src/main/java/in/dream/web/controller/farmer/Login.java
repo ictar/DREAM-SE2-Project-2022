@@ -23,18 +23,18 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pnumber, pwd;
+        String phonenumber, pwd;
         String path;
 
         try {
-            pnumber = request.getParameter("phonenumber");
+            phonenumber = request.getParameter("phonenumber");
             pwd = request.getParameter("pwd");
 
-            if(pnumber == null || pwd == null || pnumber.isEmpty() || pwd.isEmpty()) {
+            if(phonenumber == null || pwd == null || phonenumber.isEmpty() || pwd.isEmpty()) {
                 throw new Exception("Missing credential value");
             }
 
-            Farmer farmer = accountService.authenticateFarmer(pnumber, pwd);
+            Farmer farmer = accountService.authenticateFarmer(phonenumber, pwd);
 
             if(farmer == null) {
                 throw new Exception("Incorrect phonenumber or password");
