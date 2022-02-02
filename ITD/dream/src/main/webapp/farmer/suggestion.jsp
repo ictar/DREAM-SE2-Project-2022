@@ -72,7 +72,10 @@
             </div>
             <div class="tab-pane fade" id="v-pills-suggest" role="tabpanel" aria-labelledby="v-pills-suggest-tab">
                 <h4>Plant Name: ${plantname}</h4>
-                <p>${plantsuggest}</p>
+                <hr>
+                <c:forEach items="${suggestion}" var="ele">
+                    <ul><strong>${ele.key}:</strong> ${ele.value}</ul>
+                </c:forEach>
             </div>
         </div>
     </div>

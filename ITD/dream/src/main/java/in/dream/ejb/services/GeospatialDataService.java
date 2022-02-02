@@ -104,13 +104,6 @@ public class GeospatialDataService {
         return null;
     }
 
-    // TODO
-    public String getWeatherByLocation(String location) {
-        // location -> area
-        // return getWeather(area)
-        return "TODO";
-    }
-
     public Irrigation getWaterIrrigation(Long areaID) {
         try {
             HttpGet req = new HttpGet(irrigationurl+"/"+this.getArea(areaID).getName());
@@ -130,18 +123,24 @@ public class GeospatialDataService {
         return null;
     }
 
-    public String getTypeInfo(String productType){
+    public Map getTypeInfo(String productType){
         try {
             HttpGet req = new HttpGet(producturl + "/info/" + productType);
             HttpResponse resp = httpCli.execute(req);
-            if(resp.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return EntityUtils.toString(resp.getEntity(), Charsets.UTF_8);
+            if(resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+                return null;
             }
+            Gson gson = new Gson();
+            return gson.fromJson(
+                    EntityUtils.toString(resp.getEntity(), Charsets.UTF_8),
+                    Map.class
+            );
+
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 
     public List<String> getTypeList(){

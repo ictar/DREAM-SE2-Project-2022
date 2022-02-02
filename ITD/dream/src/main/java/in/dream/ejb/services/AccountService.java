@@ -105,7 +105,7 @@ public class AccountService {
     public List<Farmer> getFarmerListByArea(Long areaID) {
         List<Farmer> result;
         try {
-            result = em.createQuery("select f from Farmer f, Farm fm where fm.phonenumber = fm.farmer and fm.area = ?1",
+            result = em.createQuery("select f from Farmer f where f.farm.area.areaid = ?1",
                         Farmer.class).setParameter(1, areaID).getResultList();
         } catch (Exception e) {
             return null;
@@ -118,7 +118,7 @@ public class AccountService {
         List<Farmer> result;
 
         try {
-            result = em.createQuery("select f from Farmer f, Farm fm, Agronomist a where f.phonenumber = fm.farmer and fm.area = a.area and a.agronomistid=?1",
+            result = em.createQuery("select f from Farmer f, Agronomist a where f.farm.area = a.area and a.agronomistid=?1",
                     Farmer.class).setParameter(1, agronomistID).getResultList();
         } catch (Exception e) {
             return null;
@@ -130,7 +130,7 @@ public class AccountService {
         Agronomist ag;
 
         try {
-            ag = em.createQuery("select a from Farmer f, Farm fm, Agronomist a where f.phonenumber = fm.farmer and fm.area = a.area and f.farmerid=?1",
+            ag = em.createQuery("select a from Farmer f, Agronomist a where f.farm.area = a.area and f.farmerid=?1",
                     Agronomist.class).setParameter(1, farmerID).getSingleResult();
         } catch (Exception e) {
             return null;

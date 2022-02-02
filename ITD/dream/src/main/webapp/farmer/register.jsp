@@ -53,7 +53,7 @@
                     <label><input type="checkbox" name="acc_privacy" required> Accept <a href="${pageContext.request.contextPath}/privacystate.html">Privacy Statement</a></label>
                 </div>
                 <div class="checkbox text-secondary">
-                    <label><input type="checkbox" name="acc_terms" required> Accept <a>Terms and Conditions</a></label>
+                    <label><input type="checkbox" name="acc_terms" required> Accept <a href="${pageContext.request.contextPath}/terms.html">Terms and Conditions</a></label>
                 </div>
                 <div class="text-center pt-3">
                     <button type="submit" class="btn border-0 dream-btn"><strong>Create An Account</strong></button>

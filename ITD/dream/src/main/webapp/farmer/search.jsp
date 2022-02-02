@@ -19,7 +19,6 @@
 
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=YourAPI&callback=initMap"></script>-->
     <title>Search</title>
 </head>
 <body>
@@ -41,29 +40,34 @@
     </nav>
 </div>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/farmer/search" method="POST">
-        <div class="input-group">
-            <select class="form-select" id="area" name="area">
-                <option value="${farm.area.getAreaid()}"selected>farm.area.getName()</option>
-                <c:forEach items="${areaList}" var="area">
-                    <option value="${area.getAreaid()}">${area.getName()}</option>
-                </c:forEach>
-            </select>
-            <input type="text" class="form-control mt-2 border-secondary" id="location" placeholder="Email" name="location" required>
+    <div class="row pt-5">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form action="${pageContext.request.contextPath}/farmer/search" method="POST">
+                <div class="input-group">
+                    <select class="form-select" id="area" name="area">
+                        <option value="${farm.getArea().getAreaid()}"selected>${farm.getArea().getName()}</option>
+                        <c:forEach items="${areaList}" var="area">
+                            <option value="${area.getAreaid()}">${area.getName()}</option>
+                        </c:forEach>
+                    </select>
+
+                </div>
+                <div class="input-group pt-3">
+                    <select class="form-select" id="prodct" name="productiontype">
+                        <option selected>Choose interested production</option>
+                        <c:forEach items="${productList}" var="product">
+                            <option value="${product}">${product}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="text-center pt-3">
+                    <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
+                </div>
+                <p class="text-danger">${errorMsg}</p>
+            </form>
         </div>
-        <div class="input-group">
-            <select class="form-select" id="prodct" name="productiontype">
-                <option selected>Choose interested production</option>
-                <c:forEach items="${productList}" var="product">
-                    <option value="${product}">${product}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <div class="text-center pt-3">
-            <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
-        </div>
-        <p class="text-danger">${errorMsg}</p>
-    </form>
+    </div>
 </div>
 </body>
 </html>

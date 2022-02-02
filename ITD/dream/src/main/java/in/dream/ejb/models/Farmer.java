@@ -78,4 +78,5 @@ public class Farmer {
     private Farm farm;
 
     public void setFarm(Farm f) {this.farm = f;}
+    public Farm getFarm() {return this.farm;}
 }
