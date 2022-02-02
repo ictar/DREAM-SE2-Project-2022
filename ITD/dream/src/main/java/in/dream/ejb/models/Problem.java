@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Problem.findAll", query="SELECT a from Problem a WHERE a.farmer=?1"),
+})
 public class Problem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +21,6 @@ public class Problem {
     }
 
     private String request;
-
     @Basic
     public String getRequest() {
         return request;
@@ -27,6 +29,18 @@ public class Problem {
     public void setRequest(String request) {
         this.request = request;
     }
+
+    private String title;
+
+    @Basic
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
 
     private Timestamp requesttime;
 
@@ -83,20 +97,20 @@ public class Problem {
         this.feedbacktime = feedbacktime;
     }
 
-    @ManyToOne
-    private Farmer manyToOne;
-
-    public Farmer getManyToOne() {
-        return manyToOne;
-    }
-
-    public void setManyToOne(Farmer manyToOne) {
-        this.manyToOne = manyToOne;
-    }
+    private Farmer farmer;
 
     @ManyToOne
+    public Farmer getFarmer() {
+        return farmer;
+    }
+
+    public void setFarmer(Farmer farmerid) {
+        this.farmer = farmerid;
+    }
+
     private Agronomist agronomist;
 
+    @ManyToOne
     public Agronomist getAgronomist() {
         return agronomist;
     }
