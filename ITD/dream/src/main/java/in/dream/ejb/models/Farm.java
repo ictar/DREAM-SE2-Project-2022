@@ -3,6 +3,7 @@ package in.dream.ejb.models;
 import javax.persistence.*;
 
 @Entity
+@NamedQuery(name="Farm.findByFarmer", query = "SELECT f from Farm f where f.farmer=?1")
 public class Farm {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,16 +17,6 @@ public class Farm {
         this.farmid = farmid;
     }
 
-    private String location;
-
-    @Basic
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
     private float acreage;
 
@@ -38,19 +29,8 @@ public class Farm {
         this.acreage = acreage;
     }
 
-    @OneToOne
-    private Farmer farmer;
-
-
-    public Farmer getFarmer() {
-        return farmer;
-    }
-
-    public void setFarmer(Farmer farmer) {
-        this.farmer = farmer;
-    }
-
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="area")
     private Area area;
 
     public Area getArea() {
@@ -59,5 +39,11 @@ public class Farm {
 
     public void setArea(Area area) {
         this.area = area;
+    }
+
+    private String farmer;
+
+    public String getFarmer() {
+        return farmer;
     }
 }
