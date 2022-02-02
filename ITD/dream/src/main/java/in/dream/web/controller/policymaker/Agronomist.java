@@ -1,6 +1,7 @@
 package in.dream.web.controller.policymaker;
 
 import in.dream.ejb.models.Policymaker;
+import in.dream.ejb.services.AccountService;
 import in.dream.ejb.services.DailyPlanService;
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -16,6 +17,8 @@ public class Agronomist extends HttpServlet {
 
     @EJB(name="in.dream.ejb.services/DailyPlanService")
     private DailyPlanService dailyPlanService;
+    @EJB(name="in.dream.ejb.services/AccountService")
+    private AccountService accountService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,6 +50,7 @@ public class Agronomist extends HttpServlet {
         Policymaker pm = (Policymaker)session.getAttribute("policymaker");
         request.setAttribute("user", pm.getName());
 
+        request.setAttribute("agronomist", accountService.getAgronomist(agid));
         request.getRequestDispatcher(path).forward(request, response);
     }
 

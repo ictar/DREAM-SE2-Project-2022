@@ -43,6 +43,12 @@
 <div class="container">
     <form action="${pageContext.request.contextPath}/farmer/search" method="POST">
         <div class="input-group">
+            <select class="form-select" id="area" name="area">
+                <option value="${farm.area.getAreaid()}"selected>farm.area.getName()</option>
+                <c:forEach items="${areaList}" var="area">
+                    <option value="${area.getAreaid()}">${area.getName()}</option>
+                </c:forEach>
+            </select>
             <input type="text" class="form-control mt-2 border-secondary" id="location" placeholder="Email" name="location" required>
         </div>
         <div class="input-group">
@@ -59,24 +65,5 @@
         <p class="text-danger">${errorMsg}</p>
     </form>
 </div>
-<script>
-    function getLocation() {
-        // try HTML5 geolocation
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-
-            }, function(){
-                handleLocationError(true)
-            })
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false);
-        }
-    }
-
-    function handleLocationError(browserHasGeolocation) {
-
-    }
-</script>
 </body>
 </html>

@@ -30,9 +30,11 @@ public class Search extends HttpServlet {
 
         String path="/farmer/search.jsp";
 
+        request.setAttribute("areaList", geospatialDataService.getAreaList());
         request.setAttribute("productList", geospatialDataService.getTypeList());
         Farmer fm = (Farmer)session.getAttribute("farmer");
         request.setAttribute("user", fm.getName());
+        //request.setAttribute("farm", fm.getFarm());
 
         request.getRequestDispatcher(path).forward(request, response);
     }
@@ -49,10 +51,10 @@ public class Search extends HttpServlet {
 
         String path="/farmer/suggestion.jsp";
 
-        String location = StringEscapeUtils.escapeJava(request.getParameter("location"));
+        Long areaId = Long.parseLong(StringEscapeUtils.escapeJava(request.getParameter("area")));
         String producttype = StringEscapeUtils.escapeJava(request.getParameter("productiontype"));
 
-        request.setAttribute("result", searchService.search(location, producttype));
+        request.setAttribute("result", searchService.search(areaId, producttype));
 
 
     }

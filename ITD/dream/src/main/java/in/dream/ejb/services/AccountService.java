@@ -1,14 +1,12 @@
 package in.dream.ejb.services;
 
-import in.dream.ejb.models.Agronomist;
-import in.dream.ejb.models.Area;
-import in.dream.ejb.models.Farmer;
-import in.dream.ejb.models.Policymaker;
+import in.dream.ejb.models.*;
 
 import javax.ejb.CreateException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.security.auth.login.CredentialException;
@@ -67,6 +65,14 @@ public class AccountService {
         farmer.setName(username);
         farmer.setPassword(pwd);
         farmer.setPhonenumber(phonenumer);
+
+        try {
+            Farm fm = em.createNamedQuery("Farm.findByFarmer", Farm.class)
+                    .setParameter(1, phonenumer).getSingleResult();
+            farmer.setFarm(fm);
+        } catch(NoResultException e) {
+
+        }
 
         try {
             em.persist(farmer);
@@ -257,5 +263,16 @@ public class AccountService {
         }
 
         return result;
+    }
+
+    public Agronomist getAgronomist(Long agronomistid) {
+        Agronomist a;
+        try {
+            a = em.createNamedQuery("Agronomist.findOne", Agronomist.class)
+                    .getSingleResult();
+        }catch (Exception e) {
+            return null;
+        }
+        return a;
     }
 }

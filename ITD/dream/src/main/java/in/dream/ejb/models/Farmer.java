@@ -64,4 +64,18 @@ public class Farmer {
     public void setPerformance(int performance) {
         this.performance = performance;
     }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="farmer_farm",
+            joinColumns = {
+                    @JoinColumn(name="farmer", referencedColumnName = "farmerid")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name="farm", referencedColumnName = "farmid")
+            }
+    )
+    private Farm farm;
+
+    public void setFarm(Farm f) {this.farm = f;}
 }
