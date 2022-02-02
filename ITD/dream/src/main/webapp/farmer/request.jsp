@@ -48,7 +48,7 @@
         <p class="text-secondary text-right">Telengana</p>
     </div>
     <div class="col-sm-5 mt-5">
-        <p class="text-center">Hi, ${farmer.getName()}</p>
+        <p class="text-center">Hi, ${user}</p>
     </div>
 </div>
 
@@ -64,13 +64,13 @@
 
 <div class="text-center pt-3">
     <div class="nav dream-tab flex-column nav-pills p-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-    <c:forEach items="${ProblemService.getProblemTitle()}" var="rf">
-        <button class="nav-link text-black active" id="problem-1" data-bs-toggle="pill" data-bs-target="#v-pills-weather" type="button" role="tab" aria-controls="v-pills-weather" aria-selected="true">${Title}</button>
+    <c:forEach items="${problemList}" var="pt">
+        <button class="nav-link text-black active" id="problem-1" data-bs-toggle="pill" type="button" role="tab" aria-controls="problem1" aria-selected="true">${pt.getTitle()}</button>
     </c:forEach>
     </div>
 
 
-    <c:forEach items="${weather.getRainfall()}" var="rf">
+    <c:forEach items="${}" var="rf">
         <tr>
             <td>${rf.key}</td>
             <td>${rf.value.getRange()}</td>
@@ -83,8 +83,5 @@
     </div>
 
 </div>
-
-
-
 </body>
 </html>

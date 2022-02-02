@@ -39,20 +39,19 @@
     <form  method="post" action="${pageContext.request.contextPath}/farmer/NewRequest">
         <div class="text-center pt-3">
             <p style="display:inline">&ensp;&emsp;Title</p>
-            <input style="display:inline" name="title" placeholder="title" id="title" rows="1" cols="80">Enter Title</input>
+            <textarea style="display:inline" name="title" placeholder="title" id="title" rows="1" cols="80">Enter Title</textarea>
         </div>
         <div class="text-center pt-3">
             <p style="display:inline">&emsp;&emsp;&emsp;To</p>
-            <input style="display:inline" name="agronomist" placeholder="agronomist" id="agronomist" rows="1" cols="80">${agronomist.getName()}(agronomist name)</input>
+            <textarea style="display:inline" name="agronomist" placeholder="agronomist" id="agronomist" rows="1" cols="80">${agronomist.getName()}(agronomist name)</textarea>
         </div>
         <div class="text-center pt-3">
             <p style="display:inline">Content</p>
-            <input name="content" placeholder="content" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5">Enter Content</input>
+            <textarea name="content" placeholder="content" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5">Enter Content</textarea>
         </div>
         <div class="text-center pt-3">
             <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
         </div>
     </form>
 </div>
-
 </body>

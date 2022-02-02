@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Comment</title>
+    <title>Forum</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,8 +28,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer">Home</a></li>
-            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer/post">Forum</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Post detail</li>
+            <li class="breadcrumb-item active" aria-current="page">Forum</li>
         </ol>
     </nav>
 </div>
@@ -48,7 +47,11 @@
 
 <div class="text-center pt-3">
     <p><strong>Create a new post</strong></p>
-    <form  method="post" action="${pageContext.request.contextPath}/farmer/Comment">
+    <form  method="post" action="${pageContext.request.contextPath}/farmer/Post">
+        <div class="text-center pt-3">
+            <p style="display:inline">&ensp;&emsp;Title</p>
+            <textarea style="display:inline" name="title" placeholder="title" id="title" rows="1" cols="80">Enter Title</textarea>
+        </div>
         <div class="text-center pt-3">
             <p style="display:inline">Content</p>
             <textarea name="content" placeholder="content" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5">Enter Content</textarea>
