@@ -1,20 +1,15 @@
 package in.dream.ejb.services;
 
 import in.dream.ejb.models.Problem;
-import in.dream.ejb.models.Area;
 import in.dream.ejb.models.Farmer;
-import in.dream.ejb.models.Policymaker;
 
 import javax.ejb.CreateException;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
-import javax.security.auth.login.CredentialException;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 
 @Stateless
 public class ProblemService {
@@ -43,11 +38,13 @@ public class ProblemService {
     }
 
     //TODO what's list?
-    public List<Problem> getProblemTitle() {
+    public List<Problem> getProblemByFarmer(Farmer farmer) {
         List<Problem> result;
 
         try{
-            result = em.createNamedQuery("Problem.findAll", Problem.class).getResultList();
+            result = em.createNamedQuery("Problem.findAll", Problem.class)
+                    .setParameter(1, farmer)
+                    .getResultList();
         } catch (PersistenceException e) {
             return null;
         }

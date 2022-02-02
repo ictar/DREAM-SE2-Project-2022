@@ -25,7 +25,6 @@
 
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=YourAPI&callback=initMap"></script>-->
     <title>report</title>
 </head>
 <body>
@@ -47,8 +46,8 @@
         </ol>
     </nav>
 </div>
-<div class="container">
-    <form action="${pageContext.request.contextPath}/farmer/report.jsp" method="POST">
+<div class="container p-5">
+    <form action="${pageContext.request.contextPath}/farmer/report" method="POST">
 
         <div class="input-group">
             <select class="form-select" id="prodct" name="productiontype">
@@ -58,46 +57,25 @@
                 </c:forEach>
             </select>
         </div>
-</div class="input-group">
-<input type="text" class="form-control mt-2 border-secondary" id="location" placeholder="Amount" name="location" required>
-</div>
+        <div class="input-group">
+            <input type="text" class="form-control mt-2 border-secondary" id="amount" placeholder="Enter Amount" name="amount" required>
+        </div>
 
-<br>
-<br>
+        <div class="input-group">
+            <input type="text" class="form-control mt-2 border-secondary" id="acreage" placeholder="Enter acreage of planting" name="acreage" required>
+        </div>
 
-<div class="input-group";left:100px>
-    <select class="form-select" id="prodct" name="productiontype">
-        <option selected>Choose Acreage of planting</option>
-        <c:forEach items="${productionList}" var="product">
-            <option value="${prod.getAcreage()}">${prod.getAcreage()}</option>
-        </c:forEach>
-    </select>
-</div>
-
-<br><br>
-<div class="input-group">
-    <div class="input-group">
-        <select class="form-select" id="left" name="productiontype">
-            <option selected>Choose start time</option>
-            <c:forEach items="${productionList}" var="product">
-                <option value="${prod.getStarttime()}">${prod.getStarttime()}</option>
-            </c:forEach>
-        </select>
-    </div>
-    <br><br>
-    <div class="input-group">
-        <select class="form-select" id="right" name="productiontype">
-            <option selected>Choose end time</option>
-            <c:forEach items="${productionList}" var="product">
-                <option value="${prod.getEndtime()}">${prod.getEndtime()}</option>
-            </c:forEach>
-        </select>
-    </div>
-
-</div>
+        <div class="row pt-3">
+            <div class="col-lg-3">
+                <input type="date" id="starttime" name="starttime" placeholder="Choose start time">
+            </div>
+            <div class="col-lg-3">
+                <input type="date" id="endtime" name="endtime" placeholder="Choose end time">
+            </div>
+        </div>
 
         <div class="text-center pt-3">
-            <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
+            <button type="submit" class="btn border-0 dream-fm-btn"><strong>Submit</strong></button>
         </div>
         <p class="text-danger">${errorMsg}</p>
     </form>

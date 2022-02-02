@@ -16,7 +16,7 @@ public class DailyPlanService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
 
-    private void createDailyPlan(Long agronomistID, String title,
+    public void createDailyPlan(Long agronomistID, String title,
                                  String date, List<Long> farmerList, String content) throws CreateException {
 
         Dailyplan dp = new Dailyplan();
@@ -65,11 +65,11 @@ public class DailyPlanService {
 
     public Dailyplan getDailyPlanDetail(Long dailyPlanID) {
         try {
-            Dailyplan dp = em.createNamedQuery("Dailyplan.findOne", Dailyplan.class)
+            return em.createNamedQuery("Dailyplan.findOne", Dailyplan.class)
                     .setParameter(1, dailyPlanID)
                     .getSingleResult();
-            return dp;
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }

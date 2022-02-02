@@ -3,7 +3,6 @@ package in.dream.web.controller.policymaker;
 import in.dream.ejb.models.Policymaker;
 import in.dream.ejb.services.AccountService;
 import in.dream.ejb.services.GeospatialDataService;
-import org.apache.commons.text.StringEscapeUtils;
 
 import javax.ejb.EJB;
 import javax.servlet.*;
@@ -20,13 +19,13 @@ public class FarmerPerformance extends HttpServlet {
 
     private boolean isLogin(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        return !(session.isNew() || session.getAttribute("policymaker") == null);
+        return session.isNew() || session.getAttribute("policymaker") == null;
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // if the policy maker is not logged in, redirect to the login
         String pathCtx = getServletContext().getContextPath();
-        if(!isLogin(request)) {
+        if(isLogin(request)) {
             response.sendRedirect(pathCtx+"/policymaker/login.jsp");
             return;
         }
@@ -51,7 +50,7 @@ public class FarmerPerformance extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // if the policy maker is not logged in, redirect to the login
         String pathCtx = getServletContext().getContextPath();
-        if(!isLogin(request)) {
+        if(isLogin(request)) {
             response.sendRedirect(pathCtx+"/policymaker/login.jsp");
             return;
         }

@@ -4,7 +4,6 @@ import in.dream.ejb.external.Weather;
 import in.dream.ejb.models.Policymaker;
 import in.dream.ejb.services.GeospatialDataService;
 import in.dream.ejb.services.ProductionReportService;
-import org.apache.commons.text.StringEscapeUtils;
 
 import javax.ejb.EJB;
 import javax.servlet.*;

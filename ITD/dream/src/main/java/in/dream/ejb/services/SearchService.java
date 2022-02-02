@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Stateless

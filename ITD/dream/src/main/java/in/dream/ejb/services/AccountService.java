@@ -24,8 +24,8 @@ public class AccountService {
     private static final int PASSWORD_LENGTH = 8;
     // check if passsword satisfy
     // "At least 8 alphanumeric characters, 2 numeric characters."
-    private static boolean isValidPassword(String pwd) {
-        if(pwd.length() < PASSWORD_LENGTH) return false;
+    private static boolean isInvalidPassword(String pwd) {
+        if(pwd.length() < PASSWORD_LENGTH) return true;
 
         int charCnt = 0;
         int numCnt = 0;
@@ -34,9 +34,9 @@ public class AccountService {
             char ch = pwd.charAt(i);
             if(isNumber(ch)) numCnt++;
             else if(isLetter(ch)) charCnt++;
-            else return false;
+            else return true;
         }
-        return numCnt >= 2;
+        return numCnt < 2;
     }
     private static boolean isLetter(char ch) {
         ch = Character.toUpperCase(ch);
@@ -48,7 +48,7 @@ public class AccountService {
 
     // farmer
     public void createFarmerAccount(String username, String pwd, String phonenumer) throws CreateException {
-        if(!isValidPassword(pwd)) {
+        if(isInvalidPassword(pwd)) {
             throw new CreateException("Password should be at least 8 alphanumeric characters, 2 numeric characters.");
         }
         List<Farmer> fList;
@@ -152,7 +152,7 @@ public class AccountService {
 
     // policy maker
     public void createPolicyMakerAccount(String username, String pwd, String email) throws CreateException{
-        if(!isValidPassword(pwd)) {
+        if(isInvalidPassword(pwd)) {
             throw new CreateException("Password should be at least 8 alphanumeric characters, 2 numeric characters.");
         }
 
@@ -200,7 +200,7 @@ public class AccountService {
 
     // agronomist
     public void createAgronomistAccount(String username, String pwd, String email, Long areaId) throws CreateException {
-        if(!isValidPassword(pwd)) {
+        if(isInvalidPassword(pwd)) {
             throw new CreateException("Password should be at least 8 alphanumeric characters, 2 numeric characters.");
         }
         List<Agronomist> aList;

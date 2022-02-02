@@ -2,7 +2,6 @@ package in.dream.web.controller.farmer;
 
 import in.dream.ejb.models.Farmer;
 import in.dream.ejb.services.ProblemService;
-import org.apache.commons.text.StringEscapeUtils;
 
 import javax.ejb.EJB;
 import javax.servlet.*;
@@ -27,7 +26,7 @@ public class Request extends HttpServlet {
         String path = "/farmer/request.jsp";
 
         request.setAttribute("user", farmer.getName());
-        request.setAttribute("problemList", problemService.getProblemByFarmer(farmer.getFarmerid()));
+        request.setAttribute("problemList", problemService.getProblemByFarmer(farmer));
 
 
         request.getRequestDispatcher(path).forward(request, response);

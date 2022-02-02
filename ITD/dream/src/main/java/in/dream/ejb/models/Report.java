@@ -39,15 +39,15 @@ public class Report {
         this.amount = amount;
     }
 
-    private LocalDate starttime;
+    private LocalDate startime;
 
     @Basic
-    public LocalDate getStarttime() {
-        return starttime;
+    public LocalDate getStartime() {
+        return startime;
     }
 
-    public void setStarttime(LocalDate starttime) {
-        this.starttime = starttime;
+    public void setStartime(LocalDate starttime) {
+        this.startime = starttime;
     }
 
     private LocalDate endtime;
@@ -72,9 +72,10 @@ public class Report {
         this.acreage = acreage;
     }
 
+    @ManyToOne
+    @JoinColumn(name="farmer")
     private Farmer farmer;
 
-    @ManyToOne
     public Farmer getFarmer() {
         return farmer;
     }

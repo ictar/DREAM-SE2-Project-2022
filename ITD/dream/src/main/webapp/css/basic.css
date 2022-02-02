@@ -28,3 +28,10 @@
 .dream-btn {
     background:#d5e8d4;
 }
+
+.dream-fm-btn {
+    background:#60A917;
+}
+.dream-fm-btn > strong {
+    color: white;
+}

@@ -1,5 +1,6 @@
 package in.dream.ejb.services;
 
+import in.dream.ejb.models.Farmer;
 import in.dream.ejb.models.Report;
 
 import javax.ejb.CreateException;
@@ -15,18 +16,18 @@ public class ProductionReportService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
 
-    public void reportProduction(Long farmerID, String type, float amount,
+    public void reportProduction(Farmer farmer, String type, float amount,
                                  float acreage, String starttime, String endtime) throws CreateException{
         Report report = new Report();
         report.setType(type);
         report.setAmount(amount);
         report.setAcreage(acreage);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        report.setStarttime(LocalDate.parse(starttime, formatter));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+        report.setStartime(LocalDate.parse(starttime, formatter));
         report.setEndtime(LocalDate.parse(endtime, formatter));
 
-        // TODO: set farmer
+        report.setFarmer(farmer);
         try {
             em.persist(report);
         } catch (Exception e) {
