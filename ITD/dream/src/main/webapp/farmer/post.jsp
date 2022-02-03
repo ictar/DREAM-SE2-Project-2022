@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Forum</title>
@@ -34,13 +36,11 @@
 </div>
 
 <div class="container">
-    <c:forEach items="${postList}" var="prod">
+    <c:forEach items="${postList}" var="PL">
     <tr>
-        <td>${prod.getFarmer().getName()}</td>
-        <td>${prod.getType()}</td>
-        <td>${prod.getAmount()}</td>
-        <td>${prod.getAcreage()}</td>
-        <td>${prod.getStarttime()} - ${prod.getEndtime()}</td>
+        <td><a  href="${pageContext.request.contextPath}/farmer/${post.getName()}?id=${post.getPostid()}">${post.getName()}</a></td>
+        <td>${PL.content}</td>
+        <td>${PL.time}</td>
     </tr>
     </c:forEach>
 </div>
