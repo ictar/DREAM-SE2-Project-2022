@@ -39,15 +39,15 @@ public class Report {
         this.amount = amount;
     }
 
-    private LocalDate startime;
+    private LocalDate starttime;
 
     @Basic
-    public LocalDate getStartime() {
-        return startime;
+    public LocalDate getStarttime() {
+        return starttime;
     }
 
-    public void setStartime(LocalDate starttime) {
-        this.startime = starttime;
+    public void setStarttime(LocalDate starttime) {
+        this.starttime = starttime;
     }
 
     private LocalDate endtime;

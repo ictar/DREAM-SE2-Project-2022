@@ -52,10 +52,9 @@
             <tbody>
             <c:forEach items="${farmerList}" var="farmer">
                 <tr>
-                    <td><input type="hidden" value="${farmer.getFarmerid()}">${farmer.getName()}</td>
+                    <td>${farmer.getName()}</td>
                     <td>
-                            ${farmer.getPerformance()}
-                        <input type="number" class="mt-2 border-secondary" placeholder="-1" name="performance" required>
+                        <input type="number" class="mt-2 border-secondary" placeholder="${farmer.getPerformance()}" name="performance_${farmer.getFarmerid()}" required>
                     </td>
                 </tr>
             </c:forEach>
@@ -63,6 +62,9 @@
         </table>
         <div class="text-center pt-3">
             <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
+        </div>
+        <div>
+            <p>${errMsg}</p>
         </div>
     </form>
 </div>

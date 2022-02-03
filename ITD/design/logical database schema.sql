@@ -80,7 +80,7 @@ create table `report` (
     `reportid` int(11) NOT NULL AUTO_INCREMENT,
     `type` varchar(45) NOT NULL,
     `amount` DECIMAL(9 , 2 ) NOT NULL,
-    `startime` DATE NOT NULL,
+    `starttime` DATE NOT NULL,
     `endtime` DATE NOT NULL,
     `acreage` DECIMAL(9 , 2 ) NOT NULL,
     `farmer` int(11) NOT NULL,

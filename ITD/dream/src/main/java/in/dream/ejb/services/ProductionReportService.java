@@ -24,7 +24,7 @@ public class ProductionReportService {
         report.setAcreage(acreage);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
-        report.setStartime(LocalDate.parse(starttime, formatter));
+        report.setStarttime(LocalDate.parse(starttime, formatter));
         report.setEndtime(LocalDate.parse(endtime, formatter));
 
         report.setFarmer(farmer);
@@ -38,9 +38,10 @@ public class ProductionReportService {
     public List<Report> getFarmerProductionList(Long areaID) {
         List<Report> result;
         try {
-            result = em.createQuery("select r from Report r, Farm fm where r.farmer.phonenumber=fm.farmer and fm.area=?1",
+            result = em.createQuery("select r from Report r where r.farmer.farm.area.areaid=?1",
                     Report.class).setParameter(1, areaID).getResultList();
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
         return result;

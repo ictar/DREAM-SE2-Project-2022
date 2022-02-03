@@ -9,6 +9,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet(name = "policymakerFarmerPerformance", value = "/policymaker/area/performance/*")
 public class FarmerPerformance extends HttpServlet {
@@ -47,7 +49,7 @@ public class FarmerPerformance extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // if the policy maker is not logged in, redirect to the login
         String pathCtx = getServletContext().getContextPath();
         if(isLogin(request)) {
@@ -55,9 +57,26 @@ public class FarmerPerformance extends HttpServlet {
             return;
         }
 
-        // get data
+        try {
+            Map<String, String[]> paras = request.getParameterMap();
+            // get data
+            Map<Long, Integer> performanceData = new HashMap<>();
+            for(Map.Entry<String, String[]> entry: paras.entrySet()){
+                if(entry.getKey().startsWith("performance_")) {
+                    Long key = Long.parseLong(entry.getKey().split("performance_")[1]);
+                    Integer value = Integer.parseInt(entry.getValue()[0]);
+                    performanceData.put(key, value);
+                }
+            }
+            // update
+            accountService.updatePerformance(performanceData);
 
-        // update
+            String path = getServletContext().getContextPath() + "/policymaker";
+            response.sendRedirect(path);
 
+        }catch (Exception e) {
+            request.setAttribute("errMsg", e.getMessage());
+            this.doGet(request, response);
+        }
     }
 }
