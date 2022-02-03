@@ -35,13 +35,17 @@
 </div>
 
 <div class="container">
-    <c:forEach items="${postList}" var="prod">
     <tr>
-        <td>${prod.getFarmer().getName()}</td>
-        <td>${prod.getType()}</td>
-        <td>${prod.getAmount()}</td>
-        <td>${prod.getAcreage()}</td>
-        <td>${prod.getStarttime()} - ${prod.getEndtime()}</td>
+        <td>${post.title}</td>
+        <td>${post.content}</td>
+        <td>${post.time}</td>
+        <td>${post.farmer}</td>
+    </tr>
+    <c:forEach items="${commentList}" var="cm">
+    <tr>
+        <td>${cm.farmer}</td>
+        <td>${cm.content}</td>
+        <td>${cm.time}</td>
     </tr>
     </c:forEach>
 </div>

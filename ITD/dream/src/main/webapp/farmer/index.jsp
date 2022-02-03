@@ -42,7 +42,7 @@
 </head>
 
 <body>
-<div class="row mt-0 pt-5 dream-header">
+<div class="mt-0 p-5 text-black dream-header">
   <div class="col-sm-7 text-end">
     <h1>Data-dRiven PrEdictive FArMing</h1>
     <p class="text-secondary text-right">Telengana</p>
@@ -51,34 +51,16 @@
     <p class="text-center">Hi, ${user}</p>
   </div>
 </div>
-<div class="ps-4 dream-nav">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="./index.jsp">Home</a></li>
-    </ol>
-  </nav>
+
+<div class="text-center pt-3">
+  <a href="${pageContext.request.contextPath}/farmer/search" style="text-decoration : none;"><button  class="button button1"><strong>Search</strong></button></a>
+  <a href="${pageContext.request.contextPath}/farmer/report.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Report</strong></button></a>
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-3">
-        <a href="${pageContext.request.contextPath}/farmer/search" style="text-decoration : none;"><button  class="button button1"><strong>Search</strong></button></a>
-    </div>
-    <div class="col-3">
-        <a href="${pageContext.request.contextPath}/farmer/report" style="text-decoration : none;"><button  class="button button1"><strong>Report</strong></button></a>
-      </div>
-    <div class="col-3"></div>
-  </div>
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-3">
-        <a href="./farmer/request.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Request</strong></button></a>
-    </div>
-    <div class="col-3">
-        <a href="./farmer/forum.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Forum</strong></button></a>
-    </div>
-    <div class="col-3"></div>
-  </div>
+<div class="text-center pt-3">
+  <a href="${pageContext.request.contextPath}/farmer/request" style="text-decoration : none;"><button  class="button button1"><strong>Request</strong></button></a>
+  <a href="${pageContext.request.contextPath}/farmer/post.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Forum</strong></button></a>
 </div>
+
+
 </body>
 </html>
