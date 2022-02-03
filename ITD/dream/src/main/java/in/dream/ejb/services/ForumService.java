@@ -38,21 +38,31 @@ public class ForumService {
         List<Post> result;
 
         try{
-            result = em.createQuery("SELECT a from post a order by time Desc ", Post.class).getResultList();
+            result = em.createQuery("SELECT a from Post a order by time Desc ", Post.class).getResultList();
+        } catch (PersistenceException e) {
+            return null;
+        }
+        return result;
+    }
+    public List<Post> getPostByID() {
+        List<Post> result;
+
+        try{
+            result = em.createQuery("SELECT a from Post a where a.postid=?1", Post.class).getResultList();
         } catch (PersistenceException e) {
             return null;
         }
         return result;
     }
 
-    public void createComment(String content, Timestamp posttime) throws CreateException {
+    public void createComment(Long farmer, Long post, String content, Timestamp commenttime) throws CreateException {
         if(content.length()<1 ) {
             throw new CreateException("Please enter title or content.");
         }
 
         Comment comment = new Comment();
         comment.setContent(content);
-        comment.setTime(posttime);
+        comment.setTime(commenttime);
 
         try {
             em.persist(comment);
@@ -61,11 +71,11 @@ public class ForumService {
         }
     }
 
-    public List<Comment> getComment() {
+    public List<Comment> getComment(Long postid) {
         List<Comment> result;
 
         try{
-            result = em.createQuery("SELECT a from comment a order by time Desc ", Comment.class).getResultList();
+            result = em.createQuery("SELECT a from Comment a WHERE a.post.postid=?1 order by a.time Desc ", Comment.class).setParameter(1,postid).getResultList();
         } catch (PersistenceException e) {
             return null;
         }
