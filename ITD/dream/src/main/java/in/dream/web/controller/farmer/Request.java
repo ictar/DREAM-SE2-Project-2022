@@ -19,7 +19,7 @@ public class Request extends HttpServlet {
         String pathCtx = getServletContext().getContextPath();
         HttpSession session = request.getSession();
         if(session.isNew() || session.getAttribute("farmer") == null) {
-            response.sendRedirect(pathCtx+"/farmer/request.jsp");
+            response.sendRedirect(pathCtx+"/farmer/login.jsp");
             return;
         }
         Farmer farmer = (Farmer)session.getAttribute("farmer");

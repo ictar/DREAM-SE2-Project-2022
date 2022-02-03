@@ -17,7 +17,14 @@ public class NewRequest extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // if the farmer is not logged in, redirect to the login
+        String pathCtx = getServletContext().getContextPath();
         HttpSession session = request.getSession();
+        if(session.isNew() || session.getAttribute("farmer") == null) {
+            response.sendRedirect(pathCtx+"/farmer/login.jsp");
+            return;
+        }
+
         String title, content;
         try {
             title = StringEscapeUtils.escapeJava(request.getParameter("title"));

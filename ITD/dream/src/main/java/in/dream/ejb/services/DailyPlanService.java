@@ -15,7 +15,7 @@ import java.util.List;
 public class DailyPlanService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
-
+    // NOT USED
     public void createDailyPlan(Long agronomistID, String title,
                                  String date, List<Long> farmerList, String content) throws CreateException {
 
@@ -37,6 +37,7 @@ public class DailyPlanService {
         }
     }
 
+    // NOT USED
     private String modifyDailyPlan(Long dailyPlanID, String title,
                                  String date, List<Long> farmerList, String content) {
         try {
@@ -74,6 +75,7 @@ public class DailyPlanService {
         return null;
     }
 
+    // NOT USED
     public String confirmDailyPlan(Long dailyPlanID, String deviation) {
         try {
             Dailyplan dp = em.createNamedQuery("Dailyplan.findOne", Dailyplan.class)
