@@ -39,12 +39,6 @@
     <p class="text-center">Hi, ${user}</p>
   </div>
 </div>
-
-<div class="text-center pt-3">
-  <a href="${pageContext.request.contextPath}/farmer/search" style="text-decoration : none;"><button  class="button button1"><strong>Search</strong></button></a>
-  <a href="${pageContext.request.contextPath}/farmer/report.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Report</strong></button></a>
-</div>
-<<<<<<< HEAD
 <div class="container">
   <div class="row p-5">
     <div class="col-3"></div>
