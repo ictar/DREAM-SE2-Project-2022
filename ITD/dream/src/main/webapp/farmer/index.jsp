@@ -15,23 +15,11 @@
   <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
   <style>
-    .button {
-      border: none;
-      color: white;
-      padding: 16px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      transition-duration: 0.4s;
-      cursor: pointer;
-    }
-
     .button1 {
       background-color: white;
       color: black;
       border: 2px solid #4CAF50;
+      padding: 16px 32px;
     }
 
     .button1:hover {
@@ -59,23 +47,31 @@
   </nav>
 </div>
 <div class="container">
-  <div class="row">
+  <div class="row p-5">
     <div class="col-3"></div>
-    <div class="col-3">
-        <a href="${pageContext.request.contextPath}/farmer/search" style="text-decoration : none;"><button  class="button button1"><strong>Search</strong></button></a>
+    <div class="col-3 text-center">
+        <a href="${pageContext.request.contextPath}/farmer/search" style="text-decoration : none;">
+          <button  class="btn-lg button1"><strong>Search</strong></button>
+        </a>
     </div>
-    <div class="col-3">
-        <a href="${pageContext.request.contextPath}/farmer/report" style="text-decoration : none;"><button  class="button button1"><strong>Report</strong></button></a>
+    <div class="col-3 text-center">
+        <a href="${pageContext.request.contextPath}/farmer/report" style="text-decoration : none;">
+          <button  class="btn-lg button1"><strong>Report</strong></button>
+        </a>
       </div>
     <div class="col-3"></div>
   </div>
-  <div class="row">
+  <div class="row p-2">
     <div class="col-3"></div>
-    <div class="col-3">
-        <a href="./farmer/request.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Request</strong></button></a>
+    <div class="col-3 text-center">
+        <a href="./farmer/request.jsp" style="text-decoration : none;">
+          <button  class="btn-lg button1"><strong>Request</strong></button>
+        </a>
     </div>
-    <div class="col-3">
-        <a href="./farmer/forum.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Forum</strong></button></a>
+    <div class="col-3 text-center">
+        <a href="./farmer/forum.jsp" style="text-decoration : none;">
+          <button  class="btn-lg button1"><strong>Forum</strong></button>
+        </a>
     </div>
     <div class="col-3"></div>
   </div>
