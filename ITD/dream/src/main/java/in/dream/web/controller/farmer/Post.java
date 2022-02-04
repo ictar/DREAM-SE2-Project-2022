@@ -13,7 +13,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Timestamp;
 
-@WebServlet(name = "farmerPost", value="/farmer/post/*")
+@WebServlet(name = "farmerPost", value="/farmer/forum/post/*")
 public class Post extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ForumService")
     private ForumService forumService;
@@ -49,6 +49,8 @@ public class Post extends HttpServlet {
         }
 
         String title, content;
+        // only one forum is allowed.
+        Long forumId = 1L;
         try {
             title = StringEscapeUtils.escapeJava(request.getParameter("title"));
             content = StringEscapeUtils.escapeJava(request.getParameter("content"));
@@ -59,12 +61,12 @@ public class Post extends HttpServlet {
                 throw new Exception("Required field is missing.");
             }
 
-            Long postid = forumService.createPost(title, content, farmer, posttime).getPostid();
-            response.sendRedirect(getServletContext().getContextPath() + "/farmer/post/" + postid.toString());
+            Long postid = forumService.createPost(title, content, farmer, posttime, forumId).getPostid();
+            response.sendRedirect(getServletContext().getContextPath() + "/farmer/forum/post/" + postid.toString());
 
         } catch (Exception e) {
             request.setAttribute("errorMsgReg", e.getMessage());
-            request.getRequestDispatcher("/farmer/forum.jsp").forward(request, response);
+            request.getRequestDispatcher("/farmer/forum").forward(request, response);
         }
     }
 }

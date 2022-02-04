@@ -17,16 +17,18 @@ import java.util.Map;
 public class ForumService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
-    public Post createPost(String title, String content, Farmer farmer, Timestamp posttime) throws CreateException {
+    public Post createPost(String title, String content, Farmer farmer, Timestamp posttime, Long forumId) throws CreateException {
         if(title.length()<1 ) {
             throw new CreateException("Please enter title or content.");
         }
 
+        Forum forum = em.find(Forum.class, forumId);
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
         post.setTime(posttime);
         post.setFarmer(farmer);
+        post.setForum(forum);
 
         try {
             em.persist(post);
@@ -60,11 +62,12 @@ public class ForumService {
         return post;
     }
 
-    public void createComment(Farmer farmer, Post post, String content, Timestamp commenttime) throws CreateException {
+    public void createComment(Farmer farmer, Long postId, String content, Timestamp commenttime) throws CreateException {
         if(content.length()<1 ) {
             throw new CreateException("Please enter title or content.");
         }
 
+        Post post = em.find(Post.class, postId);
         Comment comment = new Comment();
         comment.setFarmer(farmer);
         comment.setPost(post);

@@ -70,7 +70,7 @@
 
 <div class="text-center pt-3">
     <p><strong>Create a New Comment</strong></p>
-    <form  method="post" action="${pageContext.request.contextPath}/farmer/comment">
+    <form  method="post" action="${pageContext.request.contextPath}/farmer/forum/comment">
         <input type="hidden" id="postId" name="postId" value="${post.getPostid()}">
         <div class="text-center pt-3">
             <p style="display:inline">Comment</p>

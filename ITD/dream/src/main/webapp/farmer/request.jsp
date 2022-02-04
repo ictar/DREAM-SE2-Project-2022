@@ -145,6 +145,7 @@
                 </div>
             </c:forEach>
         </div>
+        <p>${errMsg}</p>
     </div>
     <div class="pt-2">
     <a href="${pageContext.request.contextPath}/farmer/request/create" style="text-decoration : none;"><button  class="button button1"><strong>Create</strong></button></a>

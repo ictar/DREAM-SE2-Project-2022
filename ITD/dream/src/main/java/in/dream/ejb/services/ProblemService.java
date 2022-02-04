@@ -48,7 +48,7 @@ public class ProblemService {
     }
 
     public void updateFeedback(Long problemId, int feedback) {
-
-
+        Problem problem = em.find(Problem.class, problemId);
+        problem.setFeedback(feedback);
     }
 }

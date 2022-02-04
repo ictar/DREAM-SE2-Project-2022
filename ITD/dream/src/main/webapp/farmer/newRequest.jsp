@@ -49,6 +49,7 @@
         <div class="text-center pt-3">
             <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
         </div>
+        <p>${errorMsg}</p>
     </form>
     <div class="col-3"></div>
 </div>

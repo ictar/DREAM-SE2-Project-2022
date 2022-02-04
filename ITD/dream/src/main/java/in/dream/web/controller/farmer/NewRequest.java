@@ -55,11 +55,11 @@ public class NewRequest extends HttpServlet {
             }
 
             problemService.createRequest(title, content,farmer,time);
-            response.sendRedirect(getServletContext().getContextPath() + "/farmer/request.jsp");
+            response.sendRedirect(getServletContext().getContextPath() + "/farmer/request");
 
         } catch (Exception e) {
             request.setAttribute("errorMsgReg", e.getMessage());
-            request.getRequestDispatcher( "/farmer/request.jsp").forward(request, response);
+            this.doGet(request, response);
         }
     }
 }

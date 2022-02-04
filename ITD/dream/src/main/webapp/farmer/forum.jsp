@@ -53,7 +53,7 @@
                         <c:if test="${PL.getComments() != null}">${PL.getComments().size()}</c:if>
                         <c:if test="${PL.getComments() == null}">0</c:if>
                     </td>
-                    <td ><a href="${pageContext.request.contextPath}/farmer/post/${PL.getPostid()}"> ${PL.getTitle()}</a></td>
+                    <td ><a href="${pageContext.request.contextPath}/farmer/forum/post/${PL.getPostid()}"> ${PL.getTitle()}</a></td>
                     <td>
                         <c:if test="${PL.getComments() != null && !PL.getComments().isEmpty()}">${PL.getComments().get(PL.getComments().size()-1).getTime()}</c:if>
                         <c:if test="${PL.getComments() == null || PL.getComments().isEmpty()}">--</c:if>
@@ -66,7 +66,7 @@
     </div>
     <div class="row pt-3">
         <p><strong>Create a new post</strong></p>
-        <form  method="post" action="${pageContext.request.contextPath}/farmer/post">
+        <form  method="post" action="${pageContext.request.contextPath}/farmer/forum/post">
             <div class="row p-3">
                 <div class="col-sm-1">
                     <label for="title" class="col-form-label">Title</label>

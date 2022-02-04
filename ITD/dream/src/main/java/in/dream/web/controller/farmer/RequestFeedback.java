@@ -2,6 +2,7 @@ package in.dream.web.controller.farmer;
 
 
 import in.dream.ejb.services.ProblemService;
+import org.apache.commons.text.StringEscapeUtils;
 
 
 import javax.ejb.EJB;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-@WebServlet(name = "farmerRequestFeedback", urlPatterns = "/farmer/request/feedBack")
+@WebServlet(name = "farmerRequestFeedback", urlPatterns = "/farmer/request/feedback")
 public class RequestFeedback extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ProblemService")
     private ProblemService problemService;
@@ -29,5 +30,15 @@ public class RequestFeedback extends HttpServlet {
             response.sendRedirect(pathCtx+"/farmer/login.jsp");
             return;
         }
+
+        try {
+            Long pid = Long.parseLong(StringEscapeUtils.escapeJava(request.getParameter("problemid")));
+            int feedback = Integer.parseInt(StringEscapeUtils.escapeJava(request.getParameter("feedback")));
+
+            problemService.updateFeedback(pid, feedback);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        response.sendRedirect(getServletContext().getContextPath() + "/farmer/request");
     }
 }
