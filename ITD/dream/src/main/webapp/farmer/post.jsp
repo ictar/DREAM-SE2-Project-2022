@@ -57,7 +57,7 @@
     </tr>
     <c:forEach items="${commentList}" var="cm" varStatus="loop">
     <tr>
-        <td>${loop.index}</td>
+        <td>#${loop.index+1}</td>
         <td>${cm.getFarmer().getName()}</td>
         <td>${cm.getContent()}</td>
         <td>${cm.getTime()}</td>

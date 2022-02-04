@@ -31,8 +31,9 @@ public class Post extends HttpServlet {
         String[] urlparas = request.getRequestURI().split("/");
         Long postId = Long.parseLong(urlparas[urlparas.length-1]);
 
-        request.setAttribute("post", forumService.getPostByID(postId));
-        request.setAttribute("commentList", forumService.getComment(postId));
+        in.dream.ejb.models.Post post = forumService.getPostByID(postId);
+        request.setAttribute("post", post);
+        request.setAttribute("commentList", post.getComments());
 
         Farmer fm = (Farmer)session.getAttribute("farmer");
         request.setAttribute("user", fm.getName());

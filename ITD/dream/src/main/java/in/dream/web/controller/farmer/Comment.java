@@ -27,17 +27,12 @@ public class Comment extends HttpServlet {
             return;
         }
 
-        String title, content;
+        String content;
 
         Long postId =  Long.parseLong(StringEscapeUtils.escapeJava(request.getParameter("postId")));
         try {
-            title = StringEscapeUtils.escapeJava(request.getParameter("title"));
             content = StringEscapeUtils.escapeJava(request.getParameter("content"));
             Timestamp commenttime = new Timestamp(System.currentTimeMillis());
-
-            if(title== null || title.isEmpty()) {
-                throw new Exception("Required field is missing.");
-            }
 
 
             Farmer fm = (Farmer)session.getAttribute("farmer");
@@ -46,6 +41,7 @@ public class Comment extends HttpServlet {
             response.sendRedirect(getServletContext().getContextPath() + "/farmer/forum/post/" + postId.toString());
 
         } catch (Exception e) {
+            e.printStackTrace();
             request.setAttribute("errorMsgReg", e.getMessage());
             request.getRequestDispatcher("/farmer/forum/post/" + postId.toString()).forward(request, response);
         }

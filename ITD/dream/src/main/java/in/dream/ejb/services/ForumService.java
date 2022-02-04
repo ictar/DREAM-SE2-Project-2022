@@ -81,16 +81,4 @@ public class ForumService {
         }
     }
 
-    public List<Comment> getComment(Long postid) {
-        List<Comment> result;
-
-        try{
-            result = em.createQuery("SELECT a from Comment a WHERE a.post.postid=?1 order by a.time Desc ", Comment.class).setParameter(1,postid).getResultList();
-        } catch (PersistenceException e) {
-            return null;
-        }
-        return result;
-    }
-
-
 }
