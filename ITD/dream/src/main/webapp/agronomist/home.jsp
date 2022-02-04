@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>${area.getName()}</title>
+    <title>${agronomist.getName()}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,15 +34,12 @@
 <div class="ps-4 dream-nav">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/policymaker">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">${area.getName()}</li>
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/agronomist/Home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">${agronomist.getName()}</li>
         </ol>
     </nav>
 </div>
-<div class="text-end pe-5">
-    <a class="" role="button" href="${pageContext.request.contextPath}/policymaker/area/performance/${area.getAreaid()}">
-    </a>
-</div>
+
 <div class="container">
     <div class="d-flex align-items-start">
         <div class="nav dream-tab flex-column nav-pills p-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -51,11 +48,17 @@
             <button class="nav-link text-black" id="v-pills-water-tab" data-bs-toggle="pill" data-bs-target="#v-pills-water" type="button" role="tab" aria-controls="v-pills-water" aria-selected="false">Water Irrigation</button>
             <button class="nav-link text-black" id="v-pills-soil-tab" data-bs-toggle="pill" data-bs-target="#v-pills-soil" type="button" role="tab" aria-controls="v-pills-soil" aria-selected="false">Soil Humidity</button>
             <button class="nav-link text-black" id="v-pills-information-tab" data-bs-toggle="pill" data-bs-target="#v-pills-information" type="button" role="tab" aria-controls="v-pills-information" aria-selected="false">Farmer Information</button>
-            <button class="nav-link text-black active" id="v-pills-dailyplan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-weather" type="button" role="tab" aria-controls="v-pills-weather" aria-selected="true">Daily Plan</button>
+            <button class="nav-link text-black active" id="v-pills-dailyplan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dailyplan" type="button" role="tab" aria-controls="v-pills-dailyplan" aria-selected="true">Daily Plan</button>
         </div>
-        <div class="tab-content p-3 mt-3" id="v-pills-tabContent">
-            // location
 
+
+        <div class="tab-content p-3 mt-3" id="v-pills-tabContent">
+
+            // location
+            <div class="tab-pane fade show active" id="v-pills-location" role="tabpanel" aria-labelledby="v-pills-location-tab">
+                <img src="${pageContext.request.contextPath}/images/${area.getImage()}">
+
+            </div>
 
             //weather
             <div class="tab-pane fade show active" id="v-pills-weather" role="tabpanel" aria-labelledby="v-pills-weather-tab">
@@ -103,25 +106,21 @@
             </div>
 
             //information
-            <div class="tab-pane fade" id="v-pills-production" role="tabpanel" aria-labelledby="v-pills-production-tab">
+            <div class="tab-pane fade" id="v-pills-information" role="tabpanel" aria-labelledby="v-pills-information-tab">
                 <table class="table">
                     <thead style="position:sticky; top: 0">
                     <tr>
                         <th class="header" scope="col">Farmer</th>
-                        <th class="header" scope="col">Production Type</th>
-                        <th class="header" scope="col">Production Amount</th>
-                        <th class="header" scope="col">Production Area</th>
-                        <th class="header" scope="col">Period</th>
+                        <th class="header" scope="col">Last Visit</th>
+                        <th class="header" scope="col">Performance</th>
                     </tr>7
                     </thead>
                     <tbody>
-                    <c:forEach items="${productionList}" var="prod">
+                    <c:forEach items="${FarmerPerfomrmance}" var="famerperfor">
                         <tr>
-                            <td>${prod.getFarmer().getName()}</td>
-                            <td>${prod.getType()}</td>
-                            <td>${prod.getAmount()}</td>
-                            <td>${prod.getAcreage()}</td>
-                            <td>${prod.getStarttime()} - ${prod.getEndtime()}</td>
+                            <td>${famerperfor.getFarmer().getName()}</td>
+                            <td>${famerperfor.getLastVisit()}</td>
+                            <td>${famerperfor.getPerformance()}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -129,25 +128,23 @@
             </div>
 
             //dailyplan
-            <div class="tab-pane fade" id="v-pills-production" role="tabpanel" aria-labelledby="v-pills-production-tab">
+            <div class="tab-pane fade" id="v-pills-dailyplan" role="tabpanel" aria-labelledby="v-pills-dailyplan-tab">
                 <table class="table">
                     <thead style="position:sticky; top: 0">
                     <tr>
-                        <th class="header" scope="col">Farmer</th>
-                        <th class="header" scope="col">Production Type</th>
-                        <th class="header" scope="col">Production Amount</th>
-                        <th class="header" scope="col">Production Area</th>
-                        <th class="header" scope="col">Period</th>
+                        <th class="header" scope="col">Daily Plan</th>
+                        <th class="header" scope="col">Deviation</th>
+                        <th class="header" scope="col">Status</th>
+                        <th class="header" scope="col">Management</th>
                     </tr>7
                     </thead>
                     <tbody>
-                    <c:forEach items="${productionList}" var="prod">
+                    <c:forEach items="${Dailyplan}" var="DP">
                         <tr>
-                            <td>${prod.getFarmer().getName()}</td>
-                            <td>${prod.getType()}</td>
-                            <td>${prod.getAmount()}</td>
-                            <td>${prod.getAcreage()}</td>
-                            <td>${prod.getStarttime()} - ${prod.getEndtime()}</td>
+                            <td>${DP.getDailyPlanlist()}</td>
+                            <td>${DP.getDeviation()}</td>
+                            <td>${DP.getStatus()}</td>
+                            <td>${DP.Management()}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
