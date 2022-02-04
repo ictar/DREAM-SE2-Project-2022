@@ -1,6 +1,5 @@
 package in.dream.web.controller.farmer;
 
-import in.dream.ejb.external.Weather;
 import in.dream.ejb.models.Farmer;
 import in.dream.ejb.services.GeospatialDataService;
 import in.dream.ejb.services.ProductionReportService;
