@@ -1,8 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Forum</title>
+    <title>Post</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,28 +28,32 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Forum</li>
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer/forum">Forum</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Post detail</li>
         </ol>
     </nav>
 </div>
 
 <div class="container">
-    <c:forEach items="${postList}" var="PL">
     <tr>
-        <td><a  href="${pageContext.request.contextPath}/farmer/${post.getName()}?id=${post.getPostid()}">${post.getName()}</a></td>
-        <td>${PL.content}</td>
-        <td>${PL.time}</td>
+        <td>${post.getTitle()}</td>
+        <td>${post.getContent()}</td>
+        <td>${post.getTime()}</td>
+        <td>${post.getFarmer()}</td>
+    </tr>
+    <c:forEach items="${commentList}" var="cm">
+    <tr>
+        <td>${cm.getCommentid()}</td>
+        <td>${cm.getFarmer()}</td>
+        <td>${cm.getContent()}</td>
+        <td>${cm.getTime()}</td>
     </tr>
     </c:forEach>
 </div>
 
 <div class="text-center pt-3">
     <p><strong>Create a new post</strong></p>
-    <form  method="post" action="${pageContext.request.contextPath}/farmer/Post">
-        <div class="text-center pt-3">
-            <p style="display:inline">&ensp;&emsp;Title</p>
-            <textarea style="display:inline" name="title" placeholder="title" id="title" rows="1" cols="80">Enter Title</textarea>
-        </div>
+    <form  method="post" action="${pageContext.request.contextPath}/farmer/Comment">
         <div class="text-center pt-3">
             <p style="display:inline">Content</p>
             <textarea name="content" placeholder="content" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5">Enter Content</textarea>

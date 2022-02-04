@@ -61,27 +61,57 @@
     </nav>
 </div>
 
-
-<div class="text-center pt-3">
-    <div class="nav dream-tab flex-column nav-pills p-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-    <c:forEach items="${problemList}" var="pt">
-        <button class="nav-link text-black active" id="problem-1" data-bs-toggle="pill" type="button" role="tab" aria-controls="problem1" aria-selected="true">${pt.getTitle()}</button>
-    </c:forEach>
+<div class="container">
+    <div class="d-flex align-items-start">
+        <div class="nav dream-tab flex-column nav-pills p-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <c:forEach items="${problemList}" var="PL"  begin="0" end="0">
+                <button class="nav-link text-black active" id="problem-${PL.getProblemid()}-tab" data-bs-toggle="pill" data-bs-target="#problem-${PL.getProblemid()}" type="button" role="tab" aria-controls="problem-${PL.getProblemid()}" aria-selected="true">${PL.getTitle()}</button>
+            </c:forEach>
+            <c:forEach items="${problemList}" var="PL"  begin="1">
+                <button class="nav-link text-black" id="problem-${PL.getProblemid()}-tab" data-bs-toggle="pill" data-bs-target="#problem-${PL.getProblemid()}" type="button" role="tab" aria-controls="problem-${PL.getProblemid()}" aria-selected="false">${PL.getTitle()}</button>
+            </c:forEach>
+        </div>
+        <div class="tab-content p-3 mt-3" id="v-pills-tabContent">
+            <c:forEach items="${problemList}"   var="PL"  begin="0" end="0" >
+            <div class="tab-pane fade show active" id="problem-${PL.getProblemid()}" role="tabpanel" aria-labelledby="problem-${PL.getProblemid()}">
+                <ul>Title: ${PL.getTitle()}</ul>
+                <ul>Content: ${PL.getRequest()}</ul>
+                <ul>Request Time: ${PL.getRequesttime()}</ul>
+                <ul>Answer: ${PL.getAnswer()}</ul>
+                <ul>Answer TIme: ${PL.getAnswertime()}</ul>
+                <form  method="post" action="${pageContext.request.contextPath}/farmer/Feedback">
+                    <div class="text pt-3">
+                        <ul>Feedback:</ul>
+                        <textarea name="feedback" placeholder="feedback" id="feedback" rows="1" cols="20">${PL.getFeedback()}</textarea>
+                    </div>
+                    <div class="text-center pt-3">
+                        <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
+                    </div>
+                </form>
+            </div>
+            </c:forEach>
+            <c:forEach items="${problemList}"   var="PL"  begin="1" >
+                <div class="tab-pane fade " id="problem-${PL.getProblemid()}" role="tabpanel"  aria-labelledby="problem-${PL.getProblemid()}-tab">
+                    <ul>Title: ${PL.getTitle()}</ul>
+                    <ul>Content: ${PL.getRequest()}</ul>
+                    <ul>Request Time: ${PL.getRequesttime()}</ul>
+                    <ul>Answer: ${PL.getAnswer()}</ul>
+                    <ul>Answer TIme: ${PL.getAnswertime()}</ul>
+                    <form  method="post" action="${pageContext.request.contextPath}/farmer/Feedback">
+                        <div class="text pt-3">
+                            <ul>Feedback:</ul> <textarea name="feedback" placeholder="feedback" id="feedback" rows="1" cols="20">${PL.getFeedback()}</textarea>
+                        </div>
+                        <div class="text-center pt-3">
+                            <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </c:forEach>
+        </div>
     </div>
-
-
-    <c:forEach items="${}" var="rf">
-        <tr>
-            <td>${rf.key}</td>
-            <td>${rf.value.getRange()}</td>
-            <td>${rf.value.getAws_station_count()}</td>
-        </tr>
-    </c:forEach>
-
-    <div class="text-start pt-3">
-        <a href="./newRequest.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Create</strong></button></a>
+    <div class="pt-3">
+    <a href="./newRequest.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Create</strong></button></a>
     </div>
-
 </div>
 </body>
 </html>
