@@ -39,9 +39,10 @@ public class Comment {
         this.time = time;
     }
 
+    @ManyToOne
+    @JoinColumn(name="farmer")
     private Farmer farmer;
 
-    @ManyToOne
     public Farmer getFarmer() {
         return farmer;
     }

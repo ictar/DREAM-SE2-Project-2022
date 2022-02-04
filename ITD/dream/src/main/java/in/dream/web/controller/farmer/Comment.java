@@ -12,7 +12,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Timestamp;
 
-@WebServlet(name = "farmerPost", urlPatterns = {"/farmer/post/*"})
+@WebServlet(name = "farmerComment", urlPatterns = {"/farmer/comment"})
 public class Comment extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ForumService")
     private ForumService forumService;

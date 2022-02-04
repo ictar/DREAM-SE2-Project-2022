@@ -1,6 +1,8 @@
 package in.dream.ejb.services;
 
+import in.dream.ejb.models.Agronomist;
 import in.dream.ejb.models.Dailyplan;
+import in.dream.ejb.models.Farmer;
 
 import javax.ejb.CreateException;
 import javax.ejb.Stateless;
@@ -9,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
@@ -16,19 +19,30 @@ public class DailyPlanService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
     // NOT USED
-    public void createDailyPlan(Long agronomistID, String title,
-                                 String date, List<Long> farmerList, String content) throws CreateException {
+    public void createDailyPlan(Agronomist agronomist, String title,
 
+                                String date, List<Long> farmerList, String content) throws CreateException {
+
+        // set farmerList
+        List<Farmer> farmers = new ArrayList<>();
+        for (Long fid: farmerList) {
+            Farmer farmer = em.createNamedQuery("Farmer.findOne", Farmer.class).setParameter(1,fid).getSingleResult();
+            farmers.add(farmer);
+        }
+
+        if(farmers.isEmpty()) {
+
+        }
         Dailyplan dp = new Dailyplan();
+        dp.setFarmers(farmers);
         dp.setTitle(title);
         dp.setContent(content);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         dp.setDate(LocalDate.parse(date, formatter));
 
-        // TODO: set agronomist
-        // TODO: set farmerList
-        // TODO: set status
+        // set agronomist
+        dp.setAgronomist(agronomist);
 
         try{
             em.persist(dp);

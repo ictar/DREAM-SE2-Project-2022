@@ -30,7 +30,7 @@
 </head>
 
 <body>
-<div class="mt-0 p-5 text-black dream-header">
+<div class="row mt-0 pt-5 dream-header">
   <div class="col-sm-7 text-end">
     <h1>Data-dRiven PrEdictive FArMing</h1>
     <p class="text-secondary text-right">Telengana</p>
@@ -62,7 +62,7 @@
         </a>
     </div>
     <div class="col-3 text-center">
-        <a href="${pageContext.request.contextPath}/farmer/post.jsp" style="text-decoration : none;">
+        <a href="${pageContext.request.contextPath}/farmer/forum" style="text-decoration : none;">
           <button  class="btn-lg button1"><strong>Forum</strong></button>
         </a>
     </div>

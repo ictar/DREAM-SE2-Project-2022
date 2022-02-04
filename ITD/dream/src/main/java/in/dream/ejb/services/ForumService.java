@@ -17,7 +17,7 @@ import java.util.Map;
 public class ForumService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
-    public void createPost(String title, String content, Farmer farmer, Timestamp posttime) throws CreateException {
+    public Post createPost(String title, String content, Farmer farmer, Timestamp posttime) throws CreateException {
         if(title.length()<1 ) {
             throw new CreateException("Please enter title or content.");
         }
@@ -33,6 +33,7 @@ public class ForumService {
         } catch (Exception e) {
             throw new CreateException(e.getMessage());
         }
+        return post;
     }
 
     public List<Post> getPost() {

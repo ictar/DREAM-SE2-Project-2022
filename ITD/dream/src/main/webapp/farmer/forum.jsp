@@ -36,42 +36,60 @@
 </div>
 
 <div class="container">
-    <table class="border-4 table-forum">
-        <tr>
-            <td > Post</td>
-            <td  style="background-color: rgba(198,217,188,0.92)"> Farmer</td>
-            <td > Create time</td>
-        </tr>
-    </table>
-
-    <c:forEach items="${postList}" var="PL">
-        <table class="border-4 table-forum">
-            <tr>
-                <td ><a href="${pageContext.request.contextPath}/farmer/post/${PL.getPostid()}"> ${PL.getTitle()}</a></td>
-                <td  style="background-color: rgba(198,217,188,0.92)"> ${PL.getFarmer().getName()}</td>
-                <td > ${PL.getTime()}</td>
-            </tr>
-
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td> Comments</td>
+                    <td> Titles</td>
+                    <td> Latest comment time</td>
+                    <td> Farmer</td>
+                </tr>
+            </thead>
+            <tbody>
+        <c:forEach items="${postList}" var="PL">
+                <tr>
+                    <td>
+                        <c:if test="${PL.getComments() != null}">${PL.getComments().size()}</c:if>
+                        <c:if test="${PL.getComments() == null}">0</c:if>
+                    </td>
+                    <td ><a href="${pageContext.request.contextPath}/farmer/post/${PL.getPostid()}"> ${PL.getTitle()}</a></td>
+                    <td>
+                        <c:if test="${PL.getComments() != null && !PL.getComments().isEmpty()}">${PL.getComments().get(PL.getComments().size()-1).getTime()}</c:if>
+                        <c:if test="${PL.getComments() == null || PL.getComments().isEmpty()}">--</c:if>
+                    </td>
+                    <td> ${PL.getFarmer().getName()}</td>
+                </tr>
+        </c:forEach>
+            </tbody>
         </table>
-    </c:forEach>
-</div>
-<div class="text-center pt-3">
-    <p><strong>Create a new post</strong></p>
-    <form  method="post" action="${pageContext.request.contextPath}/farmer/post">
-        <div class="text-center pt-3">
-            <p style="display:inline">&ensp;&emsp;Title</p>
-            <textarea style="display:inline" name="title" placeholder="title" id="title" rows="1" cols="80">Enter Title</textarea>
-        </div>
-        <div class="text-center pt-3">
-            <p style="display:inline">Content</p>
-            <textarea name="content" placeholder="content" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5">Enter Content</textarea>
-        </div>
-        <div class="text-center pt-3">
-            <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
-        </div>
-    </form>
-</div>
+    </div>
+    <div class="row pt-3">
+        <p><strong>Create a new post</strong></p>
+        <form  method="post" action="${pageContext.request.contextPath}/farmer/post">
+            <div class="row p-3">
+                <div class="col-sm-1">
+                    <label for="title" class="col-form-label">Title</label>
+                </div>
+                <div class="col-lg-5">
+                    <input placeholder="Enter title of Post" type="text" id="title" name="title" class="form-control">
+                </div>
+            </div>
 
+            <div class="row p-3">
+                <div class="col-sm-1">
+                    <label for="content" class="col-form-label">Content</label>
+                </div>
+                <div class="col-lg-5">
+                    <textarea rows=5 placeholder="Enter content of Post" id="content" name="content" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="p-3">
+                <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
+            </div>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
