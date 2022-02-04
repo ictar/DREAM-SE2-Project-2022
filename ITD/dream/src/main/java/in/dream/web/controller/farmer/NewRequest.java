@@ -17,7 +17,6 @@ public class NewRequest extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // if the farmer is not logged in, redirect to the login
         String pathCtx = getServletContext().getContextPath();
         HttpSession session = request.getSession();
         if(session.isNew() || session.getAttribute("farmer") == null) {
@@ -26,22 +25,23 @@ public class NewRequest extends HttpServlet {
         }
 
         String title, content;
+        Timestamp time;
         try {
             title = StringEscapeUtils.escapeJava(request.getParameter("title"));
             content = StringEscapeUtils.escapeJava(request.getParameter("content"));
             Farmer farmer = (Farmer)session.getAttribute("farmer");
-            Timestamp requesttime = new Timestamp(System.currentTimeMillis());
+            time = new Timestamp(System.currentTimeMillis());
 
             if(title== null || title.isEmpty()) {
                 throw new Exception("Required field is missing.");
             }
 
-            problemService.createRequest(title, content,farmer,requesttime);
-            response.sendRedirect(getServletContext().getContextPath() + "/farmer/request.jsp");
+            problemService.createRequest(title, content,farmer,time);
+            response.sendRedirect(getServletContext().getContextPath() + "/farmer/request");
 
         } catch (Exception e) {
             request.setAttribute("errorMsgReg", e.getMessage());
-            request.getRequestDispatcher("/farmer/index.jsp").forward(request, response);
+            request.getRequestDispatcher( "/farmer/request").forward(request, response);
         }
     }
 }

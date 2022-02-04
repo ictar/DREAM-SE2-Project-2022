@@ -26,7 +26,7 @@ public class Request extends HttpServlet {
         String path = "/farmer/request.jsp";
 
         request.setAttribute("user", farmer.getName());
-        request.setAttribute("problemList", problemService.getProblemByFarmer(farmer));
+        request.setAttribute("problemList", problemService.getProblemByFarmer(farmer.getFarmerid()));
 
 
         request.getRequestDispatcher(path).forward(request, response);

@@ -1,4 +1,5 @@
 package in.dream.web.controller.farmer;
+
 import in.dream.ejb.models.Farmer;
 
 import in.dream.ejb.services.ForumService;
@@ -11,26 +12,30 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Timestamp;
 
-@WebServlet(name = "farmerPost", value= "/farmer/post/*")
+@WebServlet(name = "farmerPost", urlPatterns= "/farmer/post/*")
 public class Post extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ForumService")
     private ForumService forumService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // if the farmer is not logged in, redirect to the login
         String pathCtx = getServletContext().getContextPath();
         HttpSession session = request.getSession();
         if(session.isNew() || session.getAttribute("farmer") == null) {
             response.sendRedirect(pathCtx+"/farmer/login.jsp");
             return;
         }
-        String path="/farmer/post.jsp";
-
         Farmer fm = (Farmer)session.getAttribute("farmer");
 
+        String[] urlparas = request.getRequestURI().split("/");
+        Long postId = Long.parseLong(urlparas[urlparas.length-1]);
+
+        String path = "/farmer/post.jsp";
+
         request.setAttribute("user", fm.getName());
-        request.setAttribute("postList", forumService.getPost());
+        request.setAttribute("post", forumService.getPostByID(postId));
+        request.setAttribute("commentList", forumService.getComment(postId));
+
         request.getRequestDispatcher(path).forward(request, response);
     }
 
@@ -54,7 +59,6 @@ public class Post extends HttpServlet {
             request.setAttribute("errorMsgReg", e.getMessage());
             request.getRequestDispatcher("/farmer/post.jsp").forward(request, response);
         }
-
     }
 
 
