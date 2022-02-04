@@ -71,7 +71,7 @@ public class FarmerPerformance extends HttpServlet {
             // update
             accountService.updatePerformance(performanceData);
 
-            String path = getServletContext().getContextPath() + "/policymaker";
+            String path = getServletContext().getContextPath() + "/policymaker/area/" + request.getParameter("areaId");
             response.sendRedirect(path);
 
         }catch (Exception e) {

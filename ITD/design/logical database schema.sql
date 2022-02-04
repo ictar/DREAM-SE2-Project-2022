@@ -39,6 +39,7 @@ create table `agronomist` (
 
     PRIMARY KEY (`agronomistid`),
     UNIQUE KEY `agemail_UNIQUE` (`email`),
+    UNIQUE KEY `agarea_UNIQUE` (`area`),
     CONSTRAINT `fk_agronomist_area` FOREIGN KEY (`area`) REFERENCES `area`(`areaid`)
 );
 

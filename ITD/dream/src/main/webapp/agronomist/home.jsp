@@ -62,7 +62,6 @@
 
             <!--weather-->
             <div class="tab-pane fade" id="v-pills-weather" role="tabpanel" aria-labelledby="v-pills-weather-tab">
-                <img src="${pageContext.request.contextPath}/images/${area.getImage()}">
                 <div>
                     <h4 class="text-center">Rainfall</h4>
                     <table class="table">
