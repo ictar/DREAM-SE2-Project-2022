@@ -96,7 +96,7 @@
                         <input type="text" id="anstime_${PL.getProblemid()}" class="col-6" value="${PL.getAnswertime()}">
                     </div>
                 </fieldset>
-                <form  method="post" action="${pageContext.request.contextPath}/farmer/Feedback">
+                <form  method="post" action="${pageContext.request.contextPath}/farmer/request/feedback">
                     <input type="hidden" id="problemid" name="problemid" value="${PL.getProblemid()}">
                     <div class="mb-3">
                         <label for="feedback" class="col-2">Feedback: </label>
@@ -132,7 +132,7 @@
                             <input type="text" id="anstime_${PL.getProblemid()}" class="col-6" value="${PL.getAnswertime()}">
                         </div>
                     </fieldset>
-                    <form  method="post" action="${pageContext.request.contextPath}/farmer/Feedback">
+                    <form  method="post" action="${pageContext.request.contextPath}/farmer/request/feedback">
                         <input type="hidden" id="problemid" name="problemid" value="${PL.getProblemid()}">
                         <div class="mb-3">
                             <label for="feedback" class="col-2">Feedback: </label>
@@ -146,8 +146,8 @@
             </c:forEach>
         </div>
     </div>
-    <div class="pt-3">
-    <a href="${pageContext.request.contextPath}/farmer/newRequest" style="text-decoration : none;"><button  class="button button1"><strong>Create</strong></button></a>
+    <div class="pt-2">
+    <a href="${pageContext.request.contextPath}/farmer/request/create" style="text-decoration : none;"><button  class="button button1"><strong>Create</strong></button></a>
     </div>
 </div>
 </body>

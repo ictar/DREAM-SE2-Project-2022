@@ -46,15 +46,18 @@ public class ForumService {
         }
         return result;
     }
-    public List<Post> getPostByID(Long postid) {
-        List<Post> result;
+    public Post getPostByID(Long postid) {
+        Post post;
 
         try{
-            result = em.createQuery("SELECT a from Post a where a.postid=?1", Post.class).setParameter(1,postid).getResultList();
+            post = em.createQuery("SELECT a from Post a where a.postid=?1", Post.class)
+                    .setParameter(1,postid)
+                    .getSingleResult();
         } catch (PersistenceException e) {
+            e.printStackTrace();
             return null;
         }
-        return result;
+        return post;
     }
 
     public void createComment(Farmer farmer, Post post, String content, Timestamp commenttime) throws CreateException {

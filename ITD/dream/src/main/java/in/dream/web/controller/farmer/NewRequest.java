@@ -10,7 +10,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Timestamp;
-@WebServlet(name = "farmerNewRequest", value = {"/farmer/newRequest"})
+
+@WebServlet(name = "farmerNewRequest", value = "/farmer/request/create")
 public class NewRequest extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ProblemService")
     private ProblemService problemService;
