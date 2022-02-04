@@ -1,6 +1,9 @@
 package in.dream.ejb.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @NamedQueries({
@@ -79,4 +82,16 @@ public class Farmer {
 
     public void setFarm(Farm f) {this.farm = f;}
     public Farm getFarm() {return this.farm;}
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @OrderBy("date DESC")
+    @JoinTable(
+            name = "farmerInDailyPlan",
+            joinColumns = {@JoinColumn(name="farmerid")},
+            inverseJoinColumns = {@JoinColumn(name="dailyplanid")}
+    )
+    private Collection<Dailyplan> dailyplans;
+    public List<Dailyplan> getDailyplans() {
+        return new ArrayList<Dailyplan>(this.dailyplans);
+    }
 }

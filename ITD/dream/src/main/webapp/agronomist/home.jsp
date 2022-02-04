@@ -44,24 +44,24 @@
     <div class="d-flex align-items-start">
         <div class="nav dream-tab flex-column nav-pills p-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <button class="nav-link text-black active" id="v-pills-location-tab" data-bs-toggle="pill" data-bs-target="#v-pills-location" type="button" role="tab" aria-controls="v-pills-location" aria-selected="true">Location</button>
-            <button class="nav-link text-black active" id="v-pills-weather-tab" data-bs-toggle="pill" data-bs-target="#v-pills-weather" type="button" role="tab" aria-controls="v-pills-weather" aria-selected="true">Weather</button>
+            <button class="nav-link text-black" id="v-pills-weather-tab" data-bs-toggle="pill" data-bs-target="#v-pills-weather" type="button" role="tab" aria-controls="v-pills-weather" aria-selected="false">Weather</button>
             <button class="nav-link text-black" id="v-pills-water-tab" data-bs-toggle="pill" data-bs-target="#v-pills-water" type="button" role="tab" aria-controls="v-pills-water" aria-selected="false">Water Irrigation</button>
             <button class="nav-link text-black" id="v-pills-soil-tab" data-bs-toggle="pill" data-bs-target="#v-pills-soil" type="button" role="tab" aria-controls="v-pills-soil" aria-selected="false">Soil Humidity</button>
-            <button class="nav-link text-black" id="v-pills-information-tab" data-bs-toggle="pill" data-bs-target="#v-pills-information" type="button" role="tab" aria-controls="v-pills-information" aria-selected="false">Farmer Information</button>
-            <button class="nav-link text-black active" id="v-pills-dailyplan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dailyplan" type="button" role="tab" aria-controls="v-pills-dailyplan" aria-selected="true">Daily Plan</button>
+            <button class="nav-link text-black" id="v-pills-information-tab" data-bs-toggle="pill" data-bs-target="#v-pills-information" type="tab" role="tab" aria-controls="v-pills-information" aria-selected="false">Farmer Information</button>
+            <button class="nav-link text-black" id="v-pills-dailyplan-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dailyplan" type="tab" role="tab" aria-controls="v-pills-dailyplan" aria-selected="false">Daily Plan</button>
         </div>
 
 
         <div class="tab-content p-3 mt-3" id="v-pills-tabContent">
 
-            // location
+            <!--location-->
             <div class="tab-pane fade show active" id="v-pills-location" role="tabpanel" aria-labelledby="v-pills-location-tab">
                 <img src="${pageContext.request.contextPath}/images/${area.getImage()}">
 
             </div>
 
-            //weather
-            <div class="tab-pane fade show active" id="v-pills-weather" role="tabpanel" aria-labelledby="v-pills-weather-tab">
+            <!--weather-->
+            <div class="tab-pane fade" id="v-pills-weather" role="tabpanel" aria-labelledby="v-pills-weather-tab">
                 <img src="${pageContext.request.contextPath}/images/${area.getImage()}">
                 <div>
                     <h4 class="text-center">Rainfall</h4>
@@ -86,14 +86,14 @@
                 </div>
             </div>
 
-            //water
+            <!--water-->
             <div class="tab-pane fade" id="v-pills-water" role="tabpanel" aria-labelledby="v-pills-water-tab">
                 <li>Consumption: ${water.getConsumption()}</li>
                 <li>Date: ${water.getDate()}</li>
                 ${waterList}
             </div>
 
-            //soil
+            <!--soil-->
             <div class="tab-pane fade" id="v-pills-soil" role="tabpanel" aria-labelledby="v-pills-soil-tab">
                 <ul>Temperature: ${soil.getTemperature()}</ul>
                 <ul>Moisure: ${soil.getMoisture()}</ul>
@@ -105,7 +105,7 @@
                 </ul>
             </div>
 
-            //information
+            <!--information-->
             <div class="tab-pane fade" id="v-pills-information" role="tabpanel" aria-labelledby="v-pills-information-tab">
                 <table class="table">
                     <thead style="position:sticky; top: 0">
@@ -113,21 +113,26 @@
                         <th class="header" scope="col">Farmer</th>
                         <th class="header" scope="col">Last Visit</th>
                         <th class="header" scope="col">Performance</th>
-                    </tr>7
+                    </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${FarmerPerfomrmance}" var="famerperfor">
+                    <c:forEach items="${FarmerPerformance}" var="fm">
                         <tr>
-                            <td>${famerperfor.getFarmer().getName()}</td>
-                            <td>${famerperfor.getLastVisit()}</td>
-                            <td>${famerperfor.getPerformance()}</td>
+                            <td>${fm.getName()}</td>
+                            <c:if test="${fm.getDailyplans() != null && !fm.getDailyplans().isEmpty()}">
+                                <td>${fm.getDailyplans().get(0).getDate()}</td>
+                            </c:if>
+                            <c:if test="${fm.getDailyplans() == null || fm.getDailyplans().isEmpty()}">
+                                <td>--</td>
+                            </c:if>
+                            <td>${fm.getPerformance()}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
 
-            //dailyplan
+            <!--dailyplan-->
             <div class="tab-pane fade" id="v-pills-dailyplan" role="tabpanel" aria-labelledby="v-pills-dailyplan-tab">
                 <table class="table">
                     <thead style="position:sticky; top: 0">
@@ -136,7 +141,7 @@
                         <th class="header" scope="col">Deviation</th>
                         <th class="header" scope="col">Status</th>
                         <th class="header" scope="col">Management</th>
-                    </tr>7
+                    </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${Dailyplan}" var="DP">

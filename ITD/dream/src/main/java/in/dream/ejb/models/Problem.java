@@ -100,6 +100,7 @@ public class Problem {
     private Farmer farmer;
 
     @ManyToOne
+    @JoinColumn(name="farmer")
     public Farmer getFarmer() {
         return farmer;
     }
@@ -111,6 +112,7 @@ public class Problem {
     private Agronomist agronomist;
 
     @ManyToOne
+    @JoinColumn(name="agronomist")
     public Agronomist getAgronomist() {
         return agronomist;
     }

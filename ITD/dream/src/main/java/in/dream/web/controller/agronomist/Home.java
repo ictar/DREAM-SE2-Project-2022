@@ -30,11 +30,10 @@ public class Home extends HttpServlet {
             return;
         }
 
-        String path = "/agronomist/Home.jsp";
+        String path = "/agronomist/home.jsp";
         Agronomist agronomist = (Agronomist) session.getAttribute("agronomist");
 
-        String[] urlparas = request.getRequestURI().split("/");
-        Long areaId = Long.parseLong(urlparas[urlparas.length-1]);
+        Long areaId = agronomist.getArea().getAreaid();
 
         request.setAttribute("area", geoService.getArea(areaId));
         Weather weather = geoService.getWeather(areaId);

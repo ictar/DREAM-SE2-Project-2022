@@ -50,9 +50,10 @@ public class Comment {
         this.farmer = farmer;
     }
 
+    @ManyToOne
+    @JoinColumn(name="post")
     private Post post;
 
-    @ManyToOne
     public Post getPost() {
         return post;
     }

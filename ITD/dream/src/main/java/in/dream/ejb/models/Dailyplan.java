@@ -2,6 +2,8 @@ package in.dream.ejb.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @NamedQueries({
@@ -78,9 +80,10 @@ public class Dailyplan {
         this.deviation = deviation;
     }
 
+    @ManyToOne
+    @JoinColumn(name="agronomist")
     private Agronomist agronomist;
 
-    @ManyToOne
     public Agronomist getAgronomist() {
         return agronomist;
     }
@@ -89,4 +92,11 @@ public class Dailyplan {
         this.agronomist = agronomist;
     }
 
+    @ManyToMany
+    @JoinTable(
+            name = "farmerInDailyPlan",
+            joinColumns = {@JoinColumn(name="dailyplanid")},
+            inverseJoinColumns = {@JoinColumn(name="farmerid")}
+    )
+    private Collection<Farmer> farmers;
 }

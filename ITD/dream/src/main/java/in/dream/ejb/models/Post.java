@@ -50,9 +50,10 @@ public class Post {
         this.time = time;
     }
 
+    @ManyToOne
+    @JoinColumn(name="farmer")
     private Farmer farmer;
 
-    @ManyToOne
     public Farmer getFarmer() {
         return farmer;
     }
@@ -61,9 +62,10 @@ public class Post {
         this.farmer = farmer;
     }
 
+    @ManyToOne
+    @JoinColumn(name="forum")
     private Forum forum;
 
-    @ManyToOne
     public Forum getForum() {
         return forum;
     }
