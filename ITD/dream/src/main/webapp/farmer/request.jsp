@@ -79,7 +79,7 @@
                 <ul>Request Time: ${PL.getRequesttime()}</ul>
                 <ul>Answer: ${PL.getAnswer()}</ul>
                 <ul>Answer TIme: ${PL.getAnswertime()}</ul>
-                <form  method="post" action="${pageContext.request.contextPath}/farmer/Feedback">
+                <form  method="post" action="${pageContext.request.contextPath}/farmer/feedBack">
                     <div class="text pt-3">
                         <ul>Feedback:</ul>
                         <textarea name="feedback" placeholder="feedback" id="feedback" rows="1" cols="20">${PL.getFeedback()}</textarea>
@@ -110,7 +110,7 @@
         </div>
     </div>
     <div class="pt-3">
-    <a href="./newRequest.jsp" style="text-decoration : none;"><button  class="button button1"><strong>Create</strong></button></a>
+    <a href="${pageContext.request.contextPath}/farmer/newRequest" style="text-decoration : none;"><button  class="button button1"><strong>Create</strong></button></a>
     </div>
 </div>
 </body>

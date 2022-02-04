@@ -57,7 +57,7 @@
 </div>
 <div class="text-center pt-3">
     <p><strong>Create a new post</strong></p>
-    <form  method="post" action="${pageContext.request.contextPath}/farmer/post/*">
+    <form  method="post" action="${pageContext.request.contextPath}/farmer/post">
         <div class="text-center pt-3">
             <p style="display:inline">&ensp;&emsp;Title</p>
             <textarea style="display:inline" name="title" placeholder="title" id="title" rows="1" cols="80">Enter Title</textarea>

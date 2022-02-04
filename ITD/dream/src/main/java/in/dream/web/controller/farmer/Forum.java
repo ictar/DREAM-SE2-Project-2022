@@ -11,7 +11,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Timestamp;
 
-@WebServlet(name = "farmerForum", value= "/farmer/forum")
+@WebServlet(name = "farmerForum", value= {"/farmer/forum"})
 public class Forum extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ForumService")
     private ForumService forumService;

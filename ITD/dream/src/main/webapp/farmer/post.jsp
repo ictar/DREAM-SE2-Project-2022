@@ -1,6 +1,8 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Post</title>
+    <title>${post.getTitle()}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +31,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer">Home</a></li>
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer/forum">Forum</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Post detail</li>
+            <li class="breadcrumb-item active" aria-current="page">${post.getName()}</li>
         </ol>
     </nav>
 </div>
@@ -53,7 +55,7 @@
 
 <div class="text-center pt-3">
     <p><strong>Create a new post</strong></p>
-    <form  method="post" action="${pageContext.request.contextPath}/farmer/Comment">
+    <form  method="post" action="${pageContext.request.contextPath}/farmer/comment">
         <div class="text-center pt-3">
             <p style="display:inline">Content</p>
             <textarea name="content" placeholder="content" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5">Enter Content</textarea>

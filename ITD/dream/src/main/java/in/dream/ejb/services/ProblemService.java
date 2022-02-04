@@ -1,6 +1,6 @@
 package in.dream.ejb.services;
 
-import in.dream.ejb.models.Comment;
+
 import in.dream.ejb.models.Problem;
 import in.dream.ejb.models.Farmer;
 
@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
+
 
 @Stateless
 public class ProblemService {
