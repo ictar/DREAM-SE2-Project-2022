@@ -38,17 +38,17 @@ public class ForumService {
         List<Post> result;
 
         try{
-            result = em.createQuery("SELECT a from Post a order by time Desc ", Post.class).getResultList();
+            result = em.createQuery("SELECT a from Post a order by a.time Desc ", Post.class).getResultList();
         } catch (PersistenceException e) {
             return null;
         }
         return result;
     }
-    public List<Post> getPostByID() {
+    public List<Post> getPostByID(Long postid) {
         List<Post> result;
 
         try{
-            result = em.createQuery("SELECT a from Post a where a.postid=?1", Post.class).getResultList();
+            result = em.createQuery("SELECT a from Post a where a.postid=?1", Post.class).setParameter(1,postid).getResultList();
         } catch (PersistenceException e) {
             return null;
         }

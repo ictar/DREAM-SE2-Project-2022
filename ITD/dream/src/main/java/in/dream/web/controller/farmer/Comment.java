@@ -12,30 +12,11 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Timestamp;
 
-@WebServlet(name = "farmerPost", urlPatterns = "/farmer/comment/*")
+@WebServlet(name = "farmerPost", urlPatterns = "/farmer/post/*")
 public class Comment extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ForumService")
     private ForumService forumService;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pathCtx = getServletContext().getContextPath();
-        HttpSession session = request.getSession();
-        if(session.isNew() || session.getAttribute("farmer") == null) {
-            response.sendRedirect(pathCtx+"/farmer/request.jsp");
-            return;
-        }
-        Farmer fm = (Farmer)session.getAttribute("farmer");
-        Post ps = (Post)session.getAttribute("post");
-        String path = "/farmer/comment.jsp";
-
-        request.setAttribute("user", fm.getName());
-        request.setAttribute("post", forumService.getPostByID());
-        request.setAttribute("commentList", forumService.getComment(ps.getPostid()));
-
-
-        request.getRequestDispatcher(path).forward(request, response);
-    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -48,6 +29,8 @@ public class Comment extends HttpServlet {
             if(title== null || title.isEmpty()) {
                 throw new Exception("Required field is missing.");
             }
+
+
             Farmer fm = (Farmer)session.getAttribute("farmer");
             Post ps = (Post)session.getAttribute("post");
 

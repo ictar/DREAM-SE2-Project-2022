@@ -42,10 +42,6 @@
             <textarea style="display:inline" name="title" placeholder="title" id="title" rows="1" cols="80">Enter Title</textarea>
         </div>
         <div class="text-center pt-3">
-            <p style="display:inline">&emsp;&emsp;&emsp;To</p>
-            <textarea style="display:inline" name="agronomist" placeholder="agronomist" id="agronomist" rows="1" cols="80">${agronomist.getName()}(agronomist name)</textarea>
-        </div>
-        <div class="text-center pt-3">
             <p style="display:inline">Content</p>
             <textarea name="content" placeholder="content" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5">Enter Content</textarea>
         </div>

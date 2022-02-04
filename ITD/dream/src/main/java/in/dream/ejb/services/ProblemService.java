@@ -1,5 +1,6 @@
 package in.dream.ejb.services;
 
+import in.dream.ejb.models.Comment;
 import in.dream.ejb.models.Problem;
 import in.dream.ejb.models.Farmer;
 
@@ -10,17 +11,15 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 @Stateless
 public class ProblemService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
 
-    //
-
-    //TODO how to get farmer?
-    public void createRequest(String title, String content, Farmer farmer, Timestamp requesttime) throws CreateException {
-        if(title.length()<1 || content.length()<1) {
+    public void createRequest(String title, String content, Farmer farmer, Timestamp time) throws CreateException {
+        if (title.length() < 1 || content.length() < 1) {
             throw new CreateException("Please enter title or content.");
         }
 
@@ -28,7 +27,7 @@ public class ProblemService {
         problem.setTitle(title);
         problem.setRequest(content);
         problem.setFarmer(farmer);
-        problem.setRequesttime(requesttime);
+        problem.setRequesttime(time);
 
         try {
             em.persist(problem);
@@ -37,18 +36,19 @@ public class ProblemService {
         }
     }
 
-    //TODO what's list?
-    public List<Problem> getProblemByFarmer(Farmer farmer) {
+    public List<Problem> getProblemByFarmer(Long farmerid) {
         List<Problem> result;
 
-        try{
-            result = em.createNamedQuery("Problem.findAll", Problem.class)
-                    .setParameter(1, farmer)
-                    .getResultList();
+        try {
+            result = em.createQuery("SELECT a from Problem a WHERE a.farmer.farmerid=?1 ", Problem.class).setParameter(1, farmerid).getResultList();
         } catch (PersistenceException e) {
             return null;
         }
-
         return result;
+    }
+
+    public void updateFeedback(Long problemId, int feedback) {
+
+
     }
 }
