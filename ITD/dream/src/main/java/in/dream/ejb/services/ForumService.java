@@ -17,7 +17,7 @@ import java.util.Map;
 public class ForumService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
-    public void createPost(String title, String content, Timestamp posttime) throws CreateException {
+    public void createPost(String title, String content, Farmer farmer, Timestamp posttime) throws CreateException {
         if(title.length()<1 ) {
             throw new CreateException("Please enter title or content.");
         }
@@ -26,6 +26,7 @@ public class ForumService {
         post.setTitle(title);
         post.setContent(content);
         post.setTime(posttime);
+        post.setFarmer(farmer);
 
         try {
             em.persist(post);
@@ -55,12 +56,14 @@ public class ForumService {
         return result;
     }
 
-    public void createComment(Long farmer, Long post, String content, Timestamp commenttime) throws CreateException {
+    public void createComment(Farmer farmer, Post post, String content, Timestamp commenttime) throws CreateException {
         if(content.length()<1 ) {
             throw new CreateException("Please enter title or content.");
         }
 
         Comment comment = new Comment();
+        comment.setFarmer(farmer);
+        comment.setPost(post);
         comment.setContent(content);
         comment.setTime(commenttime);
 

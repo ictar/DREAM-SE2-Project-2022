@@ -1,19 +1,22 @@
 package in.dream.web.controller.farmer;
 
 import in.dream.ejb.models.Farmer;
-import in.dream.ejb.models.Post;
+import in.dream.ejb.models.Forum;
 import in.dream.ejb.services.ForumService;
 import org.apache.commons.text.StringEscapeUtils;
 
 import javax.ejb.EJB;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Timestamp;
 
-@WebServlet(name = "farmerPost", urlPatterns = {"/farmer/post/*"})
-public class Comment extends HttpServlet {
+@WebServlet(name = "farmerPost", urlPatterns= {"/farmer/post"})
+public class NewPost extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ForumService")
     private ForumService forumService;
 
@@ -24,24 +27,21 @@ public class Comment extends HttpServlet {
         try {
             title = StringEscapeUtils.escapeJava(request.getParameter("title"));
             content = StringEscapeUtils.escapeJava(request.getParameter("content"));
-            Timestamp commenttime = new Timestamp(System.currentTimeMillis());
+            Farmer farmer = (Farmer)session.getAttribute("farmer");
+            Timestamp posttime = new Timestamp(System.currentTimeMillis());
 
             if(title== null || title.isEmpty()) {
                 throw new Exception("Required field is missing.");
             }
 
-
-            Farmer fm = (Farmer)session.getAttribute("farmer");
-            Post ps = (Post)session.getAttribute("post");
-
-            forumService.createComment(fm, ps, content,commenttime);
+            forumService.createPost(title, content, farmer, posttime);
             response.sendRedirect(getServletContext().getContextPath() + "/farmer/post.jsp");
 
         } catch (Exception e) {
             request.setAttribute("errorMsgReg", e.getMessage());
-            request.getRequestDispatcher("/farmer/post.jsp").forward(request, response);
+            request.getRequestDispatcher("/farmer/forum.jsp").forward(request, response);
         }
-
     }
+
 
 }

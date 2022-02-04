@@ -22,7 +22,7 @@
         <p class="text-secondary text-right">Telengana</p>
     </div>
     <div class="col-sm-5 mt-5">
-        <p class="text-center">Hi, ${farmer.getName()}</p>
+        <p class="text-center">Hi, ${user}</p>
     </div>
 </div>
 <div class="ps-4 dream-nav">
@@ -36,7 +36,7 @@
 </div>
 
 <div class="text-center pt-3">
-    <form  method="post" action="${pageContext.request.contextPath}/farmer/NewRequest">
+    <form  method="post" action="${pageContext.request.contextPath}/farmer/newRequest">
         <div class="text-center pt-3">
             <p style="display:inline">&ensp;&emsp;Title</p>
             <textarea style="display:inline" name="title" placeholder="title" id="title" rows="1" cols="80">Enter Title</textarea>

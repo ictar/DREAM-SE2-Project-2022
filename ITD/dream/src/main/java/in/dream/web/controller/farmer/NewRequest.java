@@ -1,6 +1,6 @@
 package in.dream.web.controller.farmer;
-import in.dream.ejb.models.Farmer;
 
+import in.dream.ejb.models.Farmer;
 import in.dream.ejb.services.ProblemService;
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -10,10 +10,27 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Timestamp;
-@WebServlet(name = "farmerNewRequest", urlPatterns = "/farmer/NewRequest")
+@WebServlet(name = "farmerNewRequest", value = {"/farmer/newRequest"})
 public class NewRequest extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ProblemService")
     private ProblemService problemService;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // if the farmer is not logged in, redirect to the login
+        String pathCtx = getServletContext().getContextPath();
+        HttpSession session = request.getSession();
+        if(session.isNew() || session.getAttribute("farmer") == null) {
+            response.sendRedirect(pathCtx+"/farmer/login.jsp");
+            return;
+        }
+        String path="/farmer/newRequest.jsp";
+
+        Farmer fm = (Farmer)session.getAttribute("farmer");
+
+        request.setAttribute("user", fm.getName());
+        request.getRequestDispatcher(path).forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,11 +54,11 @@ public class NewRequest extends HttpServlet {
             }
 
             problemService.createRequest(title, content,farmer,time);
-            response.sendRedirect(getServletContext().getContextPath() + "/farmer/request");
+            response.sendRedirect(getServletContext().getContextPath() + "/farmer/request.jsp");
 
         } catch (Exception e) {
             request.setAttribute("errorMsgReg", e.getMessage());
-            request.getRequestDispatcher( "/farmer/request").forward(request, response);
+            request.getRequestDispatcher( "/farmer/request.jsp").forward(request, response);
         }
     }
 }

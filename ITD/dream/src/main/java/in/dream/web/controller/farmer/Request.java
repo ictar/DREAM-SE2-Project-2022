@@ -28,7 +28,6 @@ public class Request extends HttpServlet {
         request.setAttribute("user", farmer.getName());
         request.setAttribute("problemList", problemService.getProblemByFarmer(farmer.getFarmerid()));
 
-
         request.getRequestDispatcher(path).forward(request, response);
     }
 }
