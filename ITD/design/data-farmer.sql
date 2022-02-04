@@ -48,3 +48,7 @@ insert into farmer(farmerid, name, phonenumber, password) values("47", "Patel","
 insert into farmer(farmerid, name, phonenumber, password) values("48", "Vadgama","000048","000048");
 insert into farmer(farmerid, name, phonenumber, password) values("49", "Rakesh","000049","000049");
 insert into farmer(farmerid, name, phonenumber, password) values("50", "Narendra","000050","000050");
+
+-- bind farmer and farm
+insert into farmer_farm (farm, farmer)
+	select farmid, farmerid from farm join farmer on farmer.phonenumber = farm.farmer;

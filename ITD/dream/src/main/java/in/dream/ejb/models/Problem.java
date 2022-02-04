@@ -97,10 +97,10 @@ public class Problem {
         this.feedbacktime = feedbacktime;
     }
 
-    private Farmer farmer;
-
     @ManyToOne
     @JoinColumn(name="farmer")
+    private Farmer farmer;
+
     public Farmer getFarmer() {
         return farmer;
     }
@@ -109,10 +109,10 @@ public class Problem {
         this.farmer = farmerid;
     }
 
-    private Agronomist agronomist;
-
     @ManyToOne
     @JoinColumn(name="agronomist")
+    private Agronomist agronomist;
+
     public Agronomist getAgronomist() {
         return agronomist;
     }

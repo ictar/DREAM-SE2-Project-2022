@@ -35,7 +35,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer">Home</a></li>
-            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer/search.jsp">Home</a></li>
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer/search.jsp">Search</a></li>
             <li class="breadcrumb-item active" aria-current="page">Suggestion</li>
         </ol>
     </nav>

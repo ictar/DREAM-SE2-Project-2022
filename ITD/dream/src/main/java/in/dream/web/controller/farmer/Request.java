@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "farmerRequest", value = "/farmer/request/*")
+@WebServlet(name = "farmerRequest", value = "/farmer/request")
 public class Request extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ProblemService")
     private ProblemService problemService;
