@@ -99,4 +99,7 @@ public class Dailyplan {
             inverseJoinColumns = {@JoinColumn(name="farmerid")}
     )
     private Collection<Farmer> farmers;
+    public void setFarmers(Collection<Farmer> farmers) {
+        this.farmers = farmers;
+    }
 }

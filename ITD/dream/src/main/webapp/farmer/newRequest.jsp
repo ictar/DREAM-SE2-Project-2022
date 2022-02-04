@@ -35,19 +35,22 @@
     </nav>
 </div>
 
-<div class="text-center pt-3">
-    <form  method="post" action="${pageContext.request.contextPath}/farmer/newRequest">
-        <div class="text-center pt-3">
-            <p style="display:inline">&ensp;&emsp;Title</p>
-            <textarea style="display:inline" name="title" placeholder="title" id="title" rows="1" cols="80">Enter Title</textarea>
+<div class="row pt-3">
+    <div class="col-3"></div>
+    <form  class="col-6" method="post" action="${pageContext.request.contextPath}/farmer/request/create">
+        <div class="row pt-3">
+            <p class="col-2">&ensp;&emsp;Title</p>
+            <input type="text" class="col-8" name="title" placeholder="Enter Title" id="title">
         </div>
-        <div class="text-center pt-3">
-            <p style="display:inline">Content</p>
-            <textarea name="content" placeholder="content" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5">Enter Content</textarea>
+        <div class="row pt-3">
+            <p class="col-2">Content</p>
+            <textarea class="col-8" name="content" placeholder="Enter Content" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5"></textarea>
         </div>
         <div class="text-center pt-3">
             <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>
         </div>
+        <p>${errorMsg}</p>
     </form>
+    <div class="col-3"></div>
 </div>
 </body>

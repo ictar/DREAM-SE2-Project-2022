@@ -2,6 +2,7 @@ package in.dream.ejb.models;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -72,5 +73,12 @@ public class Post {
 
     public void setForum(Forum forum) {
         this.forum = forum;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "post")
+    @OrderBy("time asc")
+    private List<Comment> comments;
+    public List<Comment> getComments() {
+        return comments;
     }
 }

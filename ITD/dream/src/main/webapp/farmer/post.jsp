@@ -31,34 +31,50 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer">Home</a></li>
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer/forum">Forum</a></li>
-            <li class="breadcrumb-item active" aria-current="page">${post.getName()}</li>
+            <li class="breadcrumb-item active" aria-current="page">${post.getTitle()}</li>
         </ol>
     </nav>
 </div>
 
 <div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <td></td>
+                <td> Farmer</td>
+                <td> Content</td>
+                <td> Time</td>
+            </tr>
+            </thead>
+            <tbody>
     <tr>
-        <td>${post.getTitle()}</td>
+        <td>#0</td>
+        <td>${post.getFarmer().getName()}</td>
         <td>${post.getContent()}</td>
         <td>${post.getTime()}</td>
-        <td>${post.getFarmer()}</td>
+
     </tr>
-    <c:forEach items="${commentList}" var="cm">
+    <c:forEach items="${commentList}" var="cm" varStatus="loop">
     <tr>
-        <td>${cm.getCommentid()}</td>
-        <td>${cm.getFarmer()}</td>
+        <td>#${loop.index+1}</td>
+        <td>${cm.getFarmer().getName()}</td>
         <td>${cm.getContent()}</td>
         <td>${cm.getTime()}</td>
     </tr>
     </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div class="text-center pt-3">
-    <p><strong>Create a new post</strong></p>
-    <form  method="post" action="${pageContext.request.contextPath}/farmer/comment">
+    <p><strong>Create a New Comment</strong></p>
+    <form  method="post" action="${pageContext.request.contextPath}/farmer/forum/comment">
+        <input type="hidden" id="postId" name="postId" value="${post.getPostid()}">
         <div class="text-center pt-3">
-            <p style="display:inline">Content</p>
-            <textarea name="content" placeholder="content" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5">Enter Content</textarea>
+            <p style="display:inline">Comment</p>
+            <textarea name="content" placeholder="Enter content of Comment" id="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5"></textarea>
         </div>
         <div class="text-center pt-3">
             <button type="submit" class="btn border-0 dream-btn"><strong>Submit</strong></button>

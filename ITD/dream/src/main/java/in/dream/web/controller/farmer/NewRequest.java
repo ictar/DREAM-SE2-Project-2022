@@ -10,7 +10,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Timestamp;
-@WebServlet(name = "farmerNewRequest", value = {"/farmer/newRequest"})
+
+@WebServlet(name = "farmerNewRequest", value = "/farmer/request/create")
 public class NewRequest extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ProblemService")
     private ProblemService problemService;
@@ -54,11 +55,11 @@ public class NewRequest extends HttpServlet {
             }
 
             problemService.createRequest(title, content,farmer,time);
-            response.sendRedirect(getServletContext().getContextPath() + "/farmer/request.jsp");
+            response.sendRedirect(getServletContext().getContextPath() + "/farmer/request");
 
         } catch (Exception e) {
             request.setAttribute("errorMsgReg", e.getMessage());
-            request.getRequestDispatcher( "/farmer/request.jsp").forward(request, response);
+            this.doGet(request, response);
         }
     }
 }

@@ -17,22 +17,25 @@ import java.util.Map;
 public class ForumService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
-    public void createPost(String title, String content, Farmer farmer, Timestamp posttime) throws CreateException {
+    public Post createPost(String title, String content, Farmer farmer, Timestamp posttime, Long forumId) throws CreateException {
         if(title.length()<1 ) {
             throw new CreateException("Please enter title or content.");
         }
 
+        Forum forum = em.find(Forum.class, forumId);
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
         post.setTime(posttime);
         post.setFarmer(farmer);
+        post.setForum(forum);
 
         try {
             em.persist(post);
         } catch (Exception e) {
             throw new CreateException(e.getMessage());
         }
+        return post;
     }
 
     public List<Post> getPost() {
@@ -45,22 +48,26 @@ public class ForumService {
         }
         return result;
     }
-    public List<Post> getPostByID(Long postid) {
-        List<Post> result;
+    public Post getPostByID(Long postid) {
+        Post post;
 
         try{
-            result = em.createQuery("SELECT a from Post a where a.postid=?1", Post.class).setParameter(1,postid).getResultList();
+            post = em.createQuery("SELECT a from Post a where a.postid=?1", Post.class)
+                    .setParameter(1,postid)
+                    .getSingleResult();
         } catch (PersistenceException e) {
+            e.printStackTrace();
             return null;
         }
-        return result;
+        return post;
     }
 
-    public void createComment(Farmer farmer, Post post, String content, Timestamp commenttime) throws CreateException {
+    public void createComment(Farmer farmer, Long postId, String content, Timestamp commenttime) throws CreateException {
         if(content.length()<1 ) {
             throw new CreateException("Please enter title or content.");
         }
 
+        Post post = em.find(Post.class, postId);
         Comment comment = new Comment();
         comment.setFarmer(farmer);
         comment.setPost(post);
@@ -73,17 +80,5 @@ public class ForumService {
             throw new CreateException(e.getMessage());
         }
     }
-
-    public List<Comment> getComment(Long postid) {
-        List<Comment> result;
-
-        try{
-            result = em.createQuery("SELECT a from Comment a WHERE a.post.postid=?1 order by a.time Desc ", Comment.class).setParameter(1,postid).getResultList();
-        } catch (PersistenceException e) {
-            return null;
-        }
-        return result;
-    }
-
 
 }
