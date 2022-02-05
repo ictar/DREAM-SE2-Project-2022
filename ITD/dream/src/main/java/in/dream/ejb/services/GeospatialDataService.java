@@ -168,6 +168,9 @@ public class GeospatialDataService {
     }
 
     public Area getArea(Long areaID) {
+        if(areas == null) {
+            return null;
+        }
         return areas.get(areaID);
     }
 

@@ -94,7 +94,7 @@ public class AccountService {
         }
 
         if(flist.isEmpty()) {
-            return null;
+            throw new CredentialException("Farmer with " + phonenumber + " does not exist.");
         } else if(flist.size() == 1) {
             return flist.get(0);
         }
@@ -108,6 +108,7 @@ public class AccountService {
             result = em.createQuery("select f from Farmer f where f.farm.area.areaid = ?1",
                         Farmer.class).setParameter(1, areaID).getResultList();
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
 
@@ -121,6 +122,7 @@ public class AccountService {
             result = em.createQuery("select f from Farmer f, Agronomist a where f.farm.area = a.area and a.agronomistid=?1",
                     Farmer.class).setParameter(1, agronomistID).getResultList();
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
         return result;
@@ -133,6 +135,7 @@ public class AccountService {
             ag = em.createQuery("select a from Farmer f, Agronomist a where f.farm.area = a.area and f.farmerid=?1",
                     Agronomist.class).setParameter(1, farmerID).getSingleResult();
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
         return ag;
@@ -186,7 +189,7 @@ public class AccountService {
         }
 
         if(plist.isEmpty()) {
-            return null;
+            throw new CredentialException("Policymaker with " + email + " does not exist.");
         } else if(plist.size() == 1) {
             return plist.get(0);
         }
@@ -240,7 +243,7 @@ public class AccountService {
         }
 
         if(alist.isEmpty()) {
-            return null;
+            throw new CredentialException("Agronomist with " + email + " does not exist.");
         } else if(alist.size() == 1) {
             return alist.get(0);
         }
