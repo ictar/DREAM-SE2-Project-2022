@@ -269,8 +269,10 @@ public class AccountService {
         Agronomist a;
         try {
             a = em.createNamedQuery("Agronomist.findOne", Agronomist.class)
+                    .setParameter(1, agronomistid)
                     .getSingleResult();
         }catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
         return a;

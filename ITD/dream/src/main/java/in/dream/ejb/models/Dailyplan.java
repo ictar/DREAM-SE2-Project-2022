@@ -102,4 +102,8 @@ public class Dailyplan {
     public void setFarmers(Collection<Farmer> farmers) {
         this.farmers = farmers;
     }
+
+    public Collection<Farmer> getFarmers() {
+        return farmers;
+    }
 }

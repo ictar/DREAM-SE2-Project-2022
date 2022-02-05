@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: elexu
@@ -35,7 +36,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/policymaker">Home</a></li>
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/policymaker/agronomist/${agronomist.getName()}?id=${agronomist.getAgronomistid()}">${agronomist.getName()}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">${agronomist.getName()}</li>
+            <li class="breadcrumb-item active" aria-current="page">${dailyplan.getTitle()}</li>
         </ol>
     </nav>
 </div>
@@ -43,17 +44,36 @@
 <form>
     <fieldset disabled>
         <legend>${dailyplan.getTitle()}</legend>
-        <label>Date: ${dailyplan.getDate()}</label>
-        <label>Farmer: ${dailyplan.getFarmer()}</label>
         <div class="mb-3">
-            <label for="dpcontent" class="form-label">Content</label>
-            <input type="text" id="dpcontent" class="form-control" placeholder="${dailyplan.getContent()}">
+            <label for="dpdate" class="col-2">Date: </label>
+            <span id="dpdate" class="col-6">${dailyplan.getDate()}</span>
         </div>
         <div class="mb-3">
-            <label for="dpdeviation" class="form-label">Deviation</label>
-            <input type="text" id="dpdeviation" class="form-control" placeholder="${dailyplan.getDeviation()}">
+            <label for="dpfarmers" class="col-2">Farmer:</label>
+            <span id="dpfarmers" class="col-6">
+            <c:forEach items="${dailyplan.getFarmers()}" var="farmer">
+                ${farmer.getName()};
+            </c:forEach>
+            </span>
         </div>
-        <label>Status: ${dailyplan.getStatus()}</label>
+        <div class="mb-3">
+            <label for="dpcontent" class="col-2">Content</label>
+            <textarea rows="5" id="dpcontent" class="col-6">${dailyplan.getContent()}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="dpdeviation" class="col-2">Deviation</label>
+            <textarea rows="5" id="dpdeviation" class="col-6">${dailyplan.getDeviation()}</textarea>
+        </div>
+        <div class="mb-3">
+            <label class="col-2">Status:</label>
+                <c:if test="${dailyplan.getStatus() == 1}">
+                    <span class="red-dot"></span>
+                </c:if>
+                <c:if test="${ddailyplan.getStatus() == 0}">
+                    <span class="green-dot"></span>
+                </c:if>
+        </div>
+
     </fieldset>
 
 </form>

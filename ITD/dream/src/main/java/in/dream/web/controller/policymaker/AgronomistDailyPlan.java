@@ -1,5 +1,6 @@
 package in.dream.web.controller.policymaker;
 
+import in.dream.ejb.models.Dailyplan;
 import in.dream.ejb.models.Policymaker;
 import in.dream.ejb.services.DailyPlanService;
 
@@ -30,8 +31,9 @@ public class AgronomistDailyPlan extends HttpServlet {
         String[] urlparas = request.getRequestURI().split("/");
         Long dpid = Long.parseLong(urlparas[urlparas.length-1]);
 
-        request.setAttribute("dailyplan", dailyPlanService.getDailyPlanDetail(dpid));
-
+        Dailyplan dp = dailyPlanService.getDailyPlanDetail(dpid);
+        request.setAttribute("dailyplan",dp);
+        request.setAttribute("agronomist", dp.getAgronomist());
         Policymaker pm = (Policymaker)session.getAttribute("policymaker");
         request.setAttribute("user", pm.getName());
 

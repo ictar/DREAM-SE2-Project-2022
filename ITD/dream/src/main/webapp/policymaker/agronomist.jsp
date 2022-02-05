@@ -55,10 +55,10 @@
                     <td>${dp.getDeviation()}</td>
                     <td>
                         <c:if test="${dp.getStatus() == 1}">
-                            <div class="rounded-circle" style="background-color: green"></div>
+                            <span class="red-dot"></span>
                         </c:if>
                         <c:if test="${dp.getStatus() == 0}">
-                            <div class="rounded-circle" style="background-color: red"></div>
+                            <span class="green-dot"></span>
                         </c:if>
                     </td>
                 </tr>

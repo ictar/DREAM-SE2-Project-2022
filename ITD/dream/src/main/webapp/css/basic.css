@@ -35,3 +35,20 @@
 .dream-fm-btn > strong {
     color: white;
 }
+
+.red-dot {
+    height: 25px;
+    width: 25px;
+    background-color: #CC0000;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.green-dot {
+    height: 25px;
+    width: 25px;
+    background-color: #00CC00;
+    border-color: #00FF00;
+    border-radius: 50%;
+    display: inline-block;
+}

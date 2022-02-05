@@ -34,7 +34,7 @@
     <div class="col-sm mt-5 p-5">
       <img src="../images/policymaker.png" class="img-thumbnail border-0">
     </div>
-    <div class="col-sm">
+    <div class="col-4">
       <h2 class="text-center p-5">Policy Maker</h2>
       <form action="${pageContext.request.contextPath}/policymaker/Login" method="POST">
         <div class="input-group">
