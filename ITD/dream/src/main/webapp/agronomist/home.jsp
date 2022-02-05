@@ -143,12 +143,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${Dailyplan}" var="DP">
+                    <c:forEach items="${Dailyplan}" var="dp">
                         <tr>
-                            <td>${DP.getDailyPlanlist()}</td>
-                            <td>${DP.getDeviation()}</td>
-                            <td>${DP.getStatus()}</td>
-                            <td>${DP.Management()}</td>
+                            <td>${dp.getDate()}</td>
+                            <td>${dp.getDeviation()}</td>
+                            <td>
+                                <c:if test="${dp.getStatus() == 1}">
+                                    <span class="red-dot"></span>
+                                </c:if>
+                                <c:if test="${dp.getStatus() == 0}">
+                                    <span class="green-dot"></span>
+                                </c:if>
+                            </td>
+                            <td>
+                                <a href="#" style="text-decoration: none;">modify</a>
+                                <a href="#" style="text-decoration: none;">confirm</a>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
