@@ -1,7 +1,6 @@
 package in.dream.web.controller.farmer;
 
 import in.dream.ejb.models.Farmer;
-import in.dream.ejb.models.Post;
 import in.dream.ejb.services.ForumService;
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -38,12 +37,12 @@ public class Comment extends HttpServlet {
             Farmer fm = (Farmer)session.getAttribute("farmer");
 
             forumService.createComment(fm, postId, content,commenttime);
-            response.sendRedirect(getServletContext().getContextPath() + "/farmer/forum/post/" + postId.toString());
+            response.sendRedirect(getServletContext().getContextPath() + "/farmer/forum/post/" + postId);
 
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsgReg", e.getMessage());
-            request.getRequestDispatcher("/farmer/forum/post/" + postId.toString()).forward(request, response);
+            request.getRequestDispatcher("/farmer/forum/post/" + postId).forward(request, response);
         }
 
     }

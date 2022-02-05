@@ -18,6 +18,44 @@ import java.util.List;
 public class DailyPlanService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
+
+    /*
+    It returns a list of daily plans of the given agronomist.
+    The size of the list is computed based on the given parameters,
+    and the list will be sorted by time in descending order (latest entries listed first).
+    If “page” and “count” are both set to “-1”,
+    it will return all daily plans for the given agronomist.
+     */
+    public List<Dailyplan> getDailyPlanList(Long agronomistID, int page, int count) {
+        List<Dailyplan> result;
+        try {
+
+            TypedQuery<Dailyplan> query  = em.createNamedQuery("Dailyplan.findByAgronomist", Dailyplan.class)
+                    .setParameter(1, agronomistID);
+
+            if(page != -1 || count != -1) {
+                query.setFirstResult(page);
+                query.setMaxResults(count);
+            }
+
+            result = query.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+        return result;
+    }
+
+    public Dailyplan getDailyPlanDetail(Long dailyPlanID) {
+        try {
+            return em.createNamedQuery("Dailyplan.findOne", Dailyplan.class)
+                    .setParameter(1, dailyPlanID)
+                    .getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     // NOT USED
     public void createDailyPlan(Agronomist agronomist, String title,
 
@@ -78,17 +116,6 @@ public class DailyPlanService {
         return "";
     }
 
-    public Dailyplan getDailyPlanDetail(Long dailyPlanID) {
-        try {
-            return em.createNamedQuery("Dailyplan.findOne", Dailyplan.class)
-                    .setParameter(1, dailyPlanID)
-                    .getSingleResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     // NOT USED
     public String confirmDailyPlan(Long dailyPlanID, String deviation) {
         try {
@@ -108,31 +135,5 @@ public class DailyPlanService {
             return e.getMessage();
         }
         return "";
-    }
-
-    /*
-    It returns a list of daily plans of the given agronomist.
-    The size of the list is computed based on the given parameters,
-    and the list will be sorted by time in descending order (latest entries listed first).
-    If “page” and “count” are both set to “-1”,
-    it will return all daily plans for the given agronomist.
-     */
-    public List<Dailyplan> getDailyPlanList(Long agronomistID, int page, int count) {
-        List<Dailyplan> result;
-        try {
-
-            TypedQuery<Dailyplan> query  = em.createNamedQuery("Dailyplan.findByAgronomist", Dailyplan.class)
-                    .setParameter(1, agronomistID);
-
-            if(page != -1 || count != -1) {
-                query.setFirstResult(page);
-                query.setMaxResults(count);
-            }
-
-            result = query.getResultList();
-        } catch (Exception e) {
-            return null;
-        }
-        return result;
     }
 }

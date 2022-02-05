@@ -4,14 +4,11 @@ import in.dream.ejb.models.*;
 
 import javax.ejb.CreateException;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
-import javax.security.auth.login.CredentialException;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 
 @Stateless
 public class ForumService {
@@ -42,7 +39,7 @@ public class ForumService {
         List<Post> result;
 
         try{
-            result = em.createQuery("SELECT a from Post a order by a.time Desc ", Post.class).getResultList();
+            result = em.createNamedQuery("Post.findAll", Post.class).getResultList();
         } catch (PersistenceException e) {
             return null;
         }
@@ -52,7 +49,7 @@ public class ForumService {
         Post post;
 
         try{
-            post = em.createQuery("SELECT a from Post a where a.postid=?1", Post.class)
+            post = em.createNamedQuery("Post.findOne", Post.class)
                     .setParameter(1,postid)
                     .getSingleResult();
         } catch (PersistenceException e) {

@@ -2,14 +2,12 @@ package in.dream.web.controller.farmer;
 import in.dream.ejb.models.Farmer;
 
 import in.dream.ejb.services.ForumService;
-import org.apache.commons.text.StringEscapeUtils;
 
 import javax.ejb.EJB;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.Timestamp;
 
 @WebServlet(name = "farmerForum", value= {"/farmer/forum"})
 public class Forum extends HttpServlet {

@@ -5,6 +5,10 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Post.findAll", query="SELECT a from Post a order by a.time Desc"),
+        @NamedQuery(name="Post.findOne", query="SELECT a from Post a where a.postid=?1")
+})
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

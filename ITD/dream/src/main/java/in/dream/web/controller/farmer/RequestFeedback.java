@@ -22,7 +22,7 @@ public class RequestFeedback extends HttpServlet {
     private ProblemService problemService;
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // if the farmer is not logged in, redirect to the login
         String pathCtx = getServletContext().getContextPath();
         HttpSession session = request.getSession();
