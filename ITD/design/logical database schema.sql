@@ -63,6 +63,7 @@ create table `farmer_farm` (
 
 create table `problem` (
     `problemid` int(11) NOT NULL AUTO_INCREMENT,
+    `title` varchar(45) not null,
     `request` nvarchar(2000) NOT NULL,
     `requesttime` DATETIME,
     `answer` nvarchar(2000),
