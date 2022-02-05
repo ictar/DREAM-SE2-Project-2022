@@ -1,6 +1,8 @@
 package in.dream.web.controller.farmer;
 
+import in.dream.ejb.models.Agronomist;
 import in.dream.ejb.models.Farmer;
+import in.dream.ejb.services.AccountService;
 import in.dream.ejb.services.ProblemService;
 import org.apache.commons.text.StringEscapeUtils;
 
@@ -15,6 +17,8 @@ import java.sql.Timestamp;
 public class NewRequest extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/ProblemService")
     private ProblemService problemService;
+    @EJB(name = "in.dream.ejb.services/AccountService")
+    private AccountService accountService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,7 +58,9 @@ public class NewRequest extends HttpServlet {
                 throw new Exception("Required field is missing.");
             }
 
-            problemService.createRequest(title, content,farmer,time);
+            // find agronomist;
+            Agronomist agronomist = accountService.getAgronomistByFarmer(farmer.getFarmerid());
+            problemService.createProblem(title, content,farmer,time, agronomist);
             response.sendRedirect(getServletContext().getContextPath() + "/farmer/request");
 
         } catch (Exception e) {

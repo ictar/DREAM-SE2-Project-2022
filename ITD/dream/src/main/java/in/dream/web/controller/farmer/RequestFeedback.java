@@ -35,7 +35,7 @@ public class RequestFeedback extends HttpServlet {
             Long pid = Long.parseLong(StringEscapeUtils.escapeJava(request.getParameter("problemid")));
             int feedback = Integer.parseInt(StringEscapeUtils.escapeJava(request.getParameter("feedback")));
 
-            problemService.updateFeedback(pid, feedback);
+            problemService.feedbackProblem(pid, feedback);
         } catch (Exception e) {
             e.printStackTrace();
         }

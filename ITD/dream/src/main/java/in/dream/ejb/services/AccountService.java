@@ -114,7 +114,7 @@ public class AccountService {
         return result;
     }
 
-    public List<Farmer> getFarmerListByAgronomist(int agronomistID) {
+    public List<Farmer> getFarmerListByAgronomist(Long agronomistID) {
         List<Farmer> result;
 
         try {
@@ -126,7 +126,7 @@ public class AccountService {
         return result;
     }
 
-    public Agronomist getAgronomistByFarmer(int farmerID) {
+    public Agronomist getAgronomistByFarmer(Long farmerID) {
         Agronomist ag;
 
         try {
@@ -144,10 +144,6 @@ public class AccountService {
                     .setParameter(1, fid).getSingleResult();
             f.setPerformance(performanceData.get(fid));
         }
-    }
-
-    public List<Farmer> getFarmerPerformanceList(Long areaID) {
-        return getFarmerListByArea(areaID);
     }
 
     // policy maker

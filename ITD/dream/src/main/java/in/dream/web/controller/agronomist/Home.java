@@ -40,7 +40,7 @@ public class Home extends HttpServlet {
         request.setAttribute("weather", weather);
         request.setAttribute("water", geoService.getWaterIrrigation(areaId));
         request.setAttribute("soil", geoService.getSoil(areaId));
-        request.setAttribute("FarmerPerformance", accountService.getFarmerPerformanceList(areaId));
+        request.setAttribute("FarmerPerformance", accountService.getFarmerListByArea(areaId));
         request.setAttribute("Dailyplan", dailyPlanService.getDailyPlanList(agronomist.getAgronomistid(),-1,-1));
 
         request.setAttribute("user", agronomist.getName());

@@ -87,7 +87,7 @@ class ForumServiceTest {
         when(query.getResultList()).thenReturn(dummyResult);
 
         // now begin
-        List<Post> result = forumService.getPost();
+        List<Post> result = forumService.getForum();
         // did it request the named query?
         verify(em).createNamedQuery("Post.findAll", Post.class);
         // did it ask for the result list of the named query?
@@ -99,27 +99,27 @@ class ForumServiceTest {
     }
 
     @Test
-    void getPostByID_notexist() {
+    void getPost_notexist() {
         // prepare
         when(em.createNamedQuery(eq("Post.findOne"), any())).thenReturn(query);
 
         when(query.getSingleResult()).thenReturn(null);
 
         // begin
-        Post ret = forumService.getPostByID(PID_NOTEXIST);
+        Post ret = forumService.getPost(PID_NOTEXIST);
 
         assertNull(ret);
     }
 
     @Test
-    void getPostByID_validid() {
+    void getPost_validid() {
         // prepare
         when(em.createNamedQuery(eq("Post.findOne"), any())).thenReturn(query);
 
         when(query.getSingleResult()).thenReturn(post);
 
         // begin
-        Post ret = forumService.getPostByID(PID);
+        Post ret = forumService.getPost(PID);
 
         assertNotNull(ret);
         assertEquals(PID, ret.getPostid());

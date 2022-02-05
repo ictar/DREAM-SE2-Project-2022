@@ -38,7 +38,7 @@ public class FarmerPerformance extends HttpServlet {
         Long areaId = Long.parseLong(urlparas[urlparas.length-1]);
 
         request.setAttribute("area", geoService.getArea(areaId));
-        request.setAttribute("farmerList", accountService.getFarmerPerformanceList(areaId));
+        request.setAttribute("farmerList", accountService.getFarmerListByArea(areaId));
 
         Policymaker pm = (Policymaker)request.getSession()
                 .getAttribute("policymaker");

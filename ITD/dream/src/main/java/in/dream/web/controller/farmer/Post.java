@@ -31,7 +31,7 @@ public class Post extends HttpServlet {
         String[] urlparas = request.getRequestURI().split("/");
         Long postId = Long.parseLong(urlparas[urlparas.length-1]);
 
-        in.dream.ejb.models.Post post = forumService.getPostByID(postId);
+        in.dream.ejb.models.Post post = forumService.getPost(postId);
         request.setAttribute("post", post);
         request.setAttribute("commentList", post.getComments());
 

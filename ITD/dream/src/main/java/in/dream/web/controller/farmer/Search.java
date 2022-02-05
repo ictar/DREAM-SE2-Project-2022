@@ -1,6 +1,7 @@
 package in.dream.web.controller.farmer;
 
 import in.dream.ejb.external.Weather;
+import in.dream.ejb.models.Area;
 import in.dream.ejb.models.Farmer;
 import in.dream.ejb.services.GeospatialDataService;
 import in.dream.ejb.services.SearchService;
@@ -11,14 +12,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "farmerSearch", value = "/farmer/search")
 public class Search extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/SearchService")
     private SearchService searchService;
-    @EJB(name = "in.dream.ejb.services/GeospatialDataService")
-    private GeospatialDataService geospatialDataService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -32,8 +32,9 @@ public class Search extends HttpServlet {
 
         String path="/farmer/search.jsp";
 
-        request.setAttribute("areaList", geospatialDataService.getAreaList());
-        request.setAttribute("productList", geospatialDataService.getTypeList());
+        Map<String, Object> infos = searchService.getSearchInfo();
+        request.setAttribute("areaList", (List<Area>)infos.get("areaList"));
+        request.setAttribute("productList",(List<String>)infos.get("typeList"));
         Farmer fm = (Farmer)session.getAttribute("farmer");
         request.setAttribute("user", fm.getName());
         request.setAttribute("farm", fm.getFarm());

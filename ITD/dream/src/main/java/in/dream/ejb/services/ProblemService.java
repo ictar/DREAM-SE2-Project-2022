@@ -1,6 +1,7 @@
 package in.dream.ejb.services;
 
 
+import in.dream.ejb.models.Agronomist;
 import in.dream.ejb.models.Problem;
 import in.dream.ejb.models.Farmer;
 
@@ -18,7 +19,7 @@ public class ProblemService {
     @PersistenceContext(unitName = "DREAMEJB")
     protected EntityManager em;
 
-    public void createRequest(String title, String content, Farmer farmer, Timestamp time) throws CreateException {
+    public void createProblem(String title, String content, Farmer farmer, Timestamp time, Agronomist agronomist) throws CreateException {
         if (title.length() < 1 || content.length() < 1) {
             throw new CreateException("Please enter title or content.");
         }
@@ -28,6 +29,7 @@ public class ProblemService {
         problem.setRequest(content);
         problem.setFarmer(farmer);
         problem.setRequesttime(time);
+        problem.setAgronomist(agronomist);
 
         try {
             em.persist(problem);
@@ -47,7 +49,7 @@ public class ProblemService {
         return result;
     }
 
-    public void updateFeedback(Long problemId, int feedback) {
+    public void feedbackProblem(Long problemId, int feedback) {
         Problem problem = em.find(Problem.class, problemId);
         problem.setFeedback(feedback);
     }

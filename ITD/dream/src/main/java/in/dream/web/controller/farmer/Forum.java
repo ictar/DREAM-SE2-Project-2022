@@ -28,7 +28,7 @@ public class Forum extends HttpServlet {
         Farmer fm = (Farmer)session.getAttribute("farmer");
 
         request.setAttribute("user", fm.getName());
-        request.setAttribute("postList", forumService.getPost());
+        request.setAttribute("postList", forumService.getForum());
         request.getRequestDispatcher(path).forward(request, response);
     }
 }

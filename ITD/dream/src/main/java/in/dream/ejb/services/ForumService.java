@@ -35,7 +35,10 @@ public class ForumService {
         return post;
     }
 
-    public List<Post> getPost() {
+    public List<Post> getForum() {
+        return this.getPostList();
+    }
+    private List<Post> getPostList() {
         List<Post> result;
 
         try{
@@ -45,7 +48,8 @@ public class ForumService {
         }
         return result;
     }
-    public Post getPostByID(Long postid) {
+
+    public Post getPost(Long postid) {
         Post post;
 
         try{
