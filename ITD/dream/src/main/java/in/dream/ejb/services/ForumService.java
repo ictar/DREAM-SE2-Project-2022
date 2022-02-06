@@ -38,6 +38,7 @@ public class ForumService {
     public List<Post> getForum() {
         return this.getPostList();
     }
+
     private List<Post> getPostList() {
         List<Post> result;
 

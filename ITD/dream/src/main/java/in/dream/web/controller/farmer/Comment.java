@@ -41,7 +41,7 @@ public class Comment extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMsgReg", e.getMessage());
+            request.setAttribute("errorMsg", e.getMessage());
             request.getRequestDispatcher("/farmer/forum/post/" + postId).forward(request, response);
         }
 

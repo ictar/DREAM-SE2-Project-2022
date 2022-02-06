@@ -2,6 +2,7 @@ package in.dream.ejb.models;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -84,5 +85,11 @@ public class Post {
     private List<Comment> comments;
     public List<Comment> getComments() {
         return comments;
+    }
+    public void addComment(Comment comment) {
+        if(this.comments == null) {
+            this.comments = new ArrayList<Comment>();
+        }
+        this.comments.add(comment);
     }
 }
