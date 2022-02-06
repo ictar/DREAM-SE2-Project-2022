@@ -29,7 +29,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer">Home</a></li>
-            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer/request/">Request</a></li>
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/farmer/request">Request</a></li>
             <li class="breadcrumb-item active" aria-current="page">Create a new Request</li>
         </ol>
     </nav>

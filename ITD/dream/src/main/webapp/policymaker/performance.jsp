@@ -35,7 +35,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/policymaker">Home</a></li>
-            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/policymaker/area/${area.getName()}?id=${area.getAreaid()}">${area.getName()}</a></li>
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/policymaker/area/${area.getAreaid()}">${area.getName()}</a></li>
             <li class="breadcrumb-item active" aria-current="page">Performance</li>
         </ol>
     </nav>
