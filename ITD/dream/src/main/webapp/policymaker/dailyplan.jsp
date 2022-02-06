@@ -35,7 +35,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/policymaker">Home</a></li>
-            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/policymaker/agronomist/${agronomist.getName()}?id=${agronomist.getAgronomistid()}">${agronomist.getName()}</a></li>
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/policymaker/agronomist/${agronomist.getAgronomistid()}">${agronomist.getName()}</a></li>
             <li class="breadcrumb-item active" aria-current="page">${dailyplan.getTitle()}</li>
         </ol>
     </nav>

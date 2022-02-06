@@ -165,7 +165,7 @@ class AccountServiceTest {
 
         List<Farmer> a =  accountService.getFarmerListByAgronomist( 1111L);
         assertNotNull(a);
-    }
+}
 
     @Test
     public void getAgronomistByFarmer() {
