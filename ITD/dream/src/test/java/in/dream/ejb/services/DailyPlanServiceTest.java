@@ -17,8 +17,6 @@ import static org.mockito.ArgumentMatchers.any;
 
 class DailyPlanServiceTest {
 
-
-
     @Test
     void createDailyPlan() {
         try {
