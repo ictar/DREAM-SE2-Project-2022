@@ -1,0 +1,58 @@
+.dream-header {
+    background:#d5e8d4;
+}
+
+.dream-nav {
+    background: #E9ECEF;
+}
+.dream-nav > nav > ol > li > a {
+    color: #009900;
+    text-decoration: none;
+}
+
+.dream-tab {
+    background: #F8F9FA;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: black !important;
+    background-color: #D5E8D4 !important;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 30vh;
+    object-fit: contain;
+}
+
+.dream-btn {
+    background:#d5e8d4;
+}
+
+.dream-fm-btn {
+    background:#60A917;
+}
+.dream-fm-btn > strong {
+    color: white;
+}
+
+.red-dot {
+    height: 25px;
+    width: 25px;
+    background-color: #CC0000;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.green-dot {
+    height: 25px;
+    width: 25px;
+    background-color: #00CC00;
+    border-color: #00FF00;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+a {
+    text-decoration: none !important;
+}
