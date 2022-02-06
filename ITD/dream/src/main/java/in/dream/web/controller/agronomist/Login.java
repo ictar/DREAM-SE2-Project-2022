@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
 
             // everything is ok
             request.getSession().setAttribute("agronomist", ag);
-            path = getServletContext().getContextPath() + "/agronomist/Home";
+            path = getServletContext().getContextPath() + "/agronomist";
             response.sendRedirect(path);
 
         } catch (Exception e) {

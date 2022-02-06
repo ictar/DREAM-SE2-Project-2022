@@ -12,7 +12,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "agronomistHome", urlPatterns = {"/agronomist/Home"})
+@WebServlet(name = "agronomistHome", urlPatterns = {"/agronomist"})
 public class Home extends HttpServlet {
     @EJB(name = "in.dream.ejb.services/GeospatialDataService")
     private GeospatialDataService geoService;

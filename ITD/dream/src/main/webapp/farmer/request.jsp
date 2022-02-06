@@ -128,7 +128,7 @@
                             <input type="text" id="answer_${PL.getProblemid()}" class="col-6" value="${PL.getAnswer()}">
                         </div>
                         <div class="mb-3">
-                            <label for="anstime_${PL.getProblemid()}" class="col-2">Request Time:</label>
+                            <label for="anstime_${PL.getProblemid()}" class="col-2">Answer Time:</label>
                             <input type="text" id="anstime_${PL.getProblemid()}" class="col-6" value="${PL.getAnswertime()}">
                         </div>
                     </fieldset>
