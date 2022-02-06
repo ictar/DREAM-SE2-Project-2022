@@ -1,0 +1,47 @@
+{
+    "Rice": {
+        "temperature": "22 -32 degree Celsius",
+        "rainfall": "150-300 cm",
+        "soil": "Deep clayey and loamy soil"
+    },
+    "Wheat": {
+        "temperature": "10-15 degree Celsius (Sowing time); 21-26 degree Celsius (Ripening & Harvesting)",
+        "rainfall": "75-100 cm",
+        "soil": "Well-drained fertile loamy and clayey loamy"
+    },
+    "Millets": {
+        "temperature": "27-32 degree Celsius",
+        "rainfall": "50-100 cm",
+        "soil": "They are less sensitive to soil deficiencies. They can be grown in inferior alluvial or loamy soil"
+    },
+    "Grams": {
+        "temperature": "20-25 degree Celsius (Mild cool & Dry Climate)",
+        "rainfall": "40-45 cm",
+        "soil": "Loamy Soil"
+    },
+    "Cane": {
+        "temperature": "21-27 degree Celsius",
+        "rainfall": "75-150 cm",
+        "soil": "Deep rich loamy soil"
+    },
+    "Cotton": {
+        "temperature": "21-30 degree Celsius",
+        "rainfall": "50-100 cm",
+        "soil": "Black soil of Deccan and Malwa Plateau. However, it also grows well in alluvial soils of the Sutlej-Ganga plain and red and laterite soils of the peninsular region"
+    },
+    "Oilseeds": {
+        "temperature": "20-30 degree Celsius",
+        "rainfall": "50-75 cm",
+        "soil": "Well drained light sandy loams, red, yellow and black soils are well suited for its cultivation."
+    },
+    "Tea": {
+        "temperature": "20-30 degree Celsius",
+        "rainfall": "150-300 cm",
+        "soil": "Well drained, deep friable loamy soil."
+    },
+    "Coffee": {
+        "temperature": "15-28 degree Celsius",
+        "rainfall": "150-250 cm",
+        "soil": "Well drained, deep friable loamy soil"
+    }
+}
